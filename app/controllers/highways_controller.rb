@@ -4,78 +4,89 @@ class HighwaysController < ApplicationController
 
     def index
         @highway_informed_by_user = params[:highway_search]
-        @highway_number_exists = check_length_and_if_exists (@highway_informed_by_user)
-        @highway = setup_highway (@highway_informed_by_user)
+        @highway_number_exists = check_length_and_if_exists  ( @highway_informed_by_user )
+        @highway = setup_highway  ( @highway_informed_by_user )
     end
 
     # Set up the instance variable '@highway' on index with the result from 'search_for_highway' method
     def setup_highway highway
-        if highway
-            search_for_highway (highway)
-        else
+        if ( highway ) {
+            search_for_highway  ( highway )
+        }
+        else {
             return nil
+        }
         end
     end
 
     # Check the length of a highway informed and if it exists on DB
     def check_length_and_if_exists highway_to_check
-        cleaned_highway_to_check = check_highway_number(highway_to_check)
-        length_is_ok =  check_highway_number_length (cleaned_highway_to_check)
+        cleaned_highway_to_check = check_highway_number ( highway_to_check )
+        length_is_ok =  check_highway_number_length  ( cleaned_highway_to_check )
 
-        if length_is_ok
-            check_highway_exists (cleaned_highway_to_check)
-        else
+        if ( length_is_ok ) {
+            check_highway_exists  ( cleaned_highway_to_check )
+        }
+        else {
             return false
+        }
         end
 
     end
 
     # Search for a highway on DB
     def search_for_highway highway_to_search
-        highway_cleaned = check_highway_number(highway_to_search)
-        Highway.search_for_highway(highway_cleaned)
+        highway_cleaned = check_highway_number ( highway_to_search )
+        Highway.search_for_highway ( highway_cleaned )
     end
 
     # Check the length of the highway number informed
     def check_highway_number_length highway_number
-        if !highway_number.blank?
+        if ( !highway_number.blank? ) {
             highway_number_length = highway_number.size
 
-            if highway_number_length > MAX_HIGHWAY_NUMBER_LENGTH
+            if ( highway_number_length > MAX_HIGHWAY_NUMBER_LENGTH ) {
                 return false
-            else
+            }
+            else {
                 return true
+            }
             end
-
-        else
+        }
+        else {
             return false
+        }
         end
 
     end
 
     # Check if a highway exists on DB
     def check_highway_exists highway_to_check
-        if Highway.exists_highway(highway_to_check)
+        if ( Highway.exists_highway ( highway_to_check ) ){
             return true
-        else
+        }
+        else {
             return false
+        }
         end
 
     end
 
     # Ignore '0's on left on highway number
     def check_highway_number highway_number
-        if !highway_number.blank?
+        if ( !highway_number.blank? ) {
             i = 0
 
-            while highway_number.at(i) == "0"
-                highway_number = highway_number.from(i+1)
+            while highway_number.at ( i ) == "0" {
+                highway_number = highway_number.from ( i+1 )
+            }
             end
 
             return highway_number
-
-        else
+        }
+        else {
             return highway_number
+        }
         end
 
     end
@@ -91,10 +102,12 @@ class HighwaysController < ApplicationController
     end
 
     def calculate_accidentsRate accidents_number, mileage_highway
-        if mileage_highway.blank?
+        if ( mileage_highway.blank? ) {
             rate = 0.0
-        else
+        }
+        else {
             rate = accidents_number/mileage_highway.to_f
+        }
         end
 
         return rate
@@ -102,7 +115,7 @@ class HighwaysController < ApplicationController
     end
 
     def find_highway_to_accident
-    order_accidents_by_accidentsRate
+        order_accidents_by_accidentsRate
         count_accidents_by_highway
         
         br_accident = nil
@@ -113,9 +126,13 @@ class HighwaysController < ApplicationController
             br_accident = br
             @highways.each do |h|
                 mileage_br = h.mileage.to_s
-                if h.idBr == br_accident
-                    h.accidentsRate = calculate_accidentsRate(count, mileage_br)
+                if ( h.idBr == br_accident ) {
+                    h.accidentsRate = calculate_accidentsRate ( count, mileage_br )
                     h.save
+                } 
+                else {
+                    # Nothing to do.
+                }
                 end
             end
         end
@@ -137,11 +154,13 @@ class HighwaysController < ApplicationController
     end
 
     def calculate_accidentsRatePercent accidents_number, total_accidents
-        if accidents_number == 0
+        if ( accidents_number == 0 ){
             rate = 0.0
-        else
+        }
+        else {
             total = total_accidents.to_s
-            rate = (accidents_number/total.to_f)*100
+            rate =  ( accidents_number / total.to_f ) * 100
+        }
         end
 
         return rate
@@ -154,7 +173,7 @@ class HighwaysController < ApplicationController
 
 
     def ranking_2
-    @highways2 = Highway.all
+        @highways2 = Highway.all
         #count the accidents
         @accidents2 = Accident.total_accidents
         #order the accidents
@@ -173,9 +192,10 @@ class HighwaysController < ApplicationController
             br_accident = br
             @highways2.each do |h|
                 mileage_br = h.mileage.to_s
-                if h.idBr == br_accident
-                    h.accidentsRatePercent = calculate_accidentsRatePercent(count,@accidents2)
+                if ( h.idBr == br_accident ) {
+                    h.accidentsRatePercent = calculate_accidentsRatePercent ( count,@accidents2 )
                     h.save
+                }
                 end
             end
         end
@@ -183,7 +203,7 @@ class HighwaysController < ApplicationController
     end
 
     def show
-        @highway = Highway.find(params[:id])
+        @highway = Highway.find ( params[:id] )
         @comment = Comment.new
         @comments = Comment.getComments
     end
