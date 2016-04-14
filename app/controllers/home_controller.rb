@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-  	@highway = Highway.all_highways_by_accidentsRate
+  	  @highway = Highway.all_highways_by_accidentsRate
   end
 end
