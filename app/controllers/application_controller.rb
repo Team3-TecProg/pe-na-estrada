@@ -1,5 +1,11 @@
+######################################################################
+# Class name: ApplicationController
+# File name: application_controller.rb
+# Description: Default parent controller, all others controllers inherit it
+######################################################################
+
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+    # Prevent CSRF attacks by raising an exception.
+    # For APIs, you may want to use :null_session instead.
+    protect_from_forgery with: :exception
 end
