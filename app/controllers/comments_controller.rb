@@ -1,3 +1,9 @@
+######################################################################
+# Class name: CommentsController
+# File name: comments_controller.rb
+# Description: Controller used to communicate with the view highways/show
+######################################################################
+
 class CommentsController < ApplicationController
 
   def index
@@ -5,20 +11,19 @@ class CommentsController < ApplicationController
   end
 
   def create
-      #Get the highway that will receive the comment
-      @highway = Highway.find(params[:highway_id])
-
-      @comment = Comment.new(comment_params)
+      # Get the highway that will receive the comment
+      @highway = Highway.find( params[ :highway_id ] )
+      @comment = Comment.new( comment_params )
       if ( @comment.save )
           @comment.save
-          redirect_to highway_path(@highway)
+          redirect_to highway_path( @highway )
       else
-        #Nothing to do
+          # Nothing to do
       end
   end
 
   def comment_params
-      params.fetch(:comment, {} ).permit(:title, :text, :idBr)
+      params.fetch( :comment, { } ).permit( :title, :text, :idBr )
   end
 
 end
