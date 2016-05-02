@@ -1,5 +1,5 @@
 ######################################################################
-# Class name: CommentsModel
+# Class name: Comment
 # File name: comment.rb
 # Description: Represents all comments in application
 ######################################################################
