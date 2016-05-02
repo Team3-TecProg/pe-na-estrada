@@ -1,28 +1,32 @@
 class Accident < ActiveRecord::Base
 
-  validates_presence_of :uf
-  validates_presence_of :km
-  validates_presence_of :br
+    #uf means Federative Unity, which represent a state of Brazil;
+    validates_presence_of :uf
+    #km means distance in kilometers.
+    validates_presence_of :km
+    #br is a classification, given to the main roads on Brazil;
+    validates_presence_of :br
 
-  belongs_to :Highway
+    belongs_to :Highway
 
-  def self.count_accidents
-    group(:br).count
-  end
+    def self.count_accidents
+        group(:br).count
+    end
 
-  def self.total_accidents
- 	Accident.count
-  end
-  
-  def self.get_accidents_latitude 
-    all.map &:latitude
-  end
+    def self.total_accidents
+ 	      total_accidents = Accident.count
+        return total_accidents
+    end
 
-  def self.get_accidents_longitude 
-    all.map &:longitude
-  end
+    def self.get_accidents_latitude
+        all.map &:latitude
+    end
 
-  def self.get_accidents_br
-    all.map &:br
-  end
+    def self.get_accidents_longitude
+        all.map &:longitude
+    end
+
+    def self.get_accidents_br
+        all.map &:br
+    end
 end
