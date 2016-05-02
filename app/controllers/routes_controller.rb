@@ -27,7 +27,7 @@ class RoutesController < ApplicationController
       longitude = Accident.get_accidents_longitude
       br = Accident.get_accidents_br
 
-      remove_unusable_coordinates (latitude, longitude, br)
+      remove_unusable_coordinates latitude, longitude, br
   end
 
   def remove_unusable_coordinates (latitude, longitude, br)
@@ -53,7 +53,7 @@ class RoutesController < ApplicationController
           return i
       end
 
-    send_accidents_data_to_js (latitudeUsable, longitudeUsable, highways)
+    send_accidents_data_to_js latitudeUsable, longitudeUsable, highways
   end
 
   def send_accidents_data_to_js (latitude, longitude, br)
