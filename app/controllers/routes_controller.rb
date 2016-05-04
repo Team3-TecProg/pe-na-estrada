@@ -9,13 +9,13 @@
 class RoutesController < ApplicationController
 
   def index
-      @route = Route.new
+      @ROUTE = Route.new
   end
 
   def trace_route
-      @route = Route.new(origin_params)
-      @origin_informed_by_user = @route.origin
-      @destination_informed_by_user = @route.destination
+      @ROUTE = Route.new(origin_params)
+      @ORIGIN_INFORMED_BY_USER = @ROUTE.origin
+      @DESTINATION_INFORMED_BY_USER = @ROUTE.destination
 
       get_accidents_data_to_sinalize
 
