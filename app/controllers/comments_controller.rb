@@ -7,22 +7,28 @@
 
 class CommentsController < ApplicationController
 
-    # This method returns a variable called '@route' that contains
-    # a new object of the route.
-    # This method is called from the view package to show the web
-    # page to the user too.
+    # This method call the view class.
+    # Return a comment.
     def index
         @comment = Comment.new
     end
 
-    # Generates an object of the Highway model and saves it in the
-    # @highway variable.
+    # Generates an object of the Highway model and saves it in the global
+    # variable @HIGHWAY.
     def create
-        # Get the highway that will receive the comment
+        # Get the highway where the id will receive the comment.
         @highway = Highway.find( params[ :highway_id ] )
+        # Assert if the new object  @HIGHWAY is null.
         assert_object_is_not_null( @highway )
+
+        # @COMMENT is a global variable thats contains the comment sent in the
+        # params from the view.
         @comment = Comment.new( comment_params )
+        # Assert if the new object @COMMENT is null.
         assert_object_is_not_null( @comment )
+
+        # If can save the comment, is saved and after redirected to 
+        # highway_path in view.
         if ( @comment.save )
             @comment.save
             redirect_to highway_path( @highway )

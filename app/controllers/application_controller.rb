@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
     # Assertion methods
-
     def assert_object_is_not_null( object )
         if( not object.nil? )
             # Object is not null, nothing to do
