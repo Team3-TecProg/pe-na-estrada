@@ -15,8 +15,8 @@ class HighwaysController < ApplicationController
     # holds it in a variable.
     def index
         @HIGHWAY_INFORMED_BY_USER = params[:highway_search]
-        @HIGHWAY_NUMBER_EXISTS = check_length_and_if_exists  ( @HIGHWAY_INFORMED_BY_USER )
-        @highway = setup_highway  ( @HIGHWAY_INFORMED_BY_USER )
+        @highway_NUMBER_EXISTS = check_length_and_if_exists  ( @highway_INFORMED_BY_USER )
+        @highway = setup_highway  ( @highway_INFORMED_BY_USER )
     end
 
     # Set up the instance variable '@highway' on index with the
@@ -128,7 +128,7 @@ class HighwaysController < ApplicationController
             @highways.each do |highway|
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidentsRate = calculate_accidentsRate( count, mileage_br )
+                    highway.accidentsRate = calculate_accidents_rate( count, mileage_br )
                     highway.save
                 else
                     # Nothing to do.
@@ -147,12 +147,12 @@ class HighwaysController < ApplicationController
         end
     end
 
-    def ranking_1
+    def accidents_ranking
         @highways = Highway.all
         find_highway_to_accident
     end
 
-    def calculate_accidentsRatePercent ( accidents_number, total_accidents )
+    def calculate_accidents_rate_percentage ( accidents_number, total_accidents )
         if ( accidents_number == 0 )
             rate = 0.0
         else
@@ -165,39 +165,39 @@ class HighwaysController < ApplicationController
 
     # Saves all the highways in the database ordered by their
     # accident rates in a variable.
-    def order_accidents_by_accidentsRatePercent
-        @highway2 = Highway.all_highways_by_accidentsRatePercent
+    def order_accidents_by_accidents_rate_percentage
+        @highways_by_accidents_rate = Highway.all_highways_by_accidents_rate_percentage
     end
 
-    # Saves all the highways from the database in a variable
-    # ,all the accidents from the database in another variable
-    # ,and calls the find_highway_to_accident_percent method.
-    def ranking_2
-        @highways2 = Highway.all
+    # Saves all the highways from the database in a variable,
+    # all the accidents from the database in another variable,
+    # and calls the find_highway_to_accident_percentage method.
+    def accidents_percentage_ranking
+        @all_highways = Highway.all
         #count the accidents
         @accidents2 = Accident.total_accidents
         #order the accidents
 
-        find_highway_to_accident_percent
+        find_highway_to_accident_percentage
     end
 
-    # Saves the accidents percente rate of a highway in
+    # Saves the accidents percentage rate of a highway in
     # its respective highway object, provided there was
     # at least one accident there.
-    def find_highway_to_accident_percent
+    def find_highway_to_accident_percentage
         br_accident = nil
         count_accident = nil
         mileage_br = nil
 
-        order_accidents_by_accidentsRatePercent
+        order_accidents_by_accidents_rate_percentage
         count_accidents_by_highway
 
         @accident.each do |br, count|
             br_accident = br
-            @highways2.each do |highway|
+            @all_highways.each do |highway|
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidentsRatePercent = calculate_accidentsRatePercent count,@accidents2
+                    highway.accidents_rate_percentage = calculate_accidents_rate_percentage count,@accidents2
                     highway.save
                 end
             end

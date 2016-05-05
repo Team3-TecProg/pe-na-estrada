@@ -6,8 +6,8 @@
     <small>
      <ul class="nav navbar-nav navbar-right">
        <div class="dropdown" id="rate_types">
-        
-          Você está visualizando o ranking na taxa de 
+
+          Você está visualizando o ranking na taxa de
           <label class="dropdown-toggle" data-toggle="dropdown">
             <font color="#EEC900">Acidentes/Km</font>
             <span class="fa fa-chevron-down"></span>
@@ -22,14 +22,14 @@
       </div>
     </ul><br>
     </small>
-  </h3> 
+  </h3>
 </div>
 
 <br>
 
 <div align="center">
   <div id="ranking_panel" class="panel panel-warning">
-    
+
     <div class="panel panel-heading">
       <h5 class="panel-title" align="center">Ranking Completo</h5>
     </div>
@@ -45,7 +45,7 @@
             </tr>
           </thread>
           <tbody>
-            <% @highway.each do |h| %>
+            <% @highways.each do |h| %>
               <% if h.accidentsRate != 0.0 && h.accidentsRate != nil %>
                 <tr></tr>
                 <td><%= h.rankingPosition %>º </td>
