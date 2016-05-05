@@ -26,7 +26,7 @@ class Accident < ActiveRecord::Base
         all.map &:longitude
     end
 
-    def self.get_accidents_br
-        all.map &:br
+    def self.get_accidents_highway_number
+        all.map &:highway_number
     end
 end

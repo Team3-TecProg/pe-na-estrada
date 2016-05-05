@@ -27,50 +27,50 @@ class RoutesController < ApplicationController
   end
 
   # This method returns the method 'remove_unusable_coordinates' with latitude,
-  # longitude and 'br' with parameters.
+  # longitude and 'highway_number' with parameters.
   def get_accidents_data_to_sinalize
       latitude = Accident.get_accidents_latitude
       longitude = Accident.get_accidents_longitude
-      br = Accident.get_accidents_br
+      highway_number = Accident.get_accidents_highway_number
 
-      remove_unusable_coordinates latitude, longitude, br
+      remove_unusable_coordinates latitude, longitude, highway_number
   end
 
 
   # This method  returns the call of the method 'send_accidents_data_to_js'
   # giving three arrays in the parameters.
-  def remove_unusable_coordinates (latitude, longitude, br)
+  def remove_unusable_coordinates (latitude, longitude, highway_number)
       # Arrays to store the usables coordinates and highways
       latitudeUsable = [];
       longitudeUsable = [];
       highways = [];
 
-      i = 0; #Counter to get the latitudes from database
-      j = 0; #Get the latitude, longitude e br usables
+      latitudes_counter = 0; # Counter to get the latitudes from database
+      index = 0; # Get the latitude, longitude e highway_number usables
 
-      while i < latitude.length
-          if latitude[i].blank? == false
-              latitudeUsable[j] = latitude[i]
-              longitudeUsable[j] = longitude[i]
-              highways[j] = br[i]
-              j = j + 1
+      while latitudes_counter < latitude.length
+          if latitude[latitudes_counter].blank? == false
+              latitudeUsable[index] = latitude[latitudes_counter]
+              longitudeUsable[index] = longitude[latitudes_counter]
+              highways[index] = highway_number[latitudes_counter]
+              index = index + 1
           else
-              #nothing to do
+              # Nothing to do
           end
 
-          i = i + 1
-          return i
+          latitudes_counter = latitudes_counter + 1
+          return latitudes_counter
       end
 
     send_accidents_data_to_js latitudeUsable, longitudeUsable, highways
   end
 
-  # This method have 'latitude', 'longitude' and 'br' as parameters
+  # This method have 'latitude', 'longitude' and 'highway_number' as parameters
   # After that, all the variables are changed to java script mode
-  def send_accidents_data_to_js (latitude, longitude, br)
+  def send_accidents_data_to_js (latitude, longitude, highway_number)
       gon.latitude = latitude
       gon.longitude = longitude
-      gon.br = br
+      gon.highway_number = highway_number
   end
 
   # This method take the data from url to be used in this class. The data are
