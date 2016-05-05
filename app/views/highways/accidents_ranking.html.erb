@@ -15,7 +15,7 @@
 
           <ul class="dropdown-menu" role="menu" >
             <li role="presentation">
-              <%= link_to 'Porcentagem em relação ao total', ranking_2_path  %>
+              <%= link_to 'Porcentagem em relação ao total', accidents_percentage_ranking_path  %>
             </li>
           </ul>
 
@@ -46,9 +46,9 @@
           </thread>
           <tbody>
             <% @highways.each do |h| %>
-              <% if h.accidentsRate != 0.0 && h.accidentsRate != nil %>
+              <% if h.accidents_rate != 0.0 && h.accidents_rate != nil %>
                 <tr></tr>
-                <td><%= h.rankingPosition %>º </td>
+                <td><%= h.ranking_position %>º </td>
                 <td><%= h.idBr %></td>
                 <td><%= format("%.4f",h.accidentsRate) %></td>
               <% end %>

@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 20141128134657) do
   create_table "highways", force: true do |t|
     t.string   "idBr"
     t.integer  "mileage"
+    t.integer  "comments_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "accidentsRate"
     t.float    "accidentsRatePercent"
-    t.integer  "rankingPosition"
+    t.integer  "ranking_position"
   end
 
   create_table "routes", force: true do |t|

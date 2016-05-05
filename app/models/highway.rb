@@ -29,11 +29,11 @@ class Highway < ActiveRecord::Base
 
   end
 
-  def self.all_highways_by_accidentsRate
+  def self.all_highways_by_accidents_rate
       all.order(:accidentsRate).reverse_order
   end
 
-  def self.all_highways_by_accidentsRatePercent
+  def self.all_highways_by_accidents_rate_percentage
       all.order(:accidentsRatePercent).reverse_order
   end
 

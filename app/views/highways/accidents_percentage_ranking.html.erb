@@ -6,8 +6,8 @@
     <small>
       <ul class="nav navbar-nav navbar-right">
         <div class="dropdown" id="rate_types">
-          
-          Você está visualizando o ranking na taxa de 
+
+          Você está visualizando o ranking na taxa de
           <label class="dropdown-toggle" data-toggle="dropdown">
             <font color="#EEC900">Porcentagem em relação ao total</font>
             <span class="fa fa-chevron-down"></span>
@@ -15,21 +15,21 @@
 
           <ul class="dropdown-menu" role="menu" >
             <li role="presentation">
-              <%= link_to 'Acidentes/Km', ranking_1_path %>
+              <%= link_to 'Acidentes/Km', accidents_percentage_ranking_path %>
             </li>
           </ul>
 
         </div>
       </ul><br>
     </small>
-  </h3> 
+  </h3>
 </div>
 
 <br>
 
 <div align="center">
   <div id="ranking_panel" class="panel panel-warning">
-    
+
     <div class="panel panel-heading">
       <h5 class="panel-title" align="center">Ranking Completo</h5>
     </div>
@@ -47,12 +47,12 @@
 
           <tbody>
             <%position = 1%>
-            <% @highway2.each do |h| %>
-              <% if h.accidentsRatePercent != 0.0 && h.accidentsRatePercent != nil %>
+            <% @all_highways.each do |h| %>
+              <% if h.accidents_rate_percentage != 0.0 && h.accidents_rate_percentage != nil %>
                 <tr></tr>
                 <td><%= " #{position}º" %> </td>
                 <td><%= h.idBr %></td>
-                <td><%= format("%.4f",h.accidentsRatePercent)%>%</td>
+                <td><%= format("%.4f",h.accidents_rate_percentage )%>%</td>
                 <%position = position + 1%>
               <% end %>
             <% end %>

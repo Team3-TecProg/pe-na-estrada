@@ -1,7 +1,7 @@
 #####################################################################
 # Class name: HomeController
 # File name: home_controller.rb
-# Description: Controller used to communicate with the view 
+# Description: Controller used to communicate with the view
 # home/index
 #####################################################################
 
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-  	  @highway = Highway.all_highways_by_accidentsRate
+  	  @highway = Highway.all_highways_by_accidents_rate
       return @highway
   end
 end

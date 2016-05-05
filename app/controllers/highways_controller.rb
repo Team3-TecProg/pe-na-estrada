@@ -7,16 +7,13 @@
 
 class HighwaysController < ApplicationController
 
-    # Represents the maximum length permitted to a highway name.
-    MAX_HIGHWAY_NUMBER_LENGTH = 3
-
     # Receives a highway informed by the user, checks if it exists in
     # the database, clean any ‘0’s on the left of its name, and
     # holds it in a variable.
     def index
-        @HIGHWAY_INFORMED_BY_USER = params[:highway_search]
-        @highway_NUMBER_EXISTS = check_length_and_if_exists  ( @highway_INFORMED_BY_USER )
-        @highway = setup_highway  ( @highway_INFORMED_BY_USER )
+        @highway_informed_by_user = params[:highway_search]
+        @highway_number_exists = check_length_and_if_exists  ( @highway_informed_by_user )
+        @highway = setup_highway  ( @highway_informed_by_user )
     end
 
     # Set up the instance variable '@highway' on index with the
@@ -47,16 +44,21 @@ class HighwaysController < ApplicationController
         Highway.search_for_highway ( highway_cleaned )
     end
 
+    def max_highway_number_length
+      # Represents the maximum length permitted to a highway name.
+      max_highway_number_length = 3
+      return max_highway_number_length
+    end
+
     # Check the length of the highway number informed.
     def check_highway_number_length ( highway_number )
         if ( not highway_number.blank? )
             highway_number_length = highway_number.size
-            if ( highway_number_length > MAX_HIGHWAY_NUMBER_LENGTH )
+            if ( highway_number_length >  max_highway_number_length )
                 return false
             else
                 return true
             end
-
         else
             return false
         end
@@ -74,10 +76,10 @@ class HighwaysController < ApplicationController
     # Ignore '0's on left on highway number.
     def check_highway_number ( highway_number )
         if ( not highway_number.blank? )
-            i = 0
+            array_index = 0
 
-            while highway_number.at(i) == "0"
-                highway_number = highway_number.from ( i+1 )
+            while highway_number.at(array_index) == "0"
+                highway_number = highway_number.from ( array_index + 1 )
             end
 
             return highway_number
@@ -96,8 +98,8 @@ class HighwaysController < ApplicationController
     # order (higher accident rates first), saves them in
     # the @highway variable and calls the create_position
     # method to rank them.
-    def order_accidents_by_accidentsRate
-        @highway = Highway.all_highways_by_accidentsRate
+    def order_accidents_by_accidents_rate
+        @highway = Highway.all_highways_by_accidents_rate
         create_position
     end
 
@@ -105,7 +107,7 @@ class HighwaysController < ApplicationController
     # accidents number on a hiven highway and the total
     # of accidents registered. Receives the accidents_number
     # and the total_accidents parameters.
-    def calculate_accidentsRate ( accidents_number, mileage_highway )
+    def calculate_accidents_rate ( accidents_number, mileage_highway )
         if ( mileage_highway.blank? )
             rate = 0.0
         else
@@ -115,8 +117,10 @@ class HighwaysController < ApplicationController
         return rate
     end
 
+    # Saves the accidents rate of a highway in its respective highway object,
+    # provided there was an accident there.
     def find_highway_to_accident
-        order_accidents_by_accidentsRate
+        order_accidents_by_accidents_rate
         count_accidents_by_highway
 
         br_accident = nil
@@ -128,7 +132,7 @@ class HighwaysController < ApplicationController
             @highways.each do |highway|
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidentsRate = calculate_accidents_rate( count, mileage_br )
+                    highway.accidents_rate = calculate_accidents_rate( count, mileage_br )
                     highway.save
                 else
                     # Nothing to do.
@@ -138,20 +142,25 @@ class HighwaysController < ApplicationController
 
     end
 
+    # Saves the position of a highway in a ranking, based on their accident
+    # rates.
     def create_position
-        iterator = 0
+        iterator_position_position = 0
         @highway.each do |highway|
-            iterator = iterator + 1
-            highway.rankingPosition = iterator
+            iterator_position = iterator_position + 1
+            highway.ranking_position = iterator_position
             highway.save
         end
     end
 
+    # Saves all the highways on the database in a variable and calls the
+    # find_highway_to_accident method.
     def accidents_ranking
         @highways = Highway.all
         find_highway_to_accident
     end
 
+    # Calculates the percentage of accidents based on the accidents number on a # hiven highway and the total of accidents registered.
     def calculate_accidents_rate_percentage ( accidents_number, total_accidents )
         if ( accidents_number == 0 )
             rate = 0.0
@@ -175,9 +184,8 @@ class HighwaysController < ApplicationController
     def accidents_percentage_ranking
         @all_highways = Highway.all
         #count the accidents
-        @accidents2 = Accident.total_accidents
+        @accidents_count = Accident.total_accidents
         #order the accidents
-
         find_highway_to_accident_percentage
     end
 
@@ -197,7 +205,7 @@ class HighwaysController < ApplicationController
             @all_highways.each do |highway|
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidents_rate_percentage = calculate_accidents_rate_percentage count,@accidents2
+                    highway.accidents_rate_percentage = calculate_accidents_rate_percentage count, @accidents_count
                     highway.save
                 end
             end
