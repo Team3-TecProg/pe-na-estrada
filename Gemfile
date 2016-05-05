@@ -65,6 +65,6 @@ end
 
 
 group :development, :test do
-  gem "teaspoon"
+  gem "teaspoon-jasmine"
 end
 

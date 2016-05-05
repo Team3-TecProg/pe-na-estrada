@@ -15,7 +15,7 @@ class HighwaysController < ApplicationController
     # holds it in a variable.
     def index
         @HIGHWAY_INFORMED_BY_USER = params[:highway_search]
-        @highway_number_exists = check_length_and_if_exists  ( @HIGHWAY_INFORMED_BY_USER )
+        @HIGHWAY_NUMBER_EXISTS = check_length_and_if_exists  ( @HIGHWAY_INFORMED_BY_USER )
         @highway = setup_highway  ( @HIGHWAY_INFORMED_BY_USER )
     end
 
