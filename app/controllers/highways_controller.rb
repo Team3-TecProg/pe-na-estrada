@@ -218,5 +218,4 @@ class HighwaysController < ApplicationController
         @comment = Comment.new
         @comments = Comment.getComments
     end
-
 end

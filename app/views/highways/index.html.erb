@@ -12,7 +12,7 @@
   <div id="search_highway_form" class="col-lg-3">
     <!-- Search bar for a highway -->
     <%= form_tag highways_path, :method => "get" , id: "search-highway-form" do%>
-        
+
         <br>
         <span class="label label-success">Pesquisar Rodovia</span>
 
@@ -24,8 +24,8 @@
                                             :pattern => '[0-9]+',
                                             :input_html => {:size => 40, :maxlenght => 3} %>
           </div>
-        </div>     
-            
+        </div>
+
         <div id="search_btn" >
           <i class="fa fa-search"></i>
           <%= submit_tag "Pesquisar", :name => nil, :class => "btn btn-default"%>
@@ -34,7 +34,7 @@
     <% end %>
     <!-- End of search bar for a highway form -->
   </div>
-        
+
   <% if @highway.blank? == false %>
     <div class="col-lg-6" align="center">
       <div id="search_for_highway_result" class="panel panel-success" style="width: 500px;">
@@ -83,7 +83,7 @@
               </td>
               <td></td>
               </div>
-            </tr>       
+            </tr>
 
           <% end %>
 
@@ -93,7 +93,7 @@
 
   <% else %>
 
-    <% if !@HIGHWAY_NUMBER_EXISTS && @highway_informed_by_user != nil %>
+    <% if !@highway_number_exists && @highway_informed_by_user != nil %>
       <br><br>
       <div id="error_message" class="alert alert-danger" role="alert" style="text-align: center;">
         Nenhuma rodovia com esse nome ou parte dele. Cheque o número digitado (Digite apenas os dígitos da rodovia).

@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-lg-4">
     <!-- Form to take origin and destination to trace route -->
-    <%= simple_form_for @ROUTE,
+    <%= simple_form_for @route,
                 :url => url_for(:action => 'trace_route',
                                       :controller => 'routes'),
                 :method => 'post' do |o| %>
@@ -54,7 +54,7 @@
         </div>
 
     <% end %>
-    <% if @ORIGIN_INFORMED_BY_USER.blank? == false%>
+    <% if @origin_informed_by_user.blank? == false%>
       <button id="chooseRoute" class="btn btn-default btn-sm ">Escolher outra Rota</button>
       <button id="safeRoute" class="btn btn-default btn-sm ">Traçar Rota Segura</button>
     <%end%>
@@ -78,7 +78,7 @@
 <br>
 <br>
 <div id="button">
-<% if @ORIGIN_INFORMED_BY_USER.blank? == false%>
+<% if @origin_informed_by_user.blank? == false%>
 <button id="sinalizeAccidents" class="btn btn-danger btn-sm">
 Sinalizar acidentes
 </button>
@@ -118,6 +118,6 @@ Desmarcar trecho
 </div>
 <%end%>
 
-<%= hidden_field_tag 'origin' , @ORIGIN_INFORMED_BY_USER %>
-<%= hidden_field_tag 'destination' , @DESTINATION_INFORMED_BY_USER%>
+<%= hidden_field_tag 'origin' , @origin_informed_by_user%>
+<%= hidden_field_tag 'destination' , @destination_informed_by_user%>
 <%= include_gon %>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :ranking
 
   resources :highways do
-    collection { post :import}
+    collection { post :import }
   end
 
   resources :accidents do
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
    post '/routes/trace' => 'routes#trace_route', as: :trace_route
-   get '/highways/1/ranking' => 'highways#accidents_ranking', as: :ranking_1
+   get '/highways/1/ranking' => 'highways#accidents_ranking', as: :accidents_ranking
    get '/highways/2/ranking' => 'highways#accidents_percentage_ranking', as: :accidents_percentage_ranking
 
   # The priority is based upon order of creation: first created -> highest priority.

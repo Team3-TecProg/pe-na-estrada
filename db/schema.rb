@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20141128134657) do
     t.datetime "updated_at"
     t.float    "accidentsRate"
     t.float    "accidentsRatePercent"
-    t.integer  "ranking_position"
+    t.integer  "rankingPosition"
   end
 
   create_table "routes", force: true do |t|

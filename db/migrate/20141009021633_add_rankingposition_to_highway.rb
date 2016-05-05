@@ -1,5 +1,5 @@
-class Addranking_positionToHighway < ActiveRecord::Migration
+class AddRankingpositionToHighway < ActiveRecord::Migration
   def change
-    add_column :highways, :ranking_position, :integer
+    add_column :highways, :rankingPosition, :integer
   end
 end
