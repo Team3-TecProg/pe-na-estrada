@@ -14,35 +14,35 @@ class HighwaysControllerTest < ActionController::TestCase
 # Beginning of tests for action 'index'
 
   # Beginning of tests for '@highway_informed_by_user' instance variable
-  test "Test if the variable '@highway_informed_by_user' receives the params from form (first fixture)" do
+  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives the params from form (first fixture)" do
 
     get :index, {'highway_search' => highways(:one).idBr}
 
-    assert_equal assigns(:highway_informed_by_user), highways(:one).idBr, "This should be equal to '121'."
+    assert_equal assigns(:HIGHWAY_INFORMED_BY_USER), highways(:one).idBr, "This should be equal to '121'."
 
   end
 
-  test "Test if the variable '@highway_informed_by_user' receives the params from form (second fixture)" do
+  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives the params from form (second fixture)" do
 
     get :index, {'highway_search' => highways(:two).idBr}
 
-    assert_equal assigns(:highway_informed_by_user), highways(:two).idBr, "This should be equal to '987'."
+    assert_equal assigns(:HIGHWAY_INFORMED_BY_USER), highways(:two).idBr, "This should be equal to '987'."
 
   end
 
-  test "Test if the variable '@highway_informed_by_user' receives an empty param" do
+  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives an empty param" do
 
     get :index, {'highway_search' => ""}
 
-    assert assigns(:highway_informed_by_user).empty?, "This should be empty."
+    assert assigns(:HIGHWAY_INFORMED_BY_USER).empty?, "This should be empty."
 
   end
 
-  test "Test if the variable '@highway_informed_by_user' receives a null param" do
+  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives a null param" do
 
     get :index, {'highway_search' => nil}
 
-    assert_nil assigns(:highway_informed_by_user), "This should be null."
+    assert_nil assigns(:HIGHWAY_INFORMED_BY_USER), "This should be null."
 
   end
     # End of test for '@highway_informed_by_user' variable

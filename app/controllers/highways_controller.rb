@@ -1,9 +1,9 @@
-######################################################################
+#####################################################################
 # Class name: HighwaysController.
 # File name: highways_controller.rb.
 # Description: Controller used to communicate with the view
 # highways/show and the model highway.
-######################################################################
+#####################################################################
 
 class HighwaysController < ApplicationController
 
@@ -14,9 +14,9 @@ class HighwaysController < ApplicationController
     # the database, clean any ‘0’s on the left of its name, and
     # holds it in a variable.
     def index
-        @highway_informed_by_user = params[:highway_search]
-        @highway_number_exists = check_length_and_if_exists  ( @highway_informed_by_user )
-        @highway = setup_highway  ( @highway_informed_by_user )
+        @HIGHWAY_INFORMED_BY_USER = params[:highway_search]
+        @highway_number_exists = check_length_and_if_exists  ( @HIGHWAY_INFORMED_BY_USER )
+        @highway = setup_highway  ( @HIGHWAY_INFORMED_BY_USER )
     end
 
     # Set up the instance variable '@highway' on index with the

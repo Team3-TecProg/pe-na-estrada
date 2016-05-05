@@ -1,9 +1,9 @@
-######################################################################
+#####################################################################
 # Class name: CommentsController.
 # File name: comments_controller.rb.
 # Description: Controller used to communicate with the view
 # highways/show and the model comment.
-######################################################################
+#####################################################################
 
 class CommentsController < ApplicationController
 

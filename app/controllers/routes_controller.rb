@@ -1,8 +1,9 @@
-######################################################################
+#####################################################################
 # Class name: RoutesController
 # File name: routes_controller.rb
-# Description: Controller used by model Route to communicate with the view routes/index
-######################################################################
+# Description: Controller used by model Route to communicate with the
+# view routes/index.
+#####################################################################
 
 #-*- encoding : utf-8 -*-
 

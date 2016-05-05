@@ -8,14 +8,14 @@ class RoutesControllerTest < ActionController::TestCase
   end 
 
   test "should trace route" do 
-    post :trace_route, :route => { :origin => routes(:one).origin, :destination => routes(:one).destination}
-    assert_not_nil assigns(:route)
+    post :trace_route, :ROUTE => { :origin => routes(:one).origin, :destination => routes(:one).destination}
+    assert_not_nil assigns(:ROUTE)
   end
 
   test "test index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:route)
+    assert_not_nil assigns(:ROUTE)
   end
 
 end

@@ -1,8 +1,9 @@
-######################################################################
+#####################################################################
 # Class name: HomeController
 # File name: home_controller.rb
-# Description: Controller used to communicate with the view home/index
-######################################################################
+# Description: Controller used to communicate with the view 
+# home/index
+#####################################################################
 
 class HomeController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
