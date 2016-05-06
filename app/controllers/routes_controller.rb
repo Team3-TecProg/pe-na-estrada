@@ -8,14 +8,19 @@
 
 class RoutesController < ApplicationController
 
-  # This method returns a variable called '@route' that contains a new object of  # the route.
-  # This method is called from the view package to show the web page to the user
+  # Description: This method is called from the view package to show the web 
+  # page to the user.
+  # Parameters: none.
+  # Return: @route.
   def index
       @route = Route.new
   end
 
-  # This method return the result of other method
-  # 'get_accidents_data_to_sinalize' and render the index of this part of the software.
+  # Description: This method return the result of other method
+  # 'get_accidents_data_to_sinalize' and render the index of this part of the 
+  # software.
+  # Parameters: none.
+  # Return: none.
   def trace_route
       @route = Route.new(origin_params)
       @origin_informed_by_user = @route.origin
@@ -26,8 +31,10 @@ class RoutesController < ApplicationController
       render :index
   end
 
-  # This method returns the method 'remove_unusable_coordinates' with latitude,
-  # longitude and 'highway_number' with parameters.
+  # Description: This method returns the method 'remove_unusable_coordinates' 
+  # with latitude, longitude and 'highway_number' with parameters.
+  # Parameters: none.
+  # Return: none.
   def get_accidents_data_to_sinalize
       latitude = Accident.get_accidents_latitude
       longitude = Accident.get_accidents_longitude
@@ -37,8 +44,10 @@ class RoutesController < ApplicationController
   end
 
 
-  # This method  returns the call of the method 'send_accidents_data_to_js'
-  # giving three arrays in the parameters.
+  # Description: This method  returns the call of the method 
+  #'send_accidents_data_to_js' giving three arrays in the parameters.
+  # Parameters: latitude, longitude, highway_number.
+  # Return: latitudes_counter.
   def remove_unusable_coordinates (latitude, longitude, highway_number)
       # Arrays to store the usables coordinates and highways
       latitude_usable = [];
@@ -65,16 +74,20 @@ class RoutesController < ApplicationController
     send_accidents_data_to_js latitude_usable, longitude_usable, highways
   end
 
-  # This method have 'latitude', 'longitude' and 'highway_number' as parameters
-  # After that, all the variables are changed to java script mode
+  # Description: This method have 'latitude', 'longitude' and 'highway_number' 
+  # as parameters. After that, all the variables are changed to java script mode
+  # Parameters: latitude, longitude, highway_number.
+  # Return: gon.latitude, gon.longitude and gon.highway_number.
   def send_accidents_data_to_js (latitude, longitude, highway_number)
       gon.latitude = latitude
       gon.longitude = longitude
       gon.highway_number = highway_number
   end
 
-  # This method take the data from url to be used in this class. The data are
-  # 'origin' and 'destination' of the route.
+  # Description: This method take the data from url to be used in this class. 
+  # The data are 'origin' and 'destination' of the route.
+  # Parameters: none.
+  # Return: none.
   def origin_params
       params.require(:route).permit(:origin, :destination)
   end
