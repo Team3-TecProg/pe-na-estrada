@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     # This method call the view class.
     # Return a comment.
     def index
-        @comment = Comment.new
+        @COMMENT = Comment.new
     end
 
     # Generates an object of the Highway model and saves it in the global
@@ -23,14 +23,14 @@ class CommentsController < ApplicationController
 
         # @COMMENT is a global variable thats contains the comment sent in the
         # params from the view.
-        @comment = Comment.new( comment_params )
+        @COMMENT = Comment.new( comment_params )
         # Assert if the new object @COMMENT is null.
-        assert_object_is_not_null( @comment )
+        assert_object_is_not_null( @COMMENT )
 
         # If can save the comment, is saved and after redirected to 
         # highway_path in view.
-        if ( @comment.save )
-            @comment.save
+        if ( @COMMENT.save )
+            @COMMENT.save
             redirect_to highway_path( @highway )
         else
             # Nothing to do
@@ -39,6 +39,6 @@ class CommentsController < ApplicationController
 
     # Fetches the parameters required by a comment object
     def comment_params
-        params.fetch( :comment, { } ).permit( :title, :text, :idBr )
+        params.fetch( :COMMENT, { } ).permit( :title, :text, :idBr )
     end
 end

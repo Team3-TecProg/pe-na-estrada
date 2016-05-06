@@ -215,7 +215,7 @@ class HighwaysController < ApplicationController
     # Shows a given Highway model object in its HTML view page.
     def show
         @highway = Highway.find ( params[:id] )
-        @comment = Comment.new
-        @comments = Comment.getComments
+        @COMMENT = Comment.new
+        @COMMENTS = Comment.getComments
     end
 end

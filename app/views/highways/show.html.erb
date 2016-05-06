@@ -73,7 +73,7 @@
     <div id = "comment">
       <!-- Mostrando os comentários da rodovia -->
       <% highway_found = false %>
-      <% @comments.each do |comment| %>
+      <% @COMMENTS.each do |comment| %>
         <% if(comment.idBr == @highway.idBr)%>
           <div class="panel panel-success"  id = "comment_panel">
             <div class="panel-heading" style="color:#fff;">
