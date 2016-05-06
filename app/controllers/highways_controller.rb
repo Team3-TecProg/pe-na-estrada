@@ -1,6 +1,6 @@
 #####################################################################
-# Class name: HighwaysController.
-# File name: highways_controller.rb.
+# Class name: HighwaysController
+# File name: highways_controller.rb
 # Description: Controller used to communicate with the view
 # highways/show and the model highway.
 #####################################################################
@@ -12,8 +12,12 @@ class HighwaysController < ApplicationController
     # holds it in a variable.
     def index
         @highway_informed_by_user = params[:highway_search]
-        @highway_number_exists = check_length_and_if_exists  ( @highway_informed_by_user )
+        assert_object_is_not_nil ( @highway_informed_by_user )
+        @highway_number_exists = check_length_and_if_exists  
+                                  ( @highway_informed_by_user )
+        assert_object_is_not_nil ( @highway_number_exists )
         @highway = setup_highway  ( @highway_informed_by_user )
+        assert_object_is_not_nil ( @highway )
     end
 
     # Set up the instance variable '@highway' on index with the
@@ -28,7 +32,9 @@ class HighwaysController < ApplicationController
 
     # Check the length of a highway informed and if it exists on DB.
     def check_length_and_if_exists ( highway_to_check )
+        assert_object_is_not_nil ( highway_to_check )
         cleaned_highway_to_check = check_highway_number ( highway_to_check )
+        assert_object_is_not_nil ( cleaned_highway_to_check )
         length_is_ok =  check_highway_number_length  ( cleaned_highway_to_check )
 
         if ( length_is_ok )
@@ -40,7 +46,9 @@ class HighwaysController < ApplicationController
 
     # Search for a highway on DB.
     def search_for_highway ( highway_to_search )
+        assert_object_is_not_nil ( highway_to_search )
         highway_cleaned = check_highway_number ( highway_to_search )
+        assert_object_is_not_nil ( highway_cleaned)
         Highway.search_for_highway ( highway_cleaned )
     end
 
@@ -52,6 +60,7 @@ class HighwaysController < ApplicationController
 
     # Check the length of the highway number informed.
     def check_highway_number_length ( highway_number )
+        assert_object_is_not_nil ( highway_number )
         if ( not highway_number.blank? )
             highway_number_length = highway_number.size
             if ( highway_number_length >  max_highway_number_length )
@@ -66,6 +75,7 @@ class HighwaysController < ApplicationController
 
     # Check if a highway exists on DB.
     def check_highway_exists ( highway_to_check )
+        assert_object_is_not_nil ( highway_to_check)
         if ( Highway.exists_highway ( highway_to_check ) )
             return true
         else
@@ -75,6 +85,7 @@ class HighwaysController < ApplicationController
 
     # Ignore '0's on left on highway number.
     def check_highway_number ( highway_number )
+        assert_object_is_not_nil ( highway_to_check )
         if ( not highway_number.blank? )
             array_index = 0
 
@@ -92,6 +103,7 @@ class HighwaysController < ApplicationController
     # variable.
     def count_accidents_by_highway
         @accident = Accident.count_accidents
+        assert_object_is_not_nil ( @accident )
     end
 
     # Order the highways by their accident rates in reverse
@@ -100,6 +112,7 @@ class HighwaysController < ApplicationController
     # method to rank them.
     def order_accidents_by_accidents_rate
         @highway = Highway.all_highways_by_accidents_rate
+        @assert_object_is_not_nil ( @highway )
         create_position
     end
 
@@ -108,10 +121,12 @@ class HighwaysController < ApplicationController
     # of accidents registered. Receives the accidents_number
     # and the total_accidents parameters.
     def calculate_accidents_rate ( accidents_number, mileage_highway )
+        assert_object_is_not_nil  ( accidents_number )
+        assert_object_is_not_nil ( mileage_highway)
         if ( mileage_highway.blank? )
             rate = 0.0
         else
-            rate = accidents_number/mileage_highway.to_f
+            rate = accidents_number / mileage_highway.to_f
         end
 
         return rate
@@ -129,10 +144,12 @@ class HighwaysController < ApplicationController
 
         @accident.each do |br, count|
             br_accident = br
+            assert_object_is_not_nil(br_accident)
             @highways.each do |highway|
+                assert_object_is_not_nil ( highway )
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidents_rate = calculate_accidents_rate( count, mileage_br )
+                    highway.accidents_rate = calculate_accidents_rate ( count, mileage_br )
                     highway.save
                 else
                     # Nothing to do.
@@ -157,11 +174,14 @@ class HighwaysController < ApplicationController
     # find_highway_to_accident method.
     def accidents_ranking
         @highways = Highway.all
+        assert_object_is_not_nil ( @highways )
         find_highway_to_accident
     end
 
     # Calculates the percentage of accidents based on the accidents number on a # hiven highway and the total of accidents registered.
     def calculate_accidents_rate_percentage ( accidents_number, total_accidents )
+        assert_object_is_not_nil ( accidents_number )
+        assert_object_is_not_nil ( total_accidents )
         if ( accidents_number == 0 )
             rate = 0.0
         else
@@ -176,6 +196,7 @@ class HighwaysController < ApplicationController
     # accident rates in a variable.
     def order_accidents_by_accidents_rate_percentage
         @highways_by_accidents_rate = Highway.all_highways_by_accidents_rate_percentage
+        assert_object_is_not_nil ( @highways_by_accidents_rate )
     end
 
     # Saves all the highways from the database in a variable,
@@ -183,8 +204,10 @@ class HighwaysController < ApplicationController
     # and calls the find_highway_to_accident_percentage method.
     def accidents_percentage_ranking
         @all_highways = Highway.all
+        assert_object_is_not_nil ( @all_highways )
         #count the accidents
         @accidents_count = Accident.total_accidents
+        assert_object_is_not_nil ( @accidents_count )
         #order the accidents
         find_highway_to_accident_percentage
     end
@@ -215,7 +238,7 @@ class HighwaysController < ApplicationController
     # Shows a given Highway model object in its HTML view page.
     def show
         @highway = Highway.find ( params[:id] )
-        @COMMENT = Comment.new
-        @COMMENTS = Comment.getComments
+        @comment = Comment.new
+        @comment = Comment.getComments
     end
 end
