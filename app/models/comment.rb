@@ -14,8 +14,11 @@ class Comment < ActiveRecord::Base
     #Contais the id of the comment.
   	validates_presence_of :idBr
 
-    #Returns comments about the accidents.
+    # Description: Returns comments about the accidents.
+    # Parameters: none.
+    # Return : all.reverse_order
   	def self.getComments
+        # Take all comments in reverse order.
   		  all.reverse_order
   	end
 
