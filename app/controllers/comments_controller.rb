@@ -7,15 +7,18 @@
 
 class CommentsController < ApplicationController
 
-    # This method calls the view class.
-    # Returns a comment.
+    # Description: This method calls the view class.
+    # Parameters: none.
+    # Return: @comment.
     def index
         @comment = Comment.new
-        assert_object_is_not_null ( )
+        assert_object_is_not_null ( @comment )
     end
 
-    # Generates an object of the Highway model and saves it in the instance
-    # variable @highway.
+    # Description: Generates an object of the Highway model and saves it in the 
+    # instance variable @highway.
+    # Parameters: none.
+    # Return: none.
     def create
         # Get the highway where the id will receive the comment.
         @highway = Highway.find( params[ :highway_id ] )
@@ -37,7 +40,9 @@ class CommentsController < ApplicationController
         end
     end
 
-    # Fetches the parameters required by a comment object
+    # Description: Fetches the parameters required by a comment object.
+    # Parameters: none.
+    # Return: none.
     def comment_params
         params.fetch( :comment, { } ).permit( :title, :text, :idBr )
     end
