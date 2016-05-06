@@ -7,9 +7,11 @@
 
 class HighwaysController < ApplicationController
 
-    # Receives a highway informed by the user, checks if it exists in
+    # Description: Receives a highway informed by the user, checks if it exists in
     # the database, clean any ‘0’s on the left of its name, and
     # holds it in a variable.
+    # Parameters: none.
+    # Return: @highway.
     def index
         @highway_informed_by_user = params[:highway_search]
         assert_object_is_not_nil ( @highway_informed_by_user )
@@ -20,8 +22,10 @@ class HighwaysController < ApplicationController
         assert_object_is_not_nil ( @highway )
     end
 
-    # Set up the instance variable '@highway' on index with the
+    # Description: Set up the instance variable '@highway' on index with the
     # result from 'search_for_highway' method.
+    # Parameters: highway.
+    # Return: none or nil.
     def setup_highway ( highway )
         if ( highway )
             search_for_highway  ( highway )
@@ -30,7 +34,10 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Check the length of a highway informed and if it exists on DB.
+    # Description: Check the length of a highway informed and if it exists on 
+    # the database.
+    # Parameters: highway_to_check
+    # Return: none or false.
     def check_length_and_if_exists ( highway_to_check )
         assert_object_is_not_nil ( highway_to_check )
         cleaned_highway_to_check = check_highway_number ( highway_to_check )
@@ -44,7 +51,9 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Search for a highway on DB.
+    # Description: Search for a highway on DB.
+    # Parameters: highway_to_search.
+    # Return: none.
     def search_for_highway ( highway_to_search )
         assert_object_is_not_nil ( highway_to_search )
         highway_cleaned = check_highway_number ( highway_to_search )
@@ -52,13 +61,18 @@ class HighwaysController < ApplicationController
         Highway.search_for_highway ( highway_cleaned )
     end
 
+    # Description: Defines the maximum length permitted to a highway name.
+    # Parameters: none.
+    # Return: max_highway_number_length.
     def max_highway_number_length
-      # Represents the maximum length permitted to a highway name.
+      # In Brazil, there are no highways with numbers longer than 3 digitos.
       max_highway_number_length = 3
       return max_highway_number_length
     end
 
-    # Check the length of the highway number informed.
+    # Description: Check the length of the highway number informed.
+    # Parameters: highway_number.
+    # Return: true or false.
     def check_highway_number_length ( highway_number )
         assert_object_is_not_nil ( highway_number )
         if ( not highway_number.blank? )
@@ -73,7 +87,9 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Check if a highway exists on DB.
+    # Description: Check if a highway exists on DB.
+    # Parameters: highway_to_check.
+    # Return: true or false.
     def check_highway_exists ( highway_to_check )
         assert_object_is_not_nil ( highway_to_check)
         if ( Highway.exists_highway ( highway_to_check ) )
@@ -83,7 +99,9 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Ignore '0's on left on highway number.
+    # Description: Ignore '0's on left on highway number.
+    # Parameters: highway_number.
+    # Return: highway_number.
     def check_highway_number ( highway_number )
         assert_object_is_not_nil ( highway_to_check )
         if ( not highway_number.blank? )
@@ -99,27 +117,31 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Saves the amount of Accident model objects in an @accident
+    # Description: Saves the amount of Accident model objects in an @accident
     # variable.
+    # Parameters: none.
+    # Return: @accident.
     def count_accidents_by_highway
         @accident = Accident.count_accidents
         assert_object_is_not_nil ( @accident )
     end
 
-    # Order the highways by their accident rates in reverse
-    # order (higher accident rates first), saves them in
-    # the @highway variable and calls the create_position
-    # method to rank them.
+    # Description: Order the highways by their accident rates in rev Paerse order 
+    # (higher accident rates first), saves them in the @highway variable and 
+    # calls the create_position method to rank them.
+    # Parameters: none.
+    # Return: @highway
     def order_accidents_by_accidents_rate
         @highway = Highway.all_highways_by_accidents_rate
         @assert_object_is_not_nil ( @highway )
         create_position
     end
 
-    # Calculates the percentage of accidents based on the
-    # accidents number on a hiven highway and the total
-    # of accidents registered. Receives the accidents_number
-    # and the total_accidents parameters.
+    # Description: Calculates the percentage of accidents based on the accidents
+    # number on a given highway and the total of accidents registered. Receives 
+    # the accidents_number and the total_accidents parameters.
+    # Parameters: accidents_number, mileage_highway.
+    # Return: rate.
     def calculate_accidents_rate ( accidents_number, mileage_highway )
         assert_object_is_not_nil  ( accidents_number )
         assert_object_is_not_nil ( mileage_highway)
@@ -132,8 +154,10 @@ class HighwaysController < ApplicationController
         return rate
     end
 
-    # Saves the accidents rate of a highway in its respective highway object,
-    # provided there was an accident there.
+    # Description: Saves the accidents rate of a highway in its respective 
+    # highway object, provided there was an accident there.
+    # Parameters: none.
+    # Return: none.
     def find_highway_to_accident
         order_accidents_by_accidents_rate
         count_accidents_by_highway
@@ -159,8 +183,10 @@ class HighwaysController < ApplicationController
 
     end
 
-    # Saves the position of a highway in a ranking, based on their accident
-    # rates.
+    # Description: Saves the position of a highway in a ranking, based on their 
+    # accident rates.
+    # Parameters: none.
+    # Return: none.
     def create_position
         iterator_position_position = 0
         @highway.each do |highway|
@@ -170,15 +196,21 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Saves all the highways on the database in a variable and calls the
-    # find_highway_to_accident method.
+    
+    # Description: Saves all the highways on the database in a variable and 
+    # calls the find_highway_to_accident method.
+    # Parameters: none.
+    # Return: none.
     def accidents_ranking
         @highways = Highway.all
         assert_object_is_not_nil ( @highways )
         find_highway_to_accident
     end
 
-    # Calculates the percentage of accidents based on the accidents number on a # hiven highway and the total of accidents registered.
+    # Description: Calculates the percentage of accidents based on the accidents 
+    # number on a given highway and the total of accidents registered.
+    # Parameters: accidents_number, total accidents.
+    # Return: rate.
     def calculate_accidents_rate_percentage ( accidents_number, total_accidents )
         assert_object_is_not_nil ( accidents_number )
         assert_object_is_not_nil ( total_accidents )
@@ -192,16 +224,21 @@ class HighwaysController < ApplicationController
         return rate
     end
 
-    # Saves all the highways in the database ordered by their
+    # Description: Saves all the highways in the database ordered by their
     # accident rates in a variable.
+    # Parameters: none.
+    # Return: @highways_by_accidents_rate
     def order_accidents_by_accidents_rate_percentage
         @highways_by_accidents_rate = Highway.all_highways_by_accidents_rate_percentage
         assert_object_is_not_nil ( @highways_by_accidents_rate )
     end
 
-    # Saves all the highways from the database in a variable,
-    # all the accidents from the database in another variable,
-    # and calls the find_highway_to_accident_percentage method.
+    # Description: Saves all the highways from the database in a variable,
+    # all the accidents from the database in another variable, and calls the 
+    # find_highway_to_accident_percentage method.
+    # Parameters: none.
+    # Return: none.
+
     def accidents_percentage_ranking
         @all_highways = Highway.all
         assert_object_is_not_nil ( @all_highways )
@@ -212,9 +249,10 @@ class HighwaysController < ApplicationController
         find_highway_to_accident_percentage
     end
 
-    # Saves the accidents percentage rate of a highway in
-    # its respective highway object, provided there was
-    # at least one accident there.
+    # Description: Saves the accidents percentage rate of a highway in its 
+    # respective highway object, provided there was at least one accident there.
+    # Parameters: none.
+    # Return: none.
     def find_highway_to_accident_percentage
         br_accident = nil
         count_accident = nil
@@ -235,7 +273,9 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Shows a given Highway model object in its HTML view page.
+    # Description: Shows a given Highway model object in its HTML view page.
+    # Parameters: none.
+    # Return: @highway and @comment.
     def show
         @highway = Highway.find ( params[:id] )
         @comment = Comment.new
