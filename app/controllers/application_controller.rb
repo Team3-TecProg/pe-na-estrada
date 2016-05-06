@@ -10,13 +10,18 @@ class ApplicationController < ActionController::Base
     # For APIs, you may want to use :null_session instead.
     protect_from_forgery with: :exception
 
+    def assert_error_null
+    end
+
+    def assert_error_type_of_object
+    end
+
     # Assertion methods
     def assert_object_is_not_null( object )
         if( not object.nil? )
             # Object is not null, nothing to do
         else
-            # Redirect to a page
-            # Flash a message
+            redirect_to assert_error_null_path
         end
     end
 
@@ -24,8 +29,7 @@ class ApplicationController < ActionController::Base
         if( type_is_correct )
             # Object has the expected type, nothing to do
         else
-            # Redirect to a page
-            # Flash a message
+            redirect_to assert_error_type_of_object_path
         end
     end
 end

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
+   get '/assert_error_null' => 'application#assert_error_null'
+   get '/assert_error_type_of_object' => 'application#assert_error_type_of_object'
    post '/routes/trace' => 'routes#trace_route', as: :trace_route
    get '/highways/1/ranking' => 'highways#accidents_ranking', as: :accidents_ranking
    get '/highways/2/ranking' => 'highways#accidents_percentage_ranking', as: :accidents_percentage_ranking
