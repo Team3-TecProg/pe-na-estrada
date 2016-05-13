@@ -106,9 +106,9 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null ( highway_number )
         if ( not highway_number.blank? )
             array_index = 0
-
+            iterator_array_sum = 1;
             while highway_number.at(array_index) == "0"
-                highway_number = highway_number.from ( array_index + 1 )
+                highway_number = highway_number.from ( array_index + iterator_array_sum )
             end
 
             return highway_number
@@ -188,10 +188,11 @@ class HighwaysController < ApplicationController
     # Parameters: none.
     # Return: none.
     def create_position
-        iterator_position_position = 0
+        iterator_position_current = 0
+        sum_iterator_position = 1
         @highway.each do |highway|
-            iterator_position = iterator_position + 1
-            highway.ranking_position = iterator_position
+            iterator_position_current = iterator_position_current + sum_iterator_position
+            highway.ranking_position = iterator_position_current
             highway.save
         end
     end
@@ -214,11 +215,13 @@ class HighwaysController < ApplicationController
     def calculate_accidents_rate_percentage ( accidents_number, total_accidents )
         assert_object_is_not_null ( accidents_number )
         assert_object_is_not_null ( total_accidents )
-        if ( accidents_number == 0 )
+        zero_acidentes = 0
+        if ( accidents_number == zero_acidentes )
             rate = 0.0
         else
             total = total_accidents.to_s
-            rate =  ( accidents_number / total.to_f ) * 100
+            percentage = 100
+            rate =  ( accidents_number / total.to_f ) * percentage
         end
 
         return rate
