@@ -8,7 +8,7 @@
 
 class RoutesController < ApplicationController
 
-  # Description: This method is called from the view package to show the web 
+  # Description: This method is called from the view package to show the web
   # page to the user.
   # Parameters: none.
   # Return: @route.
@@ -17,7 +17,7 @@ class RoutesController < ApplicationController
   end
 
   # Description: This method return the result of other method
-  # 'get_accidents_data_to_sinalize' and render the index of this part of the 
+  # 'get_accidents_data_to_sinalize' and render the index of this part of the
   # software.
   # Parameters: none.
   # Return: none.
@@ -31,7 +31,7 @@ class RoutesController < ApplicationController
       render :index
   end
 
-  # Description: This method returns the method 'remove_unusable_coordinates' 
+  # Description: This method returns the method 'remove_unusable_coordinates'
   # with latitude, longitude and 'highway_number' with parameters.
   # Parameters: none.
   # Return: none.
@@ -44,7 +44,7 @@ class RoutesController < ApplicationController
   end
 
 
-  # Description: This method  returns the call of the method 
+  # Description: This method  returns the call of the method
   #'send_accidents_data_to_js' giving three arrays in the parameters.
   # Parameters: latitude, longitude, highway_number.
   # Return: latitudes_counter.
@@ -56,25 +56,25 @@ class RoutesController < ApplicationController
 
       latitudes_counter = 0; # Counter to get the latitudes from database
       index = 0; # Get the latitude, longitude e highway_number usables
-
+      iterator_sum = 1
       while latitudes_counter < latitude.length
           if latitude[latitudes_counter].blank? == false
               latitude_usable[index] = latitude[latitudes_counter]
               longitude_usable[index] = longitude[latitudes_counter]
               highways[index] = highway_number[latitudes_counter]
-              index = index + 1
+              index = index + iterator_sum
           else
               # Nothing to do
           end
 
-          latitudes_counter = latitudes_counter + 1
+          latitudes_counter = latitudes_counter + iterator_sum
           return latitudes_counter
       end
 
     send_accidents_data_to_js latitude_usable, longitude_usable, highways
   end
 
-  # Description: This method have 'latitude', 'longitude' and 'highway_number' 
+  # Description: This method have 'latitude', 'longitude' and 'highway_number'
   # as parameters. After that, all the variables are changed to java script mode
   # Parameters: latitude, longitude, highway_number.
   # Return: gon.latitude, gon.longitude and gon.highway_number.
@@ -84,7 +84,7 @@ class RoutesController < ApplicationController
       gon.highway_number = highway_number
   end
 
-  # Description: This method take the data from url to be used in this class. 
+  # Description: This method take the data from url to be used in this class.
   # The data are 'origin' and 'destination' of the route.
   # Parameters: none.
   # Return: none.
