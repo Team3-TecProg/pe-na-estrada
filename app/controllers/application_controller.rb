@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
         if( not object.nil? )
             # Object is not null, nothing to do
         else
-            redirect_to assert_error_null_path
+            # redirect_to assert_error_null_path
         end
     end
 
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
         if( type_is_correct )
             # Object has the expected type, nothing to do
         else
-            redirect_to assert_error_type_of_object_path
+            # redirect_to assert_error_type_of_object_path
         end
     end
 end
