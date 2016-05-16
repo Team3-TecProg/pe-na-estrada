@@ -22,7 +22,8 @@ class Accident < ActiveRecord::Base
     # Return : total_accidents.
     def self.total_accidents
         # Recives the number of total accidents in one especific highway.
- 	      total_accidents = Accident.count
+ 	    total_accidents = Accident.count
+
         return total_accidents
     end
 
