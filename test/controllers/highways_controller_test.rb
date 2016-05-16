@@ -14,163 +14,163 @@ class HighwaysControllerTest < ActionController::TestCase
 # Beginning of tests for action 'index'
 
   # Beginning of tests for '@highway_informed_by_user' instance variable
-  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives the params from form (first fixture)" do
+  test "Test if the variable '@highway_informed_by_user' receives the params from form (first fixture)" do
 
     get :index, {'highway_search' => highways(:one).idBr}
 
-    assert_equal assigns(:HIGHWAY_INFORMED_BY_USER), highways(:one).idBr, "This should be equal to '121'."
+    assert_equal assigns(:highway_informed_by_user), highways(:one).idBr, "This should be equal to '121'."
 
   end
 
-  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives the params from form (second fixture)" do
+  test "Test if the variable '@highway_informed_by_user' receives the params from form (second fixture)" do
 
     get :index, {'highway_search' => highways(:two).idBr}
 
-    assert_equal assigns(:HIGHWAY_INFORMED_BY_USER), highways(:two).idBr, "This should be equal to '987'."
+    assert_equal assigns(:highway_informed_by_user), highways(:two).idBr, "This should be equal to '987'."
 
   end
 
-  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives an empty param" do
+  test "Test if the variable '@highway_informed_by_user' receives an empty param" do
 
     get :index, {'highway_search' => ""}
 
-    assert assigns(:HIGHWAY_INFORMED_BY_USER).empty?, "This should be empty."
+    assert assigns(:highway_informed_by_user).empty?, "This should be empty."
 
   end
 
-  test "Test if the variable '@HIGHWAY_INFORMED_BY_USER' receives a null param" do
+  test "Test if the variable '@highway_informed_by_user' receives a null param" do
 
     get :index, {'highway_search' => nil}
 
-    assert_nil assigns(:HIGHWAY_INFORMED_BY_USER), "This should be null."
+    assert_nil assigns(:highway_informed_by_user), "This should be null."
 
   end
     # End of test for '@highway_informed_by_user' variable
 
-    # Beginning of tests of '@HIGHWAY_NUMBER_EXISTS' instance variable
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to the first registered highway" do
+    # Beginning of tests of '@highway_number_exists' instance variable
+  test "'@highway_number_exists' should be true with a param equal to the first registered highway" do
 
     get :index, {'highway_search' => highways(:one).idBr}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to the second registered highway" do
+  test "'@highway_number_exists' should be true with a param equal to the second registered highway" do
 
     get :index, {'highway_search' => highways(:two).idBr}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
   # Tests with part of idBr's from fixtures
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 1" do
+  test "'@highway_number_exists' should be true with a param equal to 1" do
 
     get :index, {'highway_search' => "1"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 2" do
+  test "'@highway_number_exists' should be true with a param equal to 2" do
 
     get :index, {'highway_search' => "2"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 9" do
+  test "'@highway_number_exists' should be true with a param equal to 9" do
 
     get :index, {'highway_search' => "9"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 8" do
+  test "'@highway_number_exists' should be true with a param equal to 8" do
 
     get :index, {'highway_search' => "8"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 7" do
+  test "'@highway_number_exists' should be true with a param equal to 7" do
 
     get :index, {'highway_search' => "7"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '12'" do
+  test "'@highway_number_exists' should be true with a param equal to '12'" do
 
     get :index, {'highway_search' => "12"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '21'" do
+  test "'@highway_number_exists' should be true with a param equal to '21'" do
 
     get :index, {'highway_search' => "21"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '98'" do
+  test "'@highway_number_exists' should be true with a param equal to '98'" do
 
     get :index, {'highway_search' => "98"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '87'" do
+  test "'@highway_number_exists' should be true with a param equal to '87'" do
 
     get :index, {'highway_search' => "87"}
 
-    assert assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be true."
+    assert assigns(:highway_number_exists), "@highway_number_exists should be true."
 
   end
   # End of tests with part of idBr's from fixtures
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be false with a param equal to a not registered highway" do
+  test "'@highway_number_exists' should be false with a param equal to a not registered highway" do
 
     get :index, {'highway_search' => "123"}
 
-    assert_not assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be false."
+    assert_not assigns(:highway_number_exists), "@highway_number_exists should be false."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be false with a param equal to highway with 4 caracters" do
+  test "'@highway_number_exists' should be false with a param equal to highway with 4 caracters" do
 
     get :index, {'highway_search' => "1234"}
 
-    assert_not assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be false."
+    assert_not assigns(:highway_number_exists), "@highway_number_exists should be false."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be false with a param with equal to a chain of letters" do
+  test "'@highway_number_exists' should be false with a param with equal to a chain of letters" do
 
     get :index, {'highway_search' => "asdf"}
 
-    assert_not assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be false."
+    assert_not assigns(:highway_number_exists), "@highway_number_exists should be false."
 
   end
 
-  test "'@HIGHWAY_NUMBER_EXISTS' should be false with a param equal to a nil" do
+  test "'@highway_number_exists' should be false with a param equal to a nil" do
 
     get :index, {'highway_search' => nil}
 
-    assert_not assigns(:HIGHWAY_NUMBER_EXISTS), "@HIGHWAY_NUMBER_EXISTS should be false."
+    assert_not assigns(:highway_number_exists), "@highway_number_exists should be false."
 
   end
-  # End of tests for '@HIGHWAY_NUMBER_EXISTS' variable
+  # End of tests for '@highway_number_exists' variable
 
   #Beginning of tests for '@highway' instance variable
   test "'@highway' should be null with a null argument" do
@@ -759,37 +759,37 @@ class HighwaysControllerTest < ActionController::TestCase
 # Beginning of tests of the 'calculate_accidentesRatePercent' method
   test "calculate_accidentsRate should return the rate with correct params" do
 
-    assert_equal 0.1, @highways_controller.calculate_accidentsRate(2, 20), "This should return 0.1 as accidents rate"
+    assert_equal 0.1, @highways_controller.calculate_accidents_rate(2, 20), "This should return 0.1 as accidents rate"
 
   end
 
-  test "calculate_accidentsRate should return zero the rate with params blank" do
+  test "calculate_accidents_rate  should return zero the rate with params blank" do
 
-    assert_equal 0.0, @highways_controller.calculate_accidentsRate(2, " "), "This should return 0.0 as accidents rate"
-
-  end
-
-  test "calculate_accidentsRate should return zero the rate with correct params" do
-
-    assert_equal 0.0, @highways_controller.calculate_accidentsRate(0, 20), "This should return 0.0 as accidents rate"
+    assert_equal 0.0, @highways_controller.calculate_accidents_rate(2, " "), "This should return 0.0 as accidents rate"
 
   end
 
- test "calculate_accidentsRatePercent should return the rate with correct params" do
+  test "calculate_accidents_rate  should return zero the rate with correct params" do
 
-    assert_equal 10, @highways_controller.calculate_accidentsRatePercent(2, 20), "This should return 10 as accidents rate"
+    assert_equal 0.0, @highways_controller.calculate_accidents_rate(0, 20), "This should return 0.0 as accidents rate"
+
+  end
+
+ test "calculate_accidents_rate Percent should return the rate with correct params" do
+
+    assert_equal 10, @highways_controller.calculate_accidents_rate_percentage(2, 20), "This should return 10 as accidents rate"
 
   end
 
   test "calculate_accidentsRatePercent should return zero the rate with accidents number zero" do
 
-    assert_equal 0.0, @highways_controller.calculate_accidentsRatePercent(0, 20), "This should return 0.0 as accidents rate"
+    assert_equal 0.0, @highways_controller.calculate_accidents_rate_percentage(0, 20), "This should return 0.0 as accidents rate"
 
   end
 
-  test "calculate_accidentsRatePercent should return zero the rate with params zero" do
+  test "calculate_accidents_rate_percentage should return zero the rate with params zero" do
 
-    assert_equal 0.0, @highways_controller.calculate_accidentsRatePercent(0, 0), "This should return 0.0 as accidents rate"
+    assert_equal 0.0, @highways_controller.calculate_accidents_rate_percentage(0, 0), "This should return 0.0 as accidents rate"
 
   end
 # End of the tests of the 'calculate_accidentesRatePercent' method
@@ -822,7 +822,7 @@ class HighwaysControllerTest < ActionController::TestCase
   end
 # End of the tests of the action 'show'
 
-  test "Not should comment nil" do 
+  test "Not should comment nil" do
     {:action=>"show", :COMMENT=>{:idBr=>comments(:two).idBr, :title=>comments(:two).title, :text=>comments(:two).text}, :controller=>"highways/"}
     assert_nil assigns(:COMMENT)
   end
