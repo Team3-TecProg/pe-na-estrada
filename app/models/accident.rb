@@ -14,7 +14,9 @@ class Accident < ActiveRecord::Base
     # Return : group().
     def self.count_accidents
         # Number of the chosen highways.
-        group(:br).count
+        accidents_in_a_br = group(:br).count
+
+        return accidents_in_a_br
     end
 
     # Description: The total of accidents thats happends in one highway.
