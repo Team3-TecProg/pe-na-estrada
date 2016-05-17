@@ -16,10 +16,12 @@ class Comment < ActiveRecord::Base
 
     # Description: Returns comments about the accidents.
     # Parameters: none.
-    # Return : all.reverse_order
+    # Return : all_coments_in_reverse_order
   	def self.getComments
         # Take all comments in reverse order.
-  		  all.reverse_order
+  		  all_coments_in_reverse_order = all.reverse_order
+
+        return all_coments_in_reverse_order
   	end
 
 end

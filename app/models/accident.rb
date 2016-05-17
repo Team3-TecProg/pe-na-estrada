@@ -31,25 +31,29 @@ class Accident < ActiveRecord::Base
 
     # Description: Take the accidents from the accident latitude perspective.
     # Parameters: none.
-    # Return : all.map.
+    # Return : accidents_latitudes
     def self.get_accidents_latitude
-        accidents_latitudes = all.map &:latitude
+        accidents_latitudes = all.map(&:latitude)
+
         return accidents_latitudes
     end
 
     # Description: Take the accidents from the accident longitude perspective.
     # Parameters: none.
-    # Return : all.map.
+    # Return : accidents_longitudes
     def self.get_accidents_longitude
-        accidents_longitudes = all.map &:longitude
+        accidents_longitudes = all.map(&:longitude)
+
         return accidents_longitudes
     end
 
-    # Description: Create a array with the highway number where every accident occurs.
+    # Description: Create a array with the highway number where every
+    # accident occurs.
     # Parameters: none.
-    # Return : all.map.
+    # Return : accidents_highway_number
     def self.get_accidents_highway_number
-        accidents_highway_number = all.map &:highway_number
+        accidents_highway_number = all.map(&:highway_number)
+
         return accidents_highway_number
     end
 end

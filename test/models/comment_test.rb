@@ -63,6 +63,10 @@ class CommentTest < ActiveSupport::TestCase
 		end
 
 		test "Checking if the comments are in reverse order" do
+				@comment.idBr = comments(:one).idBr
+				@comment.title = comments(:one).title
+				@comment.text = comments(:one).text
+				@comment.save!
 				@comment_reverse = Comment.getComments
 				assert_equal comments(:one).idBr, @comment_reverse.first.idBr, "The comments are not in reverse order"
 		end
