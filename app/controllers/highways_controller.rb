@@ -192,7 +192,7 @@ class HighwaysController < ApplicationController
         sum_iterator_position = 1
         @highway.each do |highway|
             iterator_position_current = iterator_position_current + sum_iterator_position
-            highway.ranking_position = iterator_position_current
+            highway.rankingPosition = iterator_position_current
             highway.save
         end
     end
