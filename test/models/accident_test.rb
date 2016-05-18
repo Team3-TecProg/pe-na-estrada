@@ -104,6 +104,34 @@ class AccidentTest < ActiveSupport::TestCase
 				assert_equal Accident.total_accidents,@total_accidents + 1
 		end
 
+		test "get the latitudes for an accidents" do
+				latitude_test = 21
+				longitude_test = 22
+				@accident.uf = accidents(:one).uf
+				@accident.km = accidents(:one).km
+				@accident.br = accidents(:one).br
+				@accident.latitude = latitude_test
+				@accident.longitude  = longitude_test
+				@accident.save!
+				expected_latitude = 21.to_s
+				accident_latitude = Accident.get_accidents_latitude.last
+				assert_equal expected_latitude,accident_latitude
+		end
+
+		test "get the longitude for an accidents" do
+				latitude_test = 21
+				longitude_test = 22
+				@accident.uf = accidents(:one).uf
+				@accident.km = accidents(:one).km
+				@accident.br = accidents(:one).br
+				@accident.latitude = latitude_test
+				@accident.longitude  = longitude_test
+				@accident.save!
+				expected_latitude = 22.to_s
+				accident_latitude = Accident.get_accidents_longitude.last
+				assert_equal expected_latitude,accident_latitude
+		end
+
 		test "get the number of accidents that ocurred in a br" do
 				br_number_test = 21
 				@accident.uf = accidents(:one).uf
@@ -114,5 +142,6 @@ class AccidentTest < ActiveSupport::TestCase
 				hash = Accident.count_accidents
 				assert_equal Accident.count_accidents[br_number_test.to_s],brs_number_of_accidents
 		end
+
 
 end
