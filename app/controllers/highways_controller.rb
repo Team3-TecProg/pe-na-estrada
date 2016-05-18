@@ -124,6 +124,7 @@ class HighwaysController < ApplicationController
     def count_accidents_by_highway
         @accident = Accident.count_accidents
         assert_object_is_not_null ( @accident )
+        return @accident
     end
 
     # Description: Order the highways by their accident rates in rev Paerse order

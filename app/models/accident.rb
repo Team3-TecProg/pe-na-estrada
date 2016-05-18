@@ -52,7 +52,7 @@ class Accident < ActiveRecord::Base
     # Parameters: none.
     # Return : accidents_highway_number
     def self.get_accidents_highway_number
-        accidents_highway_number = all.map(&:highway_number)
+        accidents_highway_number = all.map(&:br)
 
         return accidents_highway_number
     end

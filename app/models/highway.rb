@@ -26,8 +26,7 @@ class Highway < ActiveRecord::Base
         # Boolean variable to show if the highway exists or not.
         verify_exists_highway = false
         if highway_to_check.present?
-            exists?(['idBr LIKE ?', "%#{highway_to_check}%"])
-            verify_exists_highway = true
+            verify_exists_highway = exists?(['idBr LIKE ?', "%#{highway_to_check}%"])
         else
             # verify_exists_highway begins with false value, but here the false value
             # is used to make it explicit.
