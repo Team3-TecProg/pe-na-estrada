@@ -104,7 +104,7 @@ class AccidentTest < ActiveSupport::TestCase
 				assert_equal Accident.total_accidents,@total_accidents + 1
 		end
 
-		test "get the latitudes for an accidents" do
+		test "get the latitudes for an accident" do
 				latitude_test = 21
 				longitude_test = 22
 				@accident.uf = accidents(:one).uf
@@ -118,7 +118,23 @@ class AccidentTest < ActiveSupport::TestCase
 				assert_equal expected_latitude,accident_latitude
 		end
 
-		test "get the longitude for an accidents" do
+		# test "get the highway number for an accident" do
+		# 		@highway = Highway.new
+		# 		@highway.idBr = 21
+		# 		latitude_test = 21
+		# 		longitude_test = 22
+		# 		@accident.uf = accidents(:one).uf
+		# 		@accident.km = accidents(:one).km
+		# 		@accident.br = accidents(:one).br
+		# 		@accident.latitude = latitude_test
+		# 		@accident.longitude  = longitude_test
+		# 		@accident.save!
+		# 		expected_latitude = 21
+		# 		accident_latitude = Accident.get_accidents_highway_number
+		# 		assert_equal expected_latitude,accident_latitude
+		# end
+
+		test "get the longitude for an accident" do
 				latitude_test = 21
 				longitude_test = 22
 				@accident.uf = accidents(:one).uf
