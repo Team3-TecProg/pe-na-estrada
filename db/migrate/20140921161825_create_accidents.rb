@@ -3,7 +3,7 @@ class CreateAccidents < ActiveRecord::Migration
     create_table :accidents do |t|
       t.string :latitude
       t.string :longitude
-      t.string :uf
+      t.string :federative_unity
       t.integer :km
       t.string :highway_number
 

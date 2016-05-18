@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141128134657) do
   create_table "accidents", force: true do |t|
     t.string   "latitude"
     t.string   "longitude"
-    t.string   "uf"
+    t.string   "federative_unity"
     t.integer  "km"
     t.string   "highway_number"
     t.datetime "created_at"

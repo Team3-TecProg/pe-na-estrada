@@ -1,7 +1,7 @@
 class Accident < ActiveRecord::Base
 
-    #uf means Federative Unity, which represent a state of Brazil;
-    validates_presence_of :uf
+    #federative_unity represents a state of Brazil;
+    validates_presence_of :federative_unity
     #km means distance in kilometers.
     validates_presence_of :km
     #br is a classification, given to the main roads on Brazil;

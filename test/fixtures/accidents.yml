@@ -3,34 +3,34 @@
 one:
   latitude: "MyString"
   longitude: "MyString"
-  uf: "MyString"
+  federative_unity: "MyString"
   km: 1
   highway_number: "MyString"
 
 two:
   latitude:
   longitude:
-  uf:
+  federative_unity:
   km:
   highway_number:
 
 three:
   latitude: ""
   longitude: ""
-  uf: ""
+  federative_unity: ""
   km:
   highway_number: ""
 
 four:
   latitude: "3941209587734"
   longitude: "2380945234"
-  uf: "DF"
+  federative_unity: "DF"
   km: 1500
   highway_number: "70"
 
 five:
   latitude: "90132912"
   longitude: "09473"
-  uf: "MT"
+  federative_unity: "MT"
   km: 456
   highway_number: "70"
