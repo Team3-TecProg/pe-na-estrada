@@ -5,7 +5,7 @@ class CreateAccidents < ActiveRecord::Migration
       t.string :longitude
       t.string :uf
       t.integer :km
-      t.string :br
+      t.string :highway_number
 
       t.timestamps
     end

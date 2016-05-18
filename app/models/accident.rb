@@ -5,7 +5,7 @@ class Accident < ActiveRecord::Base
     #km means distance in kilometers.
     validates_presence_of :km
     #br is a classification, given to the main roads on Brazil;
-    validates_presence_of :br
+    validates_presence_of :highway_number
 
     belongs_to :Highway
 
@@ -14,7 +14,7 @@ class Accident < ActiveRecord::Base
     # Return : group().
     def self.count_accidents
         # Number of the chosen highways.
-        accidents_in_a_br = group(:br).count
+        accidents_in_a_br = group(:highway_number).count
 
         return accidents_in_a_br
     end
@@ -52,7 +52,7 @@ class Accident < ActiveRecord::Base
     # Parameters: none.
     # Return : accidents_highway_number
     def self.get_accidents_highway_number
-        accidents_highway_number = all.map(&:br)
+        accidents_highway_number = all.map(&:highway_number)
 
         return accidents_highway_number
     end

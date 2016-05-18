@@ -12,7 +12,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:one).latitude
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				assert @accident.save
 		end
 
@@ -21,7 +21,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:two).latitude
 				@accident.uf = accidents(:two).uf
 				@accident.km = accidents(:two).km
-				@accident.br = accidents(:two).br
+				@accident.highway_number = accidents(:two).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
 
@@ -30,7 +30,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:one).latitude
 				@accident.uf = accidents(:two).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
 
@@ -39,7 +39,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:one).latitude
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:two).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
 
@@ -48,7 +48,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:one).latitude
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:two).br
+				@accident.highway_number = accidents(:two).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
 
@@ -57,16 +57,16 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:one).longitude
 				@accident.uf = accidents(:three).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				assert_not @accident.save, "Cannot be invalid"
 		end
 
-		test "Checking if br is empty" do
+		test "Checking if highway_number is empty" do
 				@accident.latitude = accidents(:one).latitude
 				@accident.longitude = accidents(:one).longitude
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:three).br
+				@accident.highway_number = accidents(:three).highway_number
 				assert_not @accident.save, "Cannot be invalid"
 		end
 
@@ -99,7 +99,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude = accidents(:one).latitude
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				@accident.save!
 				assert_equal Accident.total_accidents,@total_accidents + 1
 		end
@@ -109,7 +109,7 @@ class AccidentTest < ActiveSupport::TestCase
 				longitude_test = 22
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				@accident.latitude = latitude_test
 				@accident.longitude  = longitude_test
 				@accident.save!
@@ -125,7 +125,7 @@ class AccidentTest < ActiveSupport::TestCase
 		# 		longitude_test = 22
 		# 		@accident.uf = accidents(:one).uf
 		# 		@accident.km = accidents(:one).km
-		# 		@accident.br = accidents(:one).br
+		# 		@accident.highway_number = accidents(:one).highway_number
 		# 		@accident.latitude = latitude_test
 		# 		@accident.longitude  = longitude_test
 		# 		@accident.save!
@@ -139,7 +139,7 @@ class AccidentTest < ActiveSupport::TestCase
 				longitude_test = 22
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = accidents(:one).br
+				@accident.highway_number = accidents(:one).highway_number
 				@accident.latitude = latitude_test
 				@accident.longitude  = longitude_test
 				@accident.save!
@@ -148,13 +148,13 @@ class AccidentTest < ActiveSupport::TestCase
 				assert_equal expected_latitude,accident_latitude
 		end
 
-		test "get the number of accidents that ocurred in a br" do
+		test "get the number of accidents that ocurred in a highway_number" do
 				br_number_test = 21
 				@accident.uf = accidents(:one).uf
 				@accident.km = accidents(:one).km
-				@accident.br = br_number_test
+				@accident.highway_number = br_number_test
 				@accident.save!
-				brs_number_of_accidents = Accident.where(br: br_number_test).count
+				brs_number_of_accidents = Accident.where(highway_number: br_number_test).count
 				hash = Accident.count_accidents
 				assert_equal Accident.count_accidents[br_number_test.to_s],brs_number_of_accidents
 		end

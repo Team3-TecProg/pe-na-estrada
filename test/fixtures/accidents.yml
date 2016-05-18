@@ -5,32 +5,32 @@ one:
   longitude: "MyString"
   uf: "MyString"
   km: 1
-  br: "MyString"
+  highway_number: "MyString"
 
 two:
   latitude:
   longitude:
   uf:
   km:
-  br:
+  highway_number:
 
 three:
   latitude: ""
   longitude: ""
   uf: ""
   km:
-  br: ""
+  highway_number: ""
 
 four:
   latitude: "3941209587734"
   longitude: "2380945234"
   uf: "DF"
   km: 1500
-  br: "70"
+  highway_number: "70"
 
 five:
   latitude: "90132912"
   longitude: "09473"
   uf: "MT"
   km: 456
-  br: "70"
+  highway_number: "70"
