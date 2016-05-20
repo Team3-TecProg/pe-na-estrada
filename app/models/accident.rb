@@ -6,11 +6,11 @@
 
 class Accident < ActiveRecord::Base
 
-    #federative_unity represents a state of Brazil;
+    #federative_unity represents a state of Brazil.
     validates_presence_of :federative_unity
-    #km means distance in kilometers.
-    validates_presence_of :km
-    #br is a classification, given to the main roads on Brazil;
+    #kilometer represents the distance of a highway.
+    validates_presence_of :kilometer
+    #br is a classification, given to the main roads on Brazil.
     validates_presence_of :highway_number
 
     belongs_to :Highway

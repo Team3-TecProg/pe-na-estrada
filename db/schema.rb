@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20141128134657) do
     t.string   "latitude"
     t.string   "longitude"
     t.string   "federative_unity"
-    t.integer  "km"
+    t.integer  "kilometer"
     t.string   "highway_number"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -11,7 +11,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).longitude
 				@accident.longitude = accidents(:one).latitude
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				assert @accident.save
 		end
@@ -20,7 +20,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:two).longitude
 				@accident.longitude = accidents(:two).latitude
 				@accident.federative_unity = accidents(:two).federative_unity
-				@accident.km = accidents(:two).km
+				@accident.kilometer = accidents(:two).kilometer
 				@accident.highway_number = accidents(:two).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
@@ -29,7 +29,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).longitude
 				@accident.longitude = accidents(:one).latitude
 				@accident.federative_unity = accidents(:two).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
@@ -38,7 +38,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).longitude
 				@accident.longitude = accidents(:one).latitude
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:two).km
+				@accident.kilometer = accidents(:two).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
@@ -47,7 +47,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).longitude
 				@accident.longitude = accidents(:one).latitude
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:two).highway_number
 				assert_not @accident.save, "Cannot be null"
 		end
@@ -56,7 +56,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).latitude
 				@accident.longitude = accidents(:one).longitude
 				@accident.federative_unity = accidents(:three).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				assert_not @accident.save, "Cannot be invalid"
 		end
@@ -65,7 +65,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).latitude
 				@accident.longitude = accidents(:one).longitude
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:three).highway_number
 				assert_not @accident.save, "Cannot be invalid"
 		end
@@ -98,7 +98,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.latitude = accidents(:one).longitude
 				@accident.longitude = accidents(:one).latitude
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				@accident.save!
 				assert_equal Accident.total_accidents,@total_accidents + 1
@@ -108,7 +108,7 @@ class AccidentTest < ActiveSupport::TestCase
 				latitude_test = 21
 				longitude_test = 22
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				@accident.latitude = latitude_test
 				@accident.longitude  = longitude_test
@@ -124,7 +124,7 @@ class AccidentTest < ActiveSupport::TestCase
 		# 		latitude_test = 21
 		# 		longitude_test = 22
 		# 		@accident.federative_unity = accidents(:one).federative_unity
-		# 		@accident.km = accidents(:one).km
+		# 		@accident.kilometer = accidents(:one).kilometer
 		# 		@accident.highway_number = accidents(:one).highway_number
 		# 		@accident.latitude = latitude_test
 		# 		@accident.longitude  = longitude_test
@@ -138,7 +138,7 @@ class AccidentTest < ActiveSupport::TestCase
 				latitude_test = 21
 				longitude_test = 22
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = accidents(:one).highway_number
 				@accident.latitude = latitude_test
 				@accident.longitude  = longitude_test
@@ -151,7 +151,7 @@ class AccidentTest < ActiveSupport::TestCase
 		test "get the number of accidents that ocurred in a highway_number" do
 				br_number_test = 21
 				@accident.federative_unity = accidents(:one).federative_unity
-				@accident.km = accidents(:one).km
+				@accident.kilometer = accidents(:one).kilometer
 				@accident.highway_number = br_number_test
 				@accident.save!
 				brs_number_of_accidents = Accident.where(highway_number: br_number_test).count

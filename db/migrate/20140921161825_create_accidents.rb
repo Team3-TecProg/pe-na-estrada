@@ -4,7 +4,7 @@ class CreateAccidents < ActiveRecord::Migration
       t.string :latitude
       t.string :longitude
       t.string :federative_unity
-      t.integer :km
+      t.integer :kilometer
       t.string :highway_number
 
       t.timestamps
