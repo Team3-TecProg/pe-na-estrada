@@ -1,3 +1,9 @@
+######################################################################
+# Class name: Accident
+# File name: accident.rb
+# Description: Represents eventual accidents that happen in a highway.
+######################################################################
+
 class Accident < ActiveRecord::Base
 
     #federative_unity represents a state of Brazil;

@@ -1,3 +1,10 @@
+######################################################################
+# Class name: Highway
+# File name: highway.rb
+# Description: Represents a brazilian highway, a main road that usually connects
+# major cities.
+######################################################################
+
 class Highway < ActiveRecord::Base
 
     has_many :Comment
