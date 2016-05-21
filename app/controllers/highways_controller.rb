@@ -13,7 +13,7 @@ class HighwaysController < ApplicationController
     # Parameters: none.
     # Return: @highway.
     def index
-        @highway_informed_by_user = params[:highway_search]
+        @highway_informed_by_user = params[ :highway_search ]
         assert_object_is_not_null ( @highway_informed_by_user )
         @highway_number_exists  = check_length_and_if_exists \
                                   ( @highway_informed_by_user )
@@ -28,7 +28,7 @@ class HighwaysController < ApplicationController
     # Return: none or nil.
     def setup_highway ( highway )
         if ( highway )
-            search_for_highway  ( highway )
+            search_for_highway ( highway )
         else
             return nil
         end
@@ -42,10 +42,10 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null ( highway_to_check )
         cleaned_highway_to_check = check_highway_number ( highway_to_check )
         assert_object_is_not_null ( cleaned_highway_to_check )
-        length_is_ok =  check_highway_number_length  ( cleaned_highway_to_check )
+        valid_lenght =  check_highway_number_length ( cleaned_highway_to_check )
 
-        if ( length_is_ok )
-            check_highway_exists  ( cleaned_highway_to_check )
+        if ( valid_lenght)
+            check_highway_exists ( cleaned_highway_to_check )
         else
             return false
         end
@@ -57,7 +57,7 @@ class HighwaysController < ApplicationController
     def search_for_highway ( highway_to_search )
         assert_object_is_not_null ( highway_to_search )
         highway_cleaned = check_highway_number ( highway_to_search )
-        assert_object_is_not_null ( highway_cleaned)
+        assert_object_is_not_null ( highway_cleaned )
         Highway.search_for_highway ( highway_cleaned )
     end
 
@@ -91,7 +91,7 @@ class HighwaysController < ApplicationController
     # Parameters: highway_to_check.
     # Return: true or false.
     def check_highway_exists ( highway_to_check )
-        assert_object_is_not_null ( highway_to_check)
+        assert_object_is_not_null ( highway_to_check )
         if ( Highway.exists_highway ( highway_to_check ) )
             return true
         else
@@ -107,7 +107,7 @@ class HighwaysController < ApplicationController
         if ( not highway_number.blank? )
             array_index = 0
             iterator_array_sum = 1;
-            while highway_number.at(array_index) == "0"
+            while highway_number.at( array_index ) == "0"
                 highway_number = highway_number.from ( array_index + iterator_array_sum )
             end
 
@@ -144,8 +144,8 @@ class HighwaysController < ApplicationController
     # Parameters: accidents_number, mileage_highway.
     # Return: rate.
     def calculate_accidents_rate ( accidents_number, mileage_highway )
-        assert_object_is_not_null  ( accidents_number )
-        assert_object_is_not_null ( mileage_highway)
+        assert_object_is_not_null ( accidents_number )
+        assert_object_is_not_null ( mileage_highway )
         if ( mileage_highway.blank? )
             rate = 0.0
         else
@@ -163,13 +163,15 @@ class HighwaysController < ApplicationController
         order_accidents_by_accidents_rate
         count_accidents_by_highway
 
+        # The acronyme 'br' represents a Brazilian highway that is the federal
+        # government's responsibility.
         br_accident = nil
         count_accident = nil
         mileage_br = nil
 
         @accident.each do |br, count|
             br_accident = br
-            assert_object_is_not_null(br_accident)
+            assert_object_is_not_null ( br_accident )
             @highways.each do |highway|
                 assert_object_is_not_null ( highway )
                 mileage_br = highway.mileage.to_s
@@ -246,10 +248,10 @@ class HighwaysController < ApplicationController
     def accidents_percentage_ranking
         @all_highways = Highway.all
         assert_object_is_not_null ( @all_highways )
-        #count the accidents
+        # Count the accidents
         @accidents_count = Accident.total_accidents
         assert_object_is_not_null ( @accidents_count )
-        #order the accidents
+        # Order the accidents
         find_highway_to_accident_percentage
     end
 
@@ -270,7 +272,7 @@ class HighwaysController < ApplicationController
             @all_highways.each do |highway|
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidents_rate_percentage = calculate_accidents_rate_percentage count, @accidents_count
+                    highway.accidents_rate_percentage = calculate_accidents_rate_percentage( count, @accidents_count )
                     highway.save
                 end
             end
