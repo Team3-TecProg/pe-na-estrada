@@ -22,6 +22,15 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null ( @highway )
     end
 
+    # Description: Shows a given Highway model object in its HTML view page.
+    # Parameters: none.
+    # Return: @highway and @comment.
+    def show
+        @highway = Highway.find ( params[:id] )
+        @comment = Comment.new
+        @comment = Comment.getComments
+    end
+
     # Description: Set up the instance variable '@highway' on index with the
     # result from 'search_for_highway' method.
     # Parameters: highway.
@@ -183,7 +192,6 @@ class HighwaysController < ApplicationController
                 end
             end
         end
-
     end
 
     # Description: Saves the position of a highway in a ranking, based on their
@@ -279,12 +287,4 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Description: Shows a given Highway model object in its HTML view page.
-    # Parameters: none.
-    # Return: @highway and @comment.
-    def show
-        @highway = Highway.find ( params[:id] )
-        @comment = Comment.new
-        @comment = Comment.getComments
-    end
 end

@@ -5,7 +5,6 @@
 # view routes/index.
 #####################################################################
 
-
 class RoutesController < ApplicationController
 
   # Description: This method is called from the view package to show the web
@@ -50,12 +49,12 @@ class RoutesController < ApplicationController
   # Return: latitudes_counter.
   def remove_unusable_coordinates (latitude, longitude, highway_number)
       # Arrays to store the usables coordinates and highways
-      latitude_usable = [];
-      longitude_usable = [];
-      highways = [];
+      latitude_usable = []
+      longitude_usable = []
+      highways = []
 
-      latitudes_counter = 0; # Counter to get the latitudes from database
-      index = 0; # Get the latitude, longitude e highway_number usables
+      latitudes_counter = 0 # Counter to get the latitudes from database
+      index = 0 # Get the latitude, longitude e highway_number usables
       iterator_sum = 1
       while latitudes_counter < latitude.length
           if latitude[latitudes_counter].blank? == false
@@ -71,7 +70,7 @@ class RoutesController < ApplicationController
           return latitudes_counter
       end
 
-    send_accidents_data_to_js latitude_usable, longitude_usable, highways
+      send_accidents_data_to_js latitude_usable, longitude_usable, highways
   end
 
   # Description: This method have 'latitude', 'longitude' and 'highway_number'
