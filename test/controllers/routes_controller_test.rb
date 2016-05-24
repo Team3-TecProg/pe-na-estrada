@@ -9,9 +9,12 @@ require 'test_helper'
 
 class RoutesControllerTest < ActionController::TestCase
 
-    test "route" do
+    test "route to index" do
         assert_recognizes({:controller => "routes", :action => "index"}, {:path => "routes",
          :method => :get})
+    end
+
+    test "route to create" do
         assert_recognizes({:controller => "routes", :action => "create"}, {:path => "routes",
          :method => :post})
     end
