@@ -5,7 +5,7 @@
     <!-- Form to make a comment of a highway-->
     <div id = "comment_form">
       <h7><i class="fa fa-comments-o"></i> Deixe aqui seu comentário sobre essa rodovia </h7>
-    <%= form_for([@highway, @COMMENT]) do |f| %>
+    <%= form_for([@HIGHWAY, @COMMENT]) do |f| %>
 
       <%= f.text_field :title,
                       placeholder: "Título",
@@ -16,7 +16,7 @@
                       required: true,
                       :pattern => '[a-zA-Z0-9 /\ãáàâéêíôóõúç~-,.:;ÃÁÀÂÉÊÍÔÓÕÚÇ]+'%><br />
 
-      <%= f.hidden_field :idBr, value: @highway.idBr %>
+      <%= f.hidden_field :idBr, value: @HIGHWAY.idBr %>
 
       <%= f.submit "Comentar", :class => "btn btn-default"%>
     <% end %>
@@ -27,10 +27,10 @@
   <div class="col-lg-8" id="highway_info_comment">
     <div class="row">
       <div id = "highway" class="page-header" align="center" >
-            <% if @highway.idBr.length == 2%>
-              <b>Rodovia 0<%= @highway.idBr%></b>
+            <% if @HIGHWAY.idBr.length == 2%>
+              <b>Rodovia 0<%= @HIGHWAY.idBr%></b>
             <% else %>
-              <b>Rodovia <%= @highway.idBr%></b>
+              <b>Rodovia <%= @HIGHWAY.idBr%></b>
             <% end %>
 
       </div>
@@ -43,8 +43,8 @@
             <td style="text-align: center;"><b><%= "Extensão da rodovia"%></b></td>
             <td></td>
             <td style="text-align: center;">
-              <% if @highway.mileage.blank? == false %>
-                <%= "#{@highway.mileage} Km" %>
+              <% if @HIGHWAY.mileage.blank? == false %>
+                <%= "#{@HIGHWAY.mileage} Km" %>
               <% else %>
                 <%= "Sem informações no momento" %>
               <% end %>
@@ -54,7 +54,7 @@
             <td style="text-align: center;"><b><%= "Posição no ranking"%></b></td>
             <td></td>
             <td style="text-align: center;">
-              <%= "#{@highway.rankingPosition}º" %>
+              <%= "#{@HIGHWAY.rankingPosition}º" %>
             </td>
             <td></td>
           </tr>
@@ -74,7 +74,7 @@
       <!-- Mostrando os comentários da rodovia -->
       <% highway_found = false %>
       <% @COMMENTS.each do |comment| %>
-        <% if(comment.idBr == @highway.idBr)%>
+        <% if(comment.idBr == @HIGHWAY.idBr)%>
           <div class="panel panel-success"  id = "comment_panel">
             <div class="panel-heading" style="color:#fff;">
               <%= comment.title %></div>

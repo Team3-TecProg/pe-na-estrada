@@ -16,14 +16,14 @@ class CommentsController < ApplicationController
     end
 
     # Description: Generates an object of the Highway model and saves it in the 
-    # instance variable @highway.
+    # instance variable @HIGHWAY.
     # Parameters: none.
     # Return: none.
     def create
         # Get the highway where the id will receive the comment.
-        @highway = Highway.find( params[ :highway_id ] )
+        @HIGHWAY = Highway.find( params[ :highway_id ] )
         # Assert if the new object  @HIGHWAY is null.
-        assert_object_is_not_null( @highway )
+        assert_object_is_not_null( @HIGHWAY )
         # @COMMENT is an instance variable thats contains the comment sent in 
         # the params from the view.
         @COMMENT = Comment.new( comment_params )
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
         # highway_path in view.
         if ( @COMMENT.save )
             @COMMENT.save
-            redirect_to highway_path( @highway )
+            redirect_to highway_path( @HIGHWAY )
         else
             # Nothing to do
         end

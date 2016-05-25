@@ -12,9 +12,9 @@ class HomeController < ApplicationController
 
   # Description: Shows the Highways objects to the user in a view.
   # Parameters: none.
-  # Return: @highway.
+  # Return: @HIGHWAY.
   def index
-  	  @highway = Highway.all_highways_by_accidents_rate
-      return @highway
+  	  @HIGHWAY = Highway.all_highways_by_accidents_rate
+      return @HIGHWAY
   end
 end

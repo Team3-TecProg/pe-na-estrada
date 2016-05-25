@@ -11,27 +11,27 @@ class HighwaysController < ApplicationController
     # if it exists in the database, clean any ‘0’s on the left of its name, and
     # holds it in a variable.
     # Parameters: none.
-    # Return: @highway.
+    # Return: @HIGHWAY.
     def index
         @highway_informed_by_user = params[ :highway_search ]
         assert_object_is_not_null ( @highway_informed_by_user )
         @highway_number_exists  = check_length_and_if_exists \
                                   ( @highway_informed_by_user )
         assert_object_is_not_null ( @highway_number_exists  )
-        @highway = setup_highway  ( @highway_informed_by_user )
-        assert_object_is_not_null ( @highway )
+        @HIGHWAY = setup_highway  ( @highway_informed_by_user )
+        assert_object_is_not_null ( @HIGHWAY )
     end
 
     # Description: Shows a given Highway model object in its HTML view page.
     # Parameters: none.
-    # Return: @highway and @COMMENT.
+    # Return: @HIGHWAY and @COMMENT.
     def show
-        @highway = Highway.find ( params[:id] )
+        @HIGHWAY = Highway.find ( params[:id] )
         @COMMENT = Comment.new
         @COMMENT = Comment.getComments
     end
 
-    # Description: Set up the instance variable '@highway' on index with the
+    # Description: Set up the instance variable '@HIGHWAY' on index with the
     # result from 'search_for_highway' method.
     # Parameters: highway.
     # Return: none or nil.
@@ -137,13 +137,13 @@ class HighwaysController < ApplicationController
     end
 
     # Description: Order the highways by their accident rates in rev Paerse order
-    # (higher accident rates first), saves them in the @highway variable and
+    # (higher accident rates first), saves them in the @HIGHWAY variable and
     # calls the create_position method to rank them.
     # Parameters: none.
-    # Return: @highway
+    # Return: @HIGHWAY
     def order_accidents_by_accidents_rate
-        @highway = Highway.all_highways_by_accidents_rate
-        assert_object_is_not_null ( @highway )
+        @HIGHWAY = Highway.all_highways_by_accidents_rate
+        assert_object_is_not_null ( @HIGHWAY )
         create_position
     end
 
@@ -201,7 +201,7 @@ class HighwaysController < ApplicationController
     def create_position
         iterator_position_current = 0
         sum_iterator_position = 1
-        @highway.each do |highway|
+        @HIGHWAY.each do |highway|
             iterator_position_current = iterator_position_current + sum_iterator_position
             highway.rankingPosition = iterator_position_current
             highway.save

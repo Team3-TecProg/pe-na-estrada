@@ -35,7 +35,7 @@
     <!-- End of search bar for a highway form -->
   </div>
 
-  <% if @highway.blank? == false %>
+  <% if @HIGHWAY.blank? == false %>
     <div class="col-lg-6" align="center">
       <div id="search_for_highway_result" class="panel panel-success" style="width: 500px;">
 
@@ -57,7 +57,7 @@
             <td></td>
           </tr>
 
-          <% @highway.each do |highway| %>
+          <% @HIGHWAY.each do |highway| %>
             <tr>
               <td style="text-align: center;">
                 <%= "#{highway.idBr}" %>

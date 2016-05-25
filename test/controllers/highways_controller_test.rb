@@ -143,12 +143,12 @@ class HighwaysControllerTest < ActionController::TestCase
     end
     # End of tests for '@highway_number_exists' variable
 
-    # Beginning of tests for '@highway' instance variable
-    test "'@highway' should be null with a null argument" do
+    # Beginning of tests for '@HIGHWAY' instance variable
+    test "'@HIGHWAY' should be null with a null argument" do
         get :index, {'highway_search' => nil}
-        assert_nil @highway, "This should be null"
+        assert_nil @HIGHWAY, "This should be null"
     end
-    # End of tests for '@highway' instance variable
+    # End of tests for '@HIGHWAY' instance variable
 
     # End of tests for action 'index'
 
