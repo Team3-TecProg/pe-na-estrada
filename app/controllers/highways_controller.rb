@@ -7,8 +7,8 @@
 
 class HighwaysController < ApplicationController
 
-    # Description: Receives a highway informed by the user, checks if it exists in
-    # the database, clean any ‘0’s on the left of its name, and
+    # Description: Receives a highway informed by the user, checks
+    # if it exists in the database, clean any ‘0’s on the left of its name, and
     # holds it in a variable.
     # Parameters: none.
     # Return: @highway.
@@ -53,7 +53,7 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null ( cleaned_highway_to_check )
         valid_lenght =  check_highway_number_length ( cleaned_highway_to_check )
 
-        if ( valid_lenght)
+        if ( valid_lenght == true )
             check_highway_exists ( cleaned_highway_to_check )
         else
             return false
