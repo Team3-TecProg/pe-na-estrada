@@ -5,7 +5,7 @@
     <!-- Form to make a comment of a highway-->
     <div id = "comment_form">
       <h7><i class="fa fa-comments-o"></i> Deixe aqui seu comentário sobre essa rodovia </h7>
-    <%= form_for([@highway, @comment]) do |f| %>
+    <%= form_for([@highway, @COMMENT]) do |f| %>
 
       <%= f.text_field :title,
                       placeholder: "Título",

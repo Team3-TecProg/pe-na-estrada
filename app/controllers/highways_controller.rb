@@ -24,11 +24,11 @@ class HighwaysController < ApplicationController
 
     # Description: Shows a given Highway model object in its HTML view page.
     # Parameters: none.
-    # Return: @highway and @comment.
+    # Return: @highway and @COMMENT.
     def show
         @highway = Highway.find ( params[:id] )
-        @comment = Comment.new
-        @comment = Comment.getComments
+        @COMMENT = Comment.new
+        @COMMENT = Comment.getComments
     end
 
     # Description: Set up the instance variable '@highway' on index with the
