@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
 
     # Description: This method calls the view class.
     # Parameters: none.
-    # Return: @comment.
+    # Return: @COMMENT.
     def index
-        @comment = Comment.new
-        assert_object_is_not_null ( @comment )
+        @COMMENT = Comment.new
+        assert_object_is_not_null ( @COMMENT )
     end
 
     # Description: Generates an object of the Highway model and saves it in the 
@@ -24,16 +24,16 @@ class CommentsController < ApplicationController
         @highway = Highway.find( params[ :highway_id ] )
         # Assert if the new object  @HIGHWAY is null.
         assert_object_is_not_null( @highway )
-        # @comment is an instance variable thats contains the comment sent in 
+        # @COMMENT is an instance variable thats contains the comment sent in 
         # the params from the view.
-        @comment = Comment.new( comment_params )
-        # Asserts if the new object @comment is null.
-        assert_object_is_not_null( @comment )
+        @COMMENT = Comment.new( comment_params )
+        # Asserts if the new object @COMMENT is null.
+        assert_object_is_not_null( @COMMENT )
 
         # If can save the comment, is saved and after redirected to 
         # highway_path in view.
-        if ( @comment.save )
-            @comment.save
+        if ( @COMMENT.save )
+            @COMMENT.save
             redirect_to highway_path( @highway )
         else
             # Nothing to do
