@@ -81,6 +81,8 @@ class RoutesController < ApplicationController
         gon.latitude = latitude
         gon.longitude = longitude
         gon.highway_number = highway_number
+
+        return gon
     end
 
     # Description: This method take the data from url to be used in this class.
