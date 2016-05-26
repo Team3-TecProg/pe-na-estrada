@@ -6,7 +6,7 @@
 <div class="row">
   <div class="col-lg-4">
     <!-- Form to take origin and destination to trace route -->
-    <%= simple_form_for @route,
+    <%= simple_form_for @ROUTE,
                 :url => url_for(:action => 'trace_route',
                                       :controller => 'routes'),
                 :method => 'post' do |o| %>
