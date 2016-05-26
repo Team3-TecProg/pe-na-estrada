@@ -13,12 +13,12 @@ class HighwaysController < ApplicationController
     # Parameters: none.
     # Return: @HIGHWAY.
     def index
-        @highway_informed_by_user = params[ :highway_search ]
-        assert_object_is_not_null ( @highway_informed_by_user )
+        @HIGHWAY_INFORMED_BY_USER = params[ :highway_search ]
+        assert_object_is_not_null ( @HIGHWAY_INFORMED_BY_USER )
         @highway_number_exists  = check_length_and_if_exists \
-                                  ( @highway_informed_by_user )
+                                  ( @HIGHWAY_INFORMED_BY_USER )
         assert_object_is_not_null ( @highway_number_exists  )
-        @HIGHWAY = setup_highway  ( @highway_informed_by_user )
+        @HIGHWAY = setup_highway  ( @HIGHWAY_INFORMED_BY_USER )
         assert_object_is_not_null ( @HIGHWAY )
     end
 

@@ -26,4 +26,9 @@ class CommentsControllerTest < ActionController::TestCase
         assert_nil assigns(:COMMENT)
     end
 
+    test "Should not save a comment" do
+        #@COMMENT is invalid.
+        assert_not(@COMMENT.save)
+    end
+
 end
