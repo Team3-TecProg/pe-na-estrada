@@ -22,7 +22,7 @@ class RoutesController < ApplicationController
     # Return: none.
     def trace_route
         @ROUTE = Route.new(origin_params)
-        @origin_informed_by_user = @ROUTE.origin
+        @ORIGIN_INFORMED_BY_USER = @ROUTE.origin
         @destination_informed_by_user = @ROUTE.destination
 
         get_accidents_data_to_sinalize
