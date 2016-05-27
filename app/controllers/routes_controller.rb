@@ -12,7 +12,7 @@ class RoutesController < ApplicationController
     # Parameters: none.
     # Return: @route.
     def index
-        @route = Route.new
+        @ROUTE = Route.new
     end
 
     # Description: This method return the result of other method
@@ -21,9 +21,9 @@ class RoutesController < ApplicationController
     # Parameters: none.
     # Return: none.
     def trace_route
-        @route = Route.new(origin_params)
-        @origin_informed_by_user = @route.origin
-        @destination_informed_by_user = @route.destination
+        @ROUTE = Route.new(origin_params)
+        @ORIGIN_INFORMED_BY_USER = @ROUTE.origin
+        @destination_informed_by_user = @ROUTE.destination
 
         get_accidents_data_to_sinalize
 
@@ -86,11 +86,11 @@ class RoutesController < ApplicationController
     end
 
     # Description: This method take the data from url to be used in this class.
-    # The data are 'origin' and 'destination' of the route.
+    # The data are 'origin' and 'destination' of the ROUTE.
     # Parameters: none.
     # Return: none.
     def origin_params
-        params.require(:route).permit(:origin, :destination)
+        params.require(:ROUTE).permit(:origin, :destination)
     end
 
 end
