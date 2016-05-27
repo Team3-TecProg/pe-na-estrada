@@ -1,91 +1,77 @@
+#####################################################################
+# Class name: HighwayTest
+# File name: highway_test.rb
+# Description: Test class that contains all unit tests for
+# highway model
+#####################################################################
+
 require 'test_helper'
 
 class HighwayTest < ActiveSupport::TestCase
-
-	QUANTITY_OF_FIXTURES = 3
-
-	def setup
-		@highways = Highway.all
-		@highway = Highway.new
-	end
-
-	# Based on fixtures
-	test "Test if are at least one highway is registered on DB" do
-
-		assert_instance_of Highway, Highway.first, "Object on DB not correspond to it's expected class"
-		assert_not_nil Highway.first, "Object registered on DB cannot be null"
-
-	end
-
-	# Based on fixtures
-	test "Should be equal to 2 the quantity of Highway objects on DB" do
-
-		assert_equal QUANTITY_OF_FIXTURES, Highway.count, "Registered data does not match the actual quantity registered"
-
-	end
-
-	# Based on fixtures
-	test "Test if all idBr's registered is present" do
-
-		@highways.each do |highway|
-
-			assert highway.idBr.present?, "idBr  must be present!"
-
+		def setup
+				@highways = Highway.all
+				@highway = Highway.new
 		end
 
-	end
+		QUANTITY_OF_FIXTURES = 3
 
-	# Based on fixtures
-	test "Test if the instance on fixtures matches" do
+		# Based on fixtures
+		test "Test if are at least one highway is registered on DB" do
+				assert_instance_of Highway, Highway.first, "Object on DB not correspond to it's expected class"
+				assert_not_nil Highway.first, "Object registered on DB cannot be null"
+		end
 
-		assert_equal "121", highways(:one).idBr, "idBr from first fixture does not matches with the previous instantiated."
-		assert_equal 1500, highways(:one).mileage, "mileage from first fixture does not matches with the previous instantiated."
-		assert_equal "987", highways(:two).idBr, "idBr from second fixture does not matches with the previous instantiated."
-		assert_equal 2570, highways(:two).mileage, "mileage from second fixture does not matches with the previous instantiated."
+		# Based on fixtures
+		test "Should be equal to 2 the quantity of Highway objects on DB" do
+				assert_equal QUANTITY_OF_FIXTURES, Highway.count, "Registered data does not match the actual quantity registered"
+		end
 
-	end
+		# Based on fixtures
+		test "Test if all idBr's registered is present" do
+				@highways.each do |highway|
+						assert highway.idBr.present?, "idBr  must be present!"
+				end
+		end
 
-	# Test validates_uniqueness_of :idBr
-	test "Should not save duplicated data on DB" do
+		# Based on fixtures
+		test "Test if the instance on fixtures matches" do
+				assert_equal "121", highways(:one).idBr, "idBr from first fixture does not matches with the previous instantiated."
+				assert_equal 1500, highways(:one).mileage, "mileage from first fixture does not matches with the previous instantiated."
+				assert_equal "987", highways(:two).idBr, "idBr from second fixture does not matches with the previous instantiated."
+				assert_equal 2570, highways(:two).mileage, "mileage from second fixture does not matches with the previous instantiated."
+		end
 
-		@highway.idBr = "121"
-		@highway.mileage = "1500"
+		# Test validates_uniqueness_of :idBr
+		test "Should not save duplicated data on DB" do
+				@highway.idBr = "121"
+				@highway.mileage = "1500"
 
-		assert_not @highway.save, "This idBr already exists. Cannot save duplicated idBr"
+				assert_not @highway.save, "This idBr already exists. Cannot save duplicated idBr"
+		end
 
-	end
+		# Begin tests to 'validates_presence_of :idBr
+		test "Should save a valid Highway object" do
+				@highway.idBr = "131"
+				@highway.mileage = 124
 
-	# Begin tests to 'validates_presence_of :idBr
+				assert @highway.save, "Could not save this object"
+		end
 
-	test "Should save a valid Highway object" do
+		test "Should not save a empty object" do
+				assert_not @highway.save, "Cannot save an empty object"
+		end
 
-		@highway.idBr = "131"
-		@highway.mileage = 1234
+		test "Should not save without an idBr" do
+				@highway.mileage = 1200
 
-		assert @highway.save, "Could not save this object"
+				assert_not @highway.save, "Cannot save without an idBr"
+		end
 
-	end
+		test "Should not save with a empty idBr" do
+				@highway.idBr = ""
 
-	test "Should not save a empty object" do
-
-		assert_not @highway.save, "Cannot save an empty object"
-
-	end
-
-	test "Should not save without an idBr" do
-
-		@highway.mileage = 1200
-
-		assert_not @highway.save, "Cannot save without an idBr"
-	end
-
-	test "Should not save with a empty idBr" do
-
-		@highway.idBr = ""
-
-		assert_not @highway.save, "Cannot save with an empty idBr"
-
-	end
+				assert_not @highway.save, "Cannot save with an empty idBr"
+		end
 
 	test "Should not save with a null idBr" do
 

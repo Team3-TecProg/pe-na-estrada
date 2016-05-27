@@ -43,18 +43,19 @@ class Highway < ActiveRecord::Base
         return verify_exists_highway
     end
 
-    # Description: Returns all highways by accidents rate.
+    # Description: Returns all highways by accidents rate in decrescent order.
     # Parameters: none.
     # Return : all.
     def self.all_highways_by_accidents_rate
-          all.order(:accidentsRate).reverse_order
+        all.order(:accidentsRate).reverse_order
     end
 
-    # Description: Returns all highways by accidents rate percentage.
+    # Description: Returns all highways by accidents rate percentage in
+    # in decrescent order.
     # Parameters: none.
     # Return : all.
     def self.all_highways_by_accidents_rate_percentage
-          all.order(:accidentsRatePercent).reverse_order
+        all.order(:accidentsRatePercent).reverse_order
     end
 
 end
