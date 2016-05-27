@@ -1,9 +1,37 @@
+######################################################################
+# Class name: CommentTest
+# File name: comment_test.rb
+# Description: Test class that contains all the unit tests for model
+# comment
+######################################################################
+
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
 
 	  def setup
 				@COMMENT = Comment.new
+		end
+
+		# Get comments in reverse order so that the most recently comments
+		# appears first
+		test "comments are returned in reverse order" do
+				older_comment = Comment.new
+				older_comment.idBr = 2
+				older_comment.title = "Older title"
+				older_comment.text = "I am the older comment"
+				older_comment.save
+
+				newest_comment = Comment.new
+				newest_comment.idBr = 15
+				newest_comment.title = "Newest comment"
+				newest_comment.text = "I am the newest comment"
+				newest_comment.save
+
+				ordered_comments = Comment.getComments
+
+				assert_equal ordered_comments.first.text,"I am the newest comment"
+				assert_equal ordered_comments.second.text,"I am the older comment"
 		end
 
 		test "test_comment" do
