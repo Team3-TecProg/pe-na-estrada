@@ -45,19 +45,23 @@ class Highway < ActiveRecord::Base
 
     # Description: Returns all highways by accidents rate in decrescent order.
     # Parameters: none.
-    # Return : all.
+    # Return : highways_ordered_by_accidents_rate.
     def self.all_highways_by_accidents_rate
-        ordered_highways = Highway.order(accidentsRate: :desc)
+        highways_ordered_by_accidents_rate = Highway.
+         order(accidentsRate: :desc)
 
-        return ordered_highways
+        return highways_ordered_by_accidents_rate
     end
 
     # Description: Returns all highways by accidents rate percentage in
     # in decrescent order.
     # Parameters: none.
-    # Return : all.
+    # Return : highways_ordered_by_accidents_rate_percentage.
     def self.all_highways_by_accidents_rate_percentage
-        all.order(:accidentsRatePercent).reverse_order
+        highways_ordered_by_accidents_rate_percentage = Highway.
+         order(accidentsRatePercent: :desc)
+
+        return highways_ordered_by_accidents_rate_percentage
     end
 
 end

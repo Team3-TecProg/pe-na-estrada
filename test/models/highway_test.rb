@@ -11,32 +11,44 @@ class HighwayTest < ActiveSupport::TestCase
 		def setup
 				@highways = Highway.all
 				@highway = Highway.new
+
+		 		@expected_third_highway = Highway.new
+		 		@expected_third_highway.accidentsRate = 15
+		 		@expected_third_highway.accidentsRatePercent = 15
+		 		@expected_third_highway.idBr = 20
+		 		@expected_third_highway.save
+
+		 		@expected_second_highway = Highway.new
+		 		@expected_second_highway.accidentsRate = 20
+		 		@expected_second_highway.accidentsRatePercent = 20
+		 		@expected_second_highway.idBr = 21
+		 		@expected_second_highway.save
+
+		 		@expected_first_highway = Highway.new
+		 		@expected_first_highway.accidentsRate = 25
+		 		@expected_first_highway.accidentsRatePercent = 25
+		 		@expected_first_highway.idBr = 22
+		 		@expected_first_highway.save
 		end
 
-		QUANTITY_OF_FIXTURES = 3
+		QUANTITY_OF_FIXTURES = 6
 
 		test "should get the highways in decrescent order according
 		 its accidentsRate number" do
-		 		expected_third_highway = Highway.new
-		 		expected_third_highway.accidentsRate = 15
-		 		expected_third_highway.idBr = 20
-		 		expected_third_highway.save
-
-		 		expected_second_highway = Highway.new
-		 		expected_second_highway.accidentsRate = 20
-		 		expected_second_highway.idBr = 21
-		 		expected_second_highway.save
-
-		 		expected_first_highway = Highway.new
-		 		expected_first_highway.accidentsRate = 25
-		 		expected_first_highway.idBr = 22
-		 		expected_first_highway.save
-
 		 		ordered_highways = Highway.all_highways_by_accidents_rate
 
 		 		assert_equal ordered_highways.first.accidentsRate, 25
 		 		assert_equal ordered_highways.second.accidentsRate, 20
 		 		assert_equal ordered_highways.third.accidentsRate, 15
+		end
+
+		test "should get the highways in decrescent order according
+		 its accidentsRatePercentage number" do
+		 		ordered_highways = Highway.all_highways_by_accidents_rate_percentage
+
+		 		assert_equal ordered_highways.first.accidentsRatePercent, 25
+		 		assert_equal ordered_highways.second.accidentsRatePercent, 20
+		 		assert_equal ordered_highways.third.accidentsRatePercent, 15
 		end
 
 		# Based on fixtures
@@ -46,7 +58,7 @@ class HighwayTest < ActiveSupport::TestCase
 		end
 
 		# Based on fixtures
-		test "Should be equal to 2 the quantity of Highway objects on DB" do
+		test "Should be equal to 6 the quantity of Highway objects on DB" do
 				assert_equal QUANTITY_OF_FIXTURES, Highway.count, "Registered data does not match the actual quantity registered"
 		end
 
