@@ -15,6 +15,30 @@ class HighwayTest < ActiveSupport::TestCase
 
 		QUANTITY_OF_FIXTURES = 3
 
+		test "should get the highways in decrescent order according
+		 its accidentsRate number" do
+		 		expected_third_highway = Highway.new
+		 		expected_third_highway.accidentsRate = 15
+		 		expected_third_highway.idBr = 20
+		 		expected_third_highway.save
+
+		 		expected_second_highway = Highway.new
+		 		expected_second_highway.accidentsRate = 20
+		 		expected_second_highway.idBr = 21
+		 		expected_second_highway.save
+
+		 		expected_first_highway = Highway.new
+		 		expected_first_highway.accidentsRate = 25
+		 		expected_first_highway.idBr = 22
+		 		expected_first_highway.save
+
+		 		ordered_highways = Highway.all_highways_by_accidents_rate
+
+		 		assert_equal ordered_highways.first.accidentsRate, 25
+		 		assert_equal ordered_highways.second.accidentsRate, 20
+		 		assert_equal ordered_highways.third.accidentsRate, 15
+		end
+
 		# Based on fixtures
 		test "Test if are at least one highway is registered on DB" do
 				assert_instance_of Highway, Highway.first, "Object on DB not correspond to it's expected class"
@@ -73,116 +97,94 @@ class HighwayTest < ActiveSupport::TestCase
 				assert_not @highway.save, "Cannot save with an empty idBr"
 		end
 
-	test "Should not save with a null idBr" do
+		test "Should not save with a null idBr" do
+				@highway.idBr = nil
 
-		@highway.idBr = nil
+				assert_not @highway.save, "Cannot save with a null idBr"
+		end
+		# End of tests to 'validates_presence_of :idBr'
 
-		assert_not @highway.save, "Cannot save with a null idBr"
+		# Begin tests to 'validates_length_of :idBr'
+		test "Should save an Highway object with an idBr in the range 2..3 of length. Test the maximum edge." do
+				@highway.idBr = "111"
 
-	end
-	# End of tests to 'validates_presence_of :idBr'
+				assert @highway.save, "Cannot save an idBr out of range 2..3"
+		end
 
-	# Begin tests to 'validates_length_of :idBr'
-	test "Should save an Highway object with an idBr in the range 2..3 of length. Test the maximum edge." do
+		test "Should save an Highway object with an idBr in the range 2..3 of length. Test the minimum edge" do
+				@highway.idBr = "50"
 
-		@highway.idBr = "111"
+				assert @highway.save, "Cannot save an idBr out of range 2..3"
+		end
 
-		assert @highway.save, "Cannot save an idBr out of range 2..3"
+		test "Should not save an Highway object wiith an idBr out of range 2..3 of length. Test a shorter than 2 idBr length" do
+				@highway.idBr = "1"
 
-	end
+				assert_not @highway.save, "Too short idBr. Cannot save an idBr with a length shorter than 2 caracters"
+		end
 
-	test "Should save an Highway object with an idBr in the range 2..3 of length. Test the minimum edge" do
+		test "Should not save an Highway object wiith an idBr out of range 2..3 of length. Test a greater than 2 idBr length" do
+				@highway.idBr = "2222"
 
-		@highway.idBr = "50"
+				assert_not @highway.save, "Too long idBr. Cannot save an idBr with a length greater than 3 caracters"
+		end
+		#End of tests to 'validates_length_of :idBr'
 
-		assert @highway.save, "Cannot save an idBr out of range 2..3"
+		# Begin tests to 'validates_numericality_of :mileage'
+		test "Should save an Highway object with a mileage greater than 1" do
+				@highway.idBr = "111"
+				@highway.mileage = 200
 
-	end
+				assert @highway.save, "Cannot save a mileage shorter than 1"
+		end
 
-	test "Should not save an Highway object wiith an idBr out of range 2..3 of length. Test a shorter than 2 idBr length" do
+		test "Should save an Highway object with a mileage equal to 1" do
+				@highway.idBr = "111"
+				@highway.mileage = 1
 
-		@highway.idBr = "1"
+				assert @highway.save, "Cannot save a mileage shorter than 1"
+		end
 
-		assert_not @highway.save, "Too short idBr. Cannot save an idBr with a length shorter than 2 caracters"
+		test "Should not save an Highway object with a mileage equal to 0" do
+				@highway.idBr = "111"
+				@highway.mileage = 0
 
-	end
+				assert_not @highway.save, "Cannot save a mileage shorter than 1"
+		end
 
-	test "Should not save an Highway object wiith an idBr out of range 2..3 of length. Test a greater than 2 idBr length" do
+		test "Should not save an Highway object with a negative mileage" do
+				@highway.idBr = "111"
+				@highway.mileage = -1
 
-		@highway.idBr = "2222"
+				assert_not @highway.save, "Cannot save a mileage shorter than 1"
+		end
 
-		assert_not @highway.save, "Too long idBr. Cannot save an idBr with a length greater than 3 caracters"
+		test "Should save an Highway object with a null mileage" do
+				@highway.idBr = "111"
+				@highway.mileage = nil
 
-	end
-	#End of tests to 'validates_length_of :idBr'
+				assert @highway.save, "Could not save a null mileage"
+		end
+		# End of tests to 'validates_numericality_of :mileage'
 
-	# Begin tests to 'validates_numericality_of :mileage'
-	test "Should save an Highway object with a mileage greater than 1" do
+		test "Test the 'exists_highway' method" do
+				# Passing first fixture
+				@highway_exists_result_first = Highway.exists_highway "121"
 
-		@highway.idBr = "111"
-		@highway.mileage = 200
+				# Passing second fixture
+				@highway_exists_result_second = Highway.exists_highway "987"
 
-		assert @highway.save, "Cannot save a mileage shorter than 1"
+				# Passing a unregistered highway
+				@highway_exists_result_third = Highway.exists_highway "123"
 
-	end
+				# Passing a invalid highway idBr
+				@highway_exists_result_fourth = Highway.exists_highway "!Jkfsd"
 
-	test "Should save an Highway object with a mileage equal to 1" do
-
-		@highway.idBr = "111"
-		@highway.mileage = 1
-
-		assert @highway.save, "Cannot save a mileage shorter than 1"
-
-	end
-
-	test "Should not save an Highway object with a mileage equal to 0" do
-
-		@highway.idBr = "111"
-		@highway.mileage = 0
-
-		assert_not @highway.save, "Cannot save a mileage shorter than 1"
-
-	end
-
-	test "Should not save an Highway object with a negative mileage" do
-
-		@highway.idBr = "111"
-		@highway.mileage = -1
-
-		assert_not @highway.save, "Cannot save a mileage shorter than 1"
-
-	end
-
-	test "Should save an Highway object with a null mileage" do
-
-		@highway.idBr = "111"
-		@highway.mileage = nil
-
-		assert @highway.save, "Could not save a null mileage"
-
-	end
-	# End of tests to 'validates_numericality_of :mileage'
-
-	test "Test the 'exists_highway' method" do
-
-		# Passing first fixture
-		@highway_exists_result_first = Highway.exists_highway "121"
-
-		# Passing second fixture
-		@highway_exists_result_second = Highway.exists_highway "987"
-
-		# Passing a unregistered highway
-		@highway_exists_result_third = Highway.exists_highway "123"
-
-		# Passing a invalid highway idBr
-		@highway_exists_result_fourth = Highway.exists_highway "!Jkfsd"
-
-		assert @highway_exists_result_first, "This highway informed does not exists on DB"
-		assert @highway_exists_result_second, "This highway informed does not exists on DB"
-		assert_not @highway_exists_result_third, "This highway informed should not exists on DB"
-		assert_not @highway_exists_result_fourth, "This highway informed should not exists on DB"
-
-	end
+				assert @highway_exists_result_first, "This highway informed does not exists on DB"
+				assert @highway_exists_result_second, "This highway informed does not exists on DB"
+				assert_not @highway_exists_result_third, "This highway informed should not exists on DB"
+				assert_not @highway_exists_result_fourth, "This highway informed should not exists on DB"
+		end
 
 	test "Test the 'exists_highway' method with nil argument" do
 
@@ -222,30 +224,24 @@ class HighwayTest < ActiveSupport::TestCase
 	end
 
 	test "Test the 'search_for_highway' method with an unregistred highway" do
+			@highway_search_result = Highway.search_for_highway "123"
 
-		@highway_search_result = Highway.search_for_highway "123"
-
-		assert_kind_of ActiveRecord::Relation, @highway_search_result, "Not a instance of ActiveRecord::Relation returned from the method 'search_for_highway'"
-		assert_nil @highway_search_result.first, "This relation should be nill."
-
+			assert_kind_of ActiveRecord::Relation, @highway_search_result, "Not a instance of ActiveRecord::Relation returned from the method 'search_for_highway'"
+			assert_nil @highway_search_result.first, "This relation should be nill."
 	end
 
 	test "Test the 'search_for_highway' method with a empty highway. Should be return all highways o DB." do
+			@highway_search_result = Highway.search_for_highway ""
 
-		@highway_search_result = Highway.search_for_highway ""
+			assert_kind_of ActiveRecord::Relation, @highway_search_result, "Not a instance of ActiveRecord::Relation returned from the method 'search_for_highway'"
 
-		assert_kind_of ActiveRecord::Relation, @highway_search_result, "Not a instance of ActiveRecord::Relation returned from the method 'search_for_highway'"
+			assert_equal QUANTITY_OF_FIXTURES, Highway.count, "Should be equal to the quantity of registers on DB"
 
-		assert_equal QUANTITY_OF_FIXTURES, Highway.count, "Should be equal to the quantity of registers on DB"
-
-		@highway_search_result.each do |highway|
-
-			assert_not_nil highway, "This object should not be null"
-			assert_not_nil highway.idBr, "The idBr should not be null"
-			assert_instance_of String, highway.idBr, "The idBr should be a String."
-
-		end
-
+			@highway_search_result.each do |highway|
+					assert_not_nil highway, "This object should not be null"
+					assert_not_nil highway.idBr, "The idBr should not be null"
+					assert_instance_of String, highway.idBr, "The idBr should be a String."
+			end
 	end
 
 	test "Test the 'search_for_highway' method with a null highway. Should be return all highways o DB." do
