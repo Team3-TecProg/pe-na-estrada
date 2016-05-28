@@ -6,6 +6,7 @@
 #####################################################################
 
 class HighwaysController < ApplicationController
+    include Assertions
 
     # Description: Receives a highway informed by the user, checks
     # if it exists in the database, clean any ‘0’s on the left of its name, and

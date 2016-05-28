@@ -7,6 +7,8 @@
 
 class CommentsController < ApplicationController
 
+    include Assertions
+
     # Description: This method calls the view class.
     # Parameters: none.
     # Return: @COMMENT.

@@ -6,6 +6,7 @@
 #####################################################################
 
 class RoutesController < ApplicationController
+    include Assertions
 
     # Description: This method is called from the view package to show the web
     # page to the user.

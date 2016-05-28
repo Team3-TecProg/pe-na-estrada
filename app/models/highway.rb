@@ -6,6 +6,7 @@
 ######################################################################
 
 class Highway < ActiveRecord::Base
+    extend Assertions
 
     has_many :Comment
     validates_presence_of :idBr, message: 'idBr cannot be null.'
@@ -17,6 +18,7 @@ class Highway < ActiveRecord::Base
 
 
     def self.search_for_highway id_to_search
+        assert_object_is_not_null( id_to_search )
         if id_to_search.blank?
             id_to_search = ""
         else
@@ -30,6 +32,7 @@ class Highway < ActiveRecord::Base
     # Parameters: none.
     # Return : verify_exists_highway.
     def self.exists_highway ( highway_to_check )
+        assert_object_is_not_null( highway_to_check )
         # Boolean variable to show if the highway exists or not.
         verify_exists_highway = false
         if highway_to_check.present?
@@ -39,7 +42,7 @@ class Highway < ActiveRecord::Base
             # is used to make it explicit.
             verify_exists_highway = false
         end
-
+        assert_object_is_not_null( verify_exists_highway )
         return verify_exists_highway
     end
 
@@ -48,7 +51,8 @@ class Highway < ActiveRecord::Base
     # Return : highways_ordered_by_accidents_rate.
     def self.all_highways_by_accidents_rate
         highways_ordered_by_accidents_rate = Highway.
-         order(accidentsRate: :desc)
+        order( accidentsRate: :desc )
+        assert_object_is_not_null( highways_ordered_by_accidents_rate )
 
         return highways_ordered_by_accidents_rate
     end
@@ -59,9 +63,11 @@ class Highway < ActiveRecord::Base
     # Return : highways_ordered_by_accidents_rate_percentage.
     def self.all_highways_by_accidents_rate_percentage
         highways_ordered_by_accidents_rate_percentage = Highway.
-         order(accidentsRatePercent: :desc)
+        order(accidentsRatePercent: :desc)
+        assert_object_is_not_null(highways_ordered_by_accidents_rate_percentage)
 
         return highways_ordered_by_accidents_rate_percentage
     end
 
 end
+

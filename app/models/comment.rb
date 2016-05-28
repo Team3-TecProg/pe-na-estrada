@@ -5,6 +5,7 @@
 ######################################################################
 
 class Comment < ActiveRecord::Base
+    extend Assertions
 
     belongs_to :Highway, :foreign_key => :idBr, class_name: 'Highway'
     #Contais the title of the comment.
@@ -20,6 +21,7 @@ class Comment < ActiveRecord::Base
   	def self.getComments
         # Take all comments in reverse order.
   		  all_coments_in_reverse_order = Comment.all.reverse_order
+        assert_object_is_not_null( all_coments_in_reverse_order )
 
         return all_coments_in_reverse_order
   	end
