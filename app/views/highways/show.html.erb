@@ -72,28 +72,26 @@
   <div class="col-lg-12">
     <div id = "comment">
       <!-- Mostrando os comentários da rodovia -->
-      <% highway_found = false %>
+      <% if( !@COMMENTS.empty? ) %>
       <% @COMMENTS.each do |comment| %>
-        <% if(comment.idBr == @HIGHWAY.idBr)%>
-          <div class="panel panel-success"  id = "comment_panel">
-            <div class="panel-heading" style="color:#fff;">
-              <%= comment.title %></div>
-            <div class="panel-body">
-              <%= comment.text %>
-              <div  align="left">
-              <br><i>
-                <%= "Comentário realizado em #{I18n.l comment.created_at, :format => :custom1, :locale => 'pt-br'}" %>
+        <div class="panel panel-success"  id = "comment_panel">
+          <div class="panel-heading" style="color:#fff;">
+            <%= comment.title %>
+          </div>
+          <div class="panel-body">
+            <%= comment.text %>
+            <div  align="left">
+              <br>
+              <i>
+              <%= "Comentário realizado em #{I18n.l comment.created_at, :format => :custom1, :locale => 'pt-br'}" %>
               </i>
-              </div>
             </div>
           </div>
-          <% highway_found = true %>
-        <%end%>
-      <%end%>
-
-      <% if highway_found == false %>
+        </div>
+        <% end %>
+      <% else %>
         <br><br><br>
-            <div id="comment_panel" class="alert alert-success" role="alert" style="text-align: center;">
+        <div id="comment_panel" class="alert alert-success" role="alert" style="text-align: center;">
               Ainda não há nenhum comentário sobre essa rodovia.
         </div>
       <%end%>

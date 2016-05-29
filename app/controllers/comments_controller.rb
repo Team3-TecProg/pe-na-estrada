@@ -36,6 +36,8 @@ class CommentsController < ApplicationController
         # highway_path in view.
         if ( @COMMENT.save )
             @COMMENT.save
+            @HIGHWAY.comments << @COMMENT
+            @HIGHWAY.save
             redirect_to highway_path( @HIGHWAY )
         else
             # Nothing to do

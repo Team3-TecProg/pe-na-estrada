@@ -7,7 +7,7 @@
 class Comment < ActiveRecord::Base
     extend Assertions
 
-    belongs_to :Highway, :foreign_key => :idBr, class_name: 'Highway'
+    belongs_to :highway
     #Contais the title of the comment.
   	validates_presence_of :title
     #Contais the text of the comment.

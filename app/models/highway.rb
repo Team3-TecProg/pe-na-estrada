@@ -8,7 +8,7 @@
 class Highway < ActiveRecord::Base
     extend Assertions
 
-    has_many :Comment
+    has_many :comments
     validates_presence_of :idBr, message: 'idBr cannot be null.'
     validates_length_of :idBr, within: 2..3, too_short: 'The idBr is too short. Must be in the range 2..3.', too_long:'The idBr is too long. Must be in the range 2..3.'
     validates_uniqueness_of :idBr, message: "This idBr already exists on data base."

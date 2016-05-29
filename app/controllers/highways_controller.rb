@@ -29,7 +29,7 @@ class HighwaysController < ApplicationController
     def show
         @HIGHWAY = Highway.find ( params[:id] )
         @COMMENT = Comment.new
-        @COMMENTS = Comment.getComments
+        @COMMENTS = @HIGHWAY.comments
     end
 
     # Description: Sets up the instance variable '@HIGHWAY' on index with the
