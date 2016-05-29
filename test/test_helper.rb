@@ -1,3 +1,9 @@
+######################################################################
+# File name: test_helper.rb
+# Description: Module that is used for additional methods in all 
+# tests.
+######################################################################
+
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
@@ -7,7 +13,7 @@ SimpleCov.start do
   add_filter 'test/'
   add_filter 'config/'
   add_filter 'vendor/'
-  
+
   add_group 'Controllers', '/app/controllers'
   add_group 'Models', '/app/models'
   add_group 'Helpers', '/app/helpers'

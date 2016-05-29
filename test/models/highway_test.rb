@@ -2,7 +2,7 @@
 # Class name: HighwayTest
 # File name: highway_test.rb
 # Description: Test class that contains all the unit tests for
-# highway model
+# highway model.
 #####################################################################
 
 require 'test_helper'

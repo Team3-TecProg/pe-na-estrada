@@ -2,7 +2,7 @@
 # Class name: AccidentTest
 # File name: accident_test.rb
 # Description: Test class that contains all the unit tests for
-# accident model
+# accident model.
 #####################################################################
 
 require 'test_helper'

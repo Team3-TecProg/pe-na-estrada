@@ -2,7 +2,7 @@
 # Class name: RouteTest
 # File name: route_test.rb
 # Description: Test class that contains all the unit tests for
-# route model
+# route model.
 #####################################################################
 
 require 'test_helper'

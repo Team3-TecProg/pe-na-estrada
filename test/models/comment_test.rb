@@ -2,7 +2,7 @@
 # Class name: CommentTest
 # File name: comment_test.rb
 # Description: Test class that contains all the unit tests for model
-# comment
+# comment.
 ######################################################################
 
 require 'test_helper'
