@@ -17,128 +17,130 @@ class HighwaysControllerTest < ActionController::TestCase
     # Beginning of tests for action 'index'
 
     # Beginning of tests for '@HIGHWAY_INFORMED_BY_USER' instance variable
-    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'
-     receives the params from form (first fixture)" do
-        get :index, {'highway_search' => highways(:one).idBr}
-        assert_equal assigns(:HIGHWAY_INFORMED_BY_USER), highways(:one).idBr,
+    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'\
+      receives the params from form (first fixture)" do
+        get :index, {'highway_search' => highways( :one ).idBr}
+        assert_equal assigns( :HIGHWAY_INFORMED_BY_USER ),highways( :one ).idBr,
         "This should be equal to '121'."
     end
 
-    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'
-     receives the params from form (second fixture)" do
-        get :index, {'highway_search' => highways(:two).idBr}
-        assert_equal assigns(:HIGHWAY_INFORMED_BY_USER), highways(:two).idBr,
+    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'\
+      receives the params from form (second fixture)" do
+        get :index, {'highway_search' => highways( :two ).idBr}
+        assert_equal assigns( :HIGHWAY_INFORMED_BY_USER ),highways( :two ).idBr,
          "This should be equal to '987'."
     end
 
-    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'
+    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'\
      receives an empty param" do
         get :index, {'highway_search' => ""}
-        assert assigns(:HIGHWAY_INFORMED_BY_USER).empty?, "This should be empty."
+        assert assigns( :HIGHWAY_INFORMED_BY_USER ).empty?, 
+          "This should be empty."
     end
 
-    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'
-     receives a null param" do
+    test "Test if the variable '@HIGHWAY_INFORMED_BY_USER'\
+      receives a null param" do
         get :index, {'highway_search' => nil}
-        assert_nil assigns(:HIGHWAY_INFORMED_BY_USER), "This should be null."
+        assert_nil assigns( :HIGHWAY_INFORMED_BY_USER ), "This should be null."
     end
     # End of test for '@HIGHWAY_INFORMED_BY_USER' variable
 
     # Beginning of tests of '@HIGHWAY_NUMBER_EXISTS' instance variable
-    test "'@HIGHWAY_NUMBER_EXISTS' should be true with a
+    test "'@HIGHWAY_NUMBER_EXISTS' should be true with a\
      param equal to the first registered highway" do
-        get :index, {'highway_search' => highways(:one).idBr}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        get :index, {'highway_search' => highways( :one ).idBr}
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
-    test "'@HIGHWAY_NUMBER_EXISTS' should be true
-     with a param equal to the second registered highway" do
-        get :index, {'highway_search' => highways(:two).idBr}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+    test "'@HIGHWAY_NUMBER_EXISTS' should be true\
+      with a param equal to the second registered highway" do
+        get :index, {'highway_search' => highways( :two ).idBr}
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     # Tests with part of idBr's from fixtures
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 1" do
         get :index, {'highway_search' => "1"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 2" do
         get :index, {'highway_search' => "2"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 9" do
         get :index, {'highway_search' => "9"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 8" do
         get :index, {'highway_search' => "8"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to 7" do
         get :index, {'highway_search' => "7"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '12'" do
         get :index, {'highway_search' => "12"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '21'" do
         get :index, {'highway_search' => "21"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '98'" do
         get :index, {'highway_search' => "98"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
 
     test "'@HIGHWAY_NUMBER_EXISTS' should be true with a param equal to '87'" do
         get :index, {'highway_search' => "87"}
-        assert assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be true."
     end
     # End of tests with part of idBr's from fixtures
 
-    test "'@HIGHWAY_NUMBER_EXISTS' should be false
-     with a param equal to a not registered highway" do
+    test "'@HIGHWAY_NUMBER_EXISTS' should be false\
+      with a param equal to a not registered highway" do
         get :index, {'highway_search' => "123"}
-        assert_not assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert_not assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be false."
     end
 
-    test "'@HIGHWAY_NUMBER_EXISTS' should be false with
-     a param equal to highway with 4 caracters" do
+    test "'@HIGHWAY_NUMBER_EXISTS' should be false with\
+      a param equal to highway with 4 characters" do
         get :index, {'highway_search' => "1234"}
-        assert_not assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert_not assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be false."
     end
 
-    test "'@HIGHWAY_NUMBER_EXISTS' should be false with
-     a param with equal to a chain of letters" do
+    test "'@HIGHWAY_NUMBER_EXISTS' should be false with\
+      a param with equal to a chain of letters" do
         get :index, {'highway_search' => "asdf"}
-        assert_not assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert_not assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be false."
     end
 
-    test "'@HIGHWAY_NUMBER_EXISTS' should be false with a param equal to a nil" do
+    test "'@HIGHWAY_NUMBER_EXISTS' should be false with a param equal to a\
+       nil" do
         get :index, {'highway_search' => nil}
-        assert_not assigns(:HIGHWAY_NUMBER_EXISTS),
+        assert_not assigns( :HIGHWAY_NUMBER_EXISTS ),
          "@HIGHWAY_NUMBER_EXISTS should be false."
     end
     # End of tests for '@HIGHWAY_NUMBER_EXISTS' variable
@@ -158,7 +160,8 @@ class HighwaysControllerTest < ActionController::TestCase
         # the aggregated column
         assert_kind_of Hash, @highways_controller.count_accidents_by_highway,
          "This should be a Hash object."
-        assert_equal 1, @highways_controller.count_accidents_by_highway['MyString'],
+        assert_equal 1, @highways_controller.
+          count_accidents_by_highway['MyString'],
          "This  should be equal to 1"
         assert_equal 1, @highways_controller.count_accidents_by_highway[nil],
          "This  should be equal to 1"
@@ -172,64 +175,73 @@ class HighwaysControllerTest < ActionController::TestCase
 
     # Beginning of tests of 'check_highway_number' method
     test "'check_highway_number' should be null with a null argument" do
-        assert_nil @highways_controller.check_highway_number(nil),
+        assert_nil @highways_controller.check_highway_number( nil ),
          "Method 'check_highway_number' should return null"
     end
 
     test "'check_highway_number' should be empty with a empty argument" do
-        assert_equal "", @highways_controller.check_highway_number(""),
+        assert_equal "", @highways_controller.check_highway_number( "" ),
          "Method 'check_highway_number' should return an empty string"
     end
 
-    test "'check_highway_number' Should return the number without the zero on left" do
-        assert_equal "40", @highways_controller.check_highway_number("040"),
+    test "'check_highway_number' Should return the number without the zero on\ 
+      left" do
+        assert_equal "40", @highways_controller.check_highway_number( "040" ),
          "Method 'check_highway_number' should return '40'"
     end
 
-    test "'check_highway_number' Should return the number without  a lot of zero on left" do
-        assert_equal "20", @highways_controller.check_highway_number("0000000020"),
+    test "'check_highway_number' Should return the number without  a lot of\
+     zero on left" do
+        assert_equal "20", 
+          @highways_controller.check_highway_number( "0000000020" ),
          "Method 'check_highway_number' should return '20'"
     end
 
     test "'check_highway_number' Should return the same number input" do
-        assert_equal "41", @highways_controller.check_highway_number("41"),
+        assert_equal "41", @highways_controller.check_highway_number( "41" ),
          "Method 'check_highway_number' should return '41'"
     end
 
-    test "'check_highway_number' Should return the same number input with 2 digits" do
-        assert_equal "24", @highways_controller.check_highway_number("24"),
+    test "'check_highway_number' Should return the same number input with 2\
+       digits" do
+        assert_equal "24", @highways_controller.check_highway_number( "24" ),
          "Method 'check_highway_number' should return '24'"
     end
 
-    test "'check_highway_number' Should return the same number input with 3 digits" do
-        assert_equal "160", @highways_controller.check_highway_number("160"),
+    test "'check_highway_number' Should return the same number input with 3\
+       digits" do
+        assert_equal "160", @highways_controller.check_highway_number( "160" ),
          "Method 'check_highway_number' should return '160'"
     end
 
-    test "'check_highway_number' Should return the number with 3 digits without the zeros" do
-        assert_equal "160", @highways_controller.check_highway_number("000000000160"),
+    test "'check_highway_number' Should return the number with 3 digits without\
+       the zeros" do
+        assert_equal "160", @highways_controller.check_highway_number( "0160" ),
          "Method 'check_highway_number' should return '160'"
     end
 
-    test "'check_highway_number' Should return blank number input with many zeros" do
-        assert_equal "", @highways_controller.check_highway_number("0000000000"),
+    test "'check_highway_number' Should return blank number input with many\
+       zeros" do
+        assert_equal "", @highways_controller.check_highway_number( "0000000" ),
          "Method 'check_highway_number' should return am empty String"
     end
 
     test "'check_highway_number' Should return the letters that was input" do
-        assert_equal "abcd", @highways_controller.check_highway_number("abcd"),
+        assert_equal "abcd",@highways_controller.check_highway_number( "abcd" ),
          "Method 'check_highway_number' should return 'abcd'"
     end
 
     #The method check_highway_number should not remove zeros on right
     test "'check_highway_number' Should return the all number input
      with zeros after the number" do
-        assert_equal "50", @highways_controller.check_highway_number("50"),
+        assert_equal "50", @highways_controller.check_highway_number( "50" ),
          "Method 'check_highway_number' should return '50'"
     end
 
-    test "'check_highway_number' Should return the number with the zeros on right" do
-        assert_equal "50000000", @highways_controller.check_highway_number("50000000"),
+    test "'check_highway_number' Should return the number with the zeros on\
+       right" do
+        assert_equal "50000000", 
+          @highways_controller.check_highway_number( "50000000" ),
          "Method 'check_highway_number' should return '50000000'"
     end
     # End of tests of 'check_highway_number' method
@@ -237,185 +249,233 @@ class HighwaysControllerTest < ActionController::TestCase
     #Beginning of tests of 'check_highway_number_length' method
 
     test "Should return false with a nil argument" do
-        assert_not @highways_controller.check_highway_number_length(nil),
+        assert_not @highways_controller.check_highway_number_length( nil ),
          "This should return false with an null argument"
     end
 
     test "Should return false with an empty argument" do
-        assert_not @highways_controller.check_highway_number_length(""),
+        assert_not @highways_controller.check_highway_number_length( "" ),
          "This should return false with an empty argument"
     end
 
-    test "Should return false with an argument which length is
-     greater than MAX_HIGHWAY_NUMBER_LENGTH" do
-        assert_not @highways_controller.check_highway_number_length("4000"),
+    test "Should return false with an argument which length is\
+       greater than MAX_HIGHWAY_NUMBER_LENGTH" do
+        assert_not @highways_controller.check_highway_number_length( "4000" ),
          "Method 'check_highway_number_length' should return false"
     end
 
-    test "Should return false with an argument (letters chain) which
-     length is greater than MAX_HIGHWAY_NUMBER_LENGTH" do
-        assert_not @highways_controller.check_highway_number_length("abcde"),
+    test "Should return false with an argument (letters chain) which\
+      length is greater than MAX_HIGHWAY_NUMBER_LENGTH" do
+        assert_not @highways_controller.check_highway_number_length( "abcde" ),
          "Method 'check_highway_number_length' should return false"
     end
 
-    test "Should return true with an argument which length is lower than
-     MAX_HIGHWAY_NUMBER_LENGTH by two caracters" do
-        assert @highways_controller.check_highway_number_length("3"),
+    test "Should return true with an argument which length is lower than\
+      MAX_HIGHWAY_NUMBER_LENGTH by two caracters" do
+        assert @highways_controller.check_highway_number_length( "3" ),
          "Method 'check_highway_number_length' should return true"
     end
 
-
-
-
-
-
-
-  test "Should return true with an argument which length is lower than MAX_HIGHWAY_NUMBER_LENGTH by one caracter" do
-
-      assert @highways_controller.check_highway_number_length("35"), "Method 'check_highway_number_length' should return true"
-
+  test "Should return true with an argument which length is lower than\
+     MAX_HIGHWAY_NUMBER_LENGTH by one caracter" do
+      assert @highways_controller.check_highway_number_length( "35" ), 
+      "Method 'check_highway_number_length' should return true"
   end
 
-  test "Should return true with an argument (letters chain) which length is lower than MAX_HIGHWAY_NUMBER_LENGTH" do
-
-      assert @highways_controller.check_highway_number_length("ab"), "Method 'check_highway_number_length' should return true"
-
+  test "Should return true with an argument (letters chain) which length is\
+     lower than MAX_HIGHWAY_NUMBER_LENGTH" do
+      assert @highways_controller.check_highway_number_length( "ab" ), 
+      "Method 'check_highway_number_length' should return true"
   end
 
-  test "Should return true with an argument which length is equal to MAX_HIGHWAY_NUMBER_LENGTH" do
-
-      assert @highways_controller.check_highway_number_length("116"), "Method 'check_highway_number_length' should return true"
-
+  test "Should return true with an argument which length is equal to\
+     MAX_HIGHWAY_NUMBER_LENGTH" do
+      assert @highways_controller.check_highway_number_length( "116" ), 
+      "Method 'check_highway_number_length' should return true"
   end
 
-  test "Should return true with an argument (letters chain) which length is equal to MAX_HIGHWAY_NUMBER_LENGTH" do
-
-      assert @highways_controller.check_highway_number_length("abc"), "Method 'check_highway_number_length' should return true"
-
+  test "Should return true with an argument (letters chain) which length is\
+     equal to MAX_HIGHWAY_NUMBER_LENGTH" do
+      assert @highways_controller.check_highway_number_length( "abc" ), 
+      "Method 'check_highway_number_length' should return true"
   end
 #End of tests of 'check_highway_number_length' method
 
 
-#Begining of tests of 'check_highway_exists' method
+  #Begining of tests of 'check_highway_exists' method
   test "'check_highway_exists' should return false with a null argument" do
-
-      assert_not @highways_controller.check_highway_exists(nil), "This should return false with a null argument"
-
+      assert_not @highways_controller.check_highway_exists( nil ), 
+      "This should return false with a null argument"
   end
 
   test "'check_highway_exists' should return false with an empty argument" do
-
-      assert_not @highways_controller.check_highway_exists(""), "This should return false with an empty argument"
-
+      assert_not @highways_controller.check_highway_exists( "" ), 
+      "This should return false with an empty argument"
   end
 
-  test "Should return true with an argument that exists on DB (first fixture)" do
-
-      assert @highways_controller.check_highway_exists("121"),"check_highway_exists should return true."
-
+  test "Should return true with an argument that exists on DB\
+   (first fixture)" do
+      assert @highways_controller.check_highway_exists( "121" ),
+      "check_highway_exists should return true."
   end
 
-  test "Should return true with an argument that exists on DB (second fixture)" do
-
-      assert @highways_controller.check_highway_exists("987"),"check_highway_exists should return true."
-
+  test "Should return true with an argument that exists on DB\
+   (second fixture)" do
+      assert @highways_controller.check_highway_exists( "987" ),
+      "check_highway_exists should return true."
   end
 
-  test "Should return true with an argument that is part of an existing register on DB" do
-
-      assert @highways_controller.check_highway_exists("1"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("2"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("9"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("8"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("7"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("12"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("21"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("98"),"check_highway_exists should return true."
-      assert @highways_controller.check_highway_exists("87"),"check_highway_exists should return true."
-
+  test "Should return true with an argument that is part of an existing\
+   register on DB" do
+      assert @highways_controller.check_highway_exists( "1" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "2" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "9" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "8" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "7" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "12" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "21" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "98" ),
+      "check_highway_exists should return true."
+      assert @highways_controller.check_highway_exists( "87" ),
+      "check_highway_exists should return true."
   end
 
   test "Should return false with an argument that doesn't exists on DB" do
-
-      assert_not @highways_controller.check_highway_exists("356"),"check_highway_exists should return false."
-      assert_not @highways_controller.check_highway_exists("0"),"check_highway_exists should return false."
-      assert_not @highways_controller.check_highway_exists("abcd"),"check_highway_exists should return false."
-      assert_not @highways_controller.check_highway_exists("60"),"check_highway_exists should return false."
-
+      assert_not @highways_controller.check_highway_exists( "356" ),
+      "check_highway_exists should return false."
+      assert_not @highways_controller.check_highway_exists( "0" ),
+      "check_highway_exists should return false."
+      assert_not @highways_controller.check_highway_exists( "abcd" ),
+      "check_highway_exists should return false."
+      assert_not @highways_controller.check_highway_exists( "60" ),
+      "check_highway_exists should return false."
   end
 #End of tests of 'check_highway_exists' method
 
 
 #Beginning of tests of 'search_for_highway' method
-  test "'search_for_highway' Should return all highways registered with a null argument" do
+  test "'search_for_highway' Should return all highways registered with a\
+   null argument" do
+    search_for_highway_result = @highways_controller.search_for_highway( nil )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result, 
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?, 
+    "This relation should not be empty"
+    assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count, 
+    "This quantity should be equal to 2"
+  end
 
-    search_for_highway_result = @highways_controller.search_for_highway(nil)
+  test "'search_for_highway' Should return all highways registered with an\
+   empty argument" do
+    search_for_highway_result = @highways_controller.search_for_highway( "" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count,
+    "This quantity should be equal to 2"
+  end
 
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count, "This quantity should be equal to 2"
+  test "'search_for_highway' should return only one record on relation equal\
+   to the first fixture" do
+    search_for_highway_result = @highways_controller.search_for_highway( "121" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 1, search_for_highway_result.count,
+    "This quantity should be equal to 1"
+    assert_kind_of Highway, search_for_highway_result.first,
+    "This should be an Highway object"
+    assert_not_nil search_for_highway_result.first,
+    "This object should not be null"
+    assert_equal "121", search_for_highway_result.first.idBr,
+    "This idBr should be equal to the first fixture idBr"
+    assert_equal 1500, search_for_highway_result.first.mileage,
+    "This mileage should be equal to the first fixture mileage"
 
   end
 
-  test "'search_for_highway' Should return all highways registered with an empty argument" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count, "This quantity should be equal to 2"
-
-  end
-
-  test "'search_for_highway' should return only one record on relation equal to the first fixture" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("121")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 1, search_for_highway_result.count, "This quantity should be equal to 1"
-    assert_kind_of Highway, search_for_highway_result.first, "This should be an Highway object"
-    assert_not_nil search_for_highway_result.first, "This object should not be null"
-    assert_equal "121", search_for_highway_result.first.idBr, "This idBr should be equal to the first fixture idBr"
-    assert_equal 1500, search_for_highway_result.first.mileage, "This mileage should be equal to the first fixture mileage"
+  test "'search_for_highway' should return only one record on relation equal to\
+   the second fixture" do
+    search_for_highway_result = @highways_controller.search_for_highway( "987" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 1, search_for_highway_result.count,
+    "This quantity should be equal to 1"
+    assert_kind_of Highway, search_for_highway_result.first,
+    "This should be an Highway object"
+    assert_not_nil search_for_highway_result.first,
+    "This object should not be null"
+    assert_equal "987", search_for_highway_result.first.idBr,
+    "This idBr should be equal to the first fixture idBr"
+    assert_equal 2570, search_for_highway_result.first.mileage,
+    "This mileage should be equal to the first fixture mileage"
 
   end
 
-  test "'search_for_highway' should return only one record on relation equal to the second fixture" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("987")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 1, search_for_highway_result.count, "This quantity should be equal to 1"
-    assert_kind_of Highway, search_for_highway_result.first, "This should be an Highway object"
-    assert_not_nil search_for_highway_result.first, "This object should not be null"
-    assert_equal "987", search_for_highway_result.first.idBr, "This idBr should be equal to the first fixture idBr"
-    assert_equal 2570, search_for_highway_result.first.mileage, "This mileage should be equal to the first fixture mileage"
-
+  test "'search_for_highway' should return only one record on relation equal\
+   to the third fixture" do
+    search_for_highway_result = @highways_controller.search_for_highway( "128" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 1, search_for_highway_result.count,
+    "This quantity should be equal to 1"
+    assert_kind_of Highway, search_for_highway_result.first,
+    "This should be an Highway object"
+    assert_not_nil search_for_highway_result.first,
+    "This object should not be null"
+    assert_equal "128", search_for_highway_result.first.idBr,
+    "This idBr should be equal to the first fixture idBr"
+    assert_equal 5678, search_for_highway_result.first.mileage,
+    "This mileage should be equal to the first fixture mileage"
   end
 
-  test "'search_for_highway' should return only one record on relation equal to the third fixture" do
+  test "'search_for_highway' should return only two records on relation\
+   because of first and third fixtures that contains '12'" do
+    search_for_highway_result = @highways_controller.search_for_highway( "12" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 2, search_for_highway_result.count,
+    "This quantity should be equal to 2"
+    cont = 0
+    search_for_highway_result.each do |highway|
+      assert_kind_of Highway, highway, "This should be an Highway object"
+      assert_not_nil highway, "This object should not be null"
+      cont = cont + 1
+      if cont == 1
+        assert_equal highways( :one ).idBr, highway.idBr,
+        "This idBr should be equal to the first fixture idBr"
+      else
+        assert_equal highways( :three ).idBr, highway.idBr,
+        "This idBr should be equal to the third fixture idBr"
+      end
 
-    search_for_highway_result = @highways_controller.search_for_highway("128")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 1, search_for_highway_result.count, "This quantity should be equal to 1"
-    assert_kind_of Highway, search_for_highway_result.first, "This should be an Highway object"
-    assert_not_nil search_for_highway_result.first, "This object should not be null"
-    assert_equal "128", search_for_highway_result.first.idBr, "This idBr should be equal to the first fixture idBr"
-    assert_equal 5678, search_for_highway_result.first.mileage, "This mileage should be equal to the first fixture mileage"
-
+    end
   end
 
-  test "'search_for_highway' should return only two records on relation because of first and third fixtures that contains '12'" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("12")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 2, search_for_highway_result.count, "This quantity should be equal to 2"
+  test "'search_for_highway' should return only two records on relation because\
+   of first and third fixtures that contains '1'" do
+    search_for_highway_result = @highways_controller.search_for_highway( "1" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 2, search_for_highway_result.count,
+    "This quantity should be equal to 2"
 
     cont = 0
     search_for_highway_result.each do |highway|
@@ -424,22 +484,24 @@ class HighwaysControllerTest < ActionController::TestCase
       cont = cont + 1
 
       if cont == 1
-        assert_equal highways(:one).idBr, highway.idBr, "This idBr should be equal to the first fixture idBr"
+        assert_equal highways( :one ).idBr, highway.idBr,
+        "This idBr should be equal to the first fixture idBr"
       else
-        assert_equal highways(:three).idBr, highway.idBr, "This idBr should be equal to the third fixture idBr"
+        assert_equal highways( :three ).idBr, highway.idBr,
+        "This idBr should be equal to the third fixture idBr"
       end
-
     end
-
   end
 
-  test "'search_for_highway' should return only two records on relation because of first and third fixtures that contains '1'" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("1")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 2, search_for_highway_result.count, "This quantity should be equal to 2"
+  test "'search_for_highway' should return only two records on relation\
+   because of second and third fixtures that contains '8'" do
+    search_for_highway_result = @highways_controller.search_for_highway( "8" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 2, search_for_highway_result.count,
+    "This quantity should be equal to 2"
 
     cont = 0
     search_for_highway_result.each do |highway|
@@ -448,22 +510,29 @@ class HighwaysControllerTest < ActionController::TestCase
       cont = cont + 1
 
       if cont == 1
-        assert_equal highways(:one).idBr, highway.idBr, "This idBr should be equal to the first fixture idBr"
+        assert_equal highways( :three ).idBr, highway.idBr, 
+        "This idBr should be equal to the third fixture idBr"
       else
-        assert_equal highways(:three).idBr, highway.idBr, "This idBr should be equal to the third fixture idBr"
+        assert_equal highways( :two ).idBr, highway.idBr, 
+        "This idBr should be equal to the two fixture idBr"
       end
 
     end
 
   end
 
-  test "'search_for_highway' should return only two records on relation because of second and third fixtures that contains '8'" do
+  test "'search_for_highway' should clean the 0's on left and return only two\
+   records on relation due to second and third fixtures" do
 
-    search_for_highway_result = @highways_controller.search_for_highway("8")
+    search_for_highway_result = 
+    @highways_controller.search_for_highway( "00000000008" )
 
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 2, search_for_highway_result.count, "This quantity should be equal to 2"
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+    "This should be a Relation"
+    assert_not search_for_highway_result.empty?,
+    "This relation should not be empty"
+    assert_equal 2, search_for_highway_result.count,
+    "This quantity should be equal to 2"
 
     cont = 0
     search_for_highway_result.each do |highway|
@@ -472,62 +541,45 @@ class HighwaysControllerTest < ActionController::TestCase
       cont = cont + 1
 
       if cont == 1
-        assert_equal highways(:three).idBr, highway.idBr, "This idBr should be equal to the third fixture idBr"
+        assert_equal highways( :three ).idBr, highway.idBr,
+         "This idBr should be equal to the third fixture idBr"
       else
-        assert_equal highways(:two).idBr, highway.idBr, "This idBr should be equal to the two fixture idBr"
+        assert_equal highways( :two ).idBr, highway.idBr,
+         "This idBr should be equal to the two fixture idBr"
       end
-
     end
+  end
+
+  test "'search_for_highway' should return an empty relation with an\
+   unregistered highway as argument" do
+    search_for_highway_result = @highways_controller.search_for_highway( "365" )
+
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result, 
+    "This should be a Relation"
+    assert search_for_highway_result.empty?, 
+    "This relation should be empty"
 
   end
 
-  test "'search_for_highway' should clean the 0's on left and return only two records on relation due to second and third fixtures" do
+  test "'search_for_highway' should return an empty relation with an invalid\
+   highway as argument" do
 
-    search_for_highway_result = @highways_controller.search_for_highway("00000000008")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert_not search_for_highway_result.empty?, "This relation should not be empty"
-    assert_equal 2, search_for_highway_result.count, "This quantity should be equal to 2"
-
-    cont = 0
-    search_for_highway_result.each do |highway|
-      assert_kind_of Highway, highway, "This should be an Highway object"
-      assert_not_nil highway, "This object should not be null"
-      cont = cont + 1
-
-      if cont == 1
-        assert_equal highways(:three).idBr, highway.idBr, "This idBr should be equal to the third fixture idBr"
-      else
-        assert_equal highways(:two).idBr, highway.idBr, "This idBr should be equal to the two fixture idBr"
-      end
-
-    end
+    search_for_highway_result = 
+    @highways_controller.search_for_highway( "abcd" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result, 
+    "This should be a Relation"
+    assert search_for_highway_result.empty?, 
+    "This relation should be empty"
 
   end
 
-  test "'search_for_highway' should return an empty relation with an unregistered highway as argument" do
+  test "'search_for_highway' should return an empty relation with an invalid\
+   highway as argument even with 0's on left" do
 
-    search_for_highway_result = @highways_controller.search_for_highway("365")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert search_for_highway_result.empty?, "This relation should be empty"
-
-  end
-
-  test "'search_for_highway' should return an empty relation with an invalid highway as argument" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("abcd")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
-    assert search_for_highway_result.empty?, "This relation should be empty"
-
-  end
-
-  test "'search_for_highway' should return an empty relation with an invalid highway as argument even with 0's on left" do
-
-    search_for_highway_result = @highways_controller.search_for_highway("000000abcd")
-
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result, "This should be a Relation"
+    search_for_highway_result = 
+    @highways_controller.search_for_highway( "000000abcd" )
+    assert_kind_of ActiveRecord::Relation, search_for_highway_result, 
+    "This should be a Relation"
     assert search_for_highway_result.empty?, "This relation should be empty"
 
   end
