@@ -21,7 +21,7 @@ class Accident < ActiveRecord::Base
     # Return : group().
     def self.count_accidents
         # Number of the chosen highways.
-        accidents_in_a_br = group(:highway_number).count
+        accidents_in_a_br = group( :highway_number ).count
         assert_object_is_not_null( accidents_in_a_br )
 
         return accidents_in_a_br
@@ -42,7 +42,7 @@ class Accident < ActiveRecord::Base
     # Parameters: none.
     # Return : accidents_latitudes
     def self.get_accidents_latitude
-        accidents_latitudes = all.map(&:latitude)
+        accidents_latitudes = all.map( &:latitude )
         assert_object_is_not_null( accidents_latitudes )
 
         return accidents_latitudes
@@ -52,7 +52,7 @@ class Accident < ActiveRecord::Base
     # Parameters: none.
     # Return : accidents_longitudes
     def self.get_accidents_longitude
-        accidents_longitudes = all.map(&:longitude)
+        accidents_longitudes = all.map( &:longitude )
         assert_object_is_not_null( accidents_longitudes )
 
         return accidents_longitudes
@@ -63,7 +63,7 @@ class Accident < ActiveRecord::Base
     # Parameters: none.
     # Return : accidents_highway_number
     def self.get_accidents_highway_number
-        accidents_highway_number = all.map(&:highway_number)
+        accidents_highway_number = all.map( &:highway_number )
         assert_object_is_not_null( accidents_highway_number )
 
         return accidents_highway_number

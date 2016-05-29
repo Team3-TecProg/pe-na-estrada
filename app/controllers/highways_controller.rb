@@ -124,7 +124,7 @@ class HighwaysController < ApplicationController
             array_index = 0
             iterator_array_sum = 1;
             while highway_number.at( array_index ) == "0"
-                highway_number = highway_number.from( array_index + 
+                highway_number = highway_number.from( array_index +
                 iterator_array_sum )
             end
         else
@@ -180,7 +180,7 @@ class HighwaysController < ApplicationController
         count_accidents_by_highway
 
         @ACCIDENT.each do |br, count|
-            # The acronym 'br' represents a Brazilian highway that is the 
+            # The acronym 'br' represents a Brazilian highway that is the
             # federal government's responsibility.
             br_accident = br
             assert_object_is_not_null ( br_accident )
@@ -188,7 +188,7 @@ class HighwaysController < ApplicationController
                 assert_object_is_not_null ( highway )
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidents_rate = calculate_accidents_rate( count, 
+                    highway.accidents_rate = calculate_accidents_rate( count,
                     mileage_br)
                     highway.save
                 else
@@ -282,9 +282,11 @@ class HighwaysController < ApplicationController
             @ALL_HIGHWAYS.each do |highway|
                 mileage_br = highway.mileage.to_s
                 if ( highway.idBr == br_accident )
-                    highway.accidents_rate_percentage = 
+                    highway.accidents_rate_percentage =
                     calculate_accidents_rate_percentage( count,@ACCIDENT_COUNT )
                     highway.save
+                else
+                    # Nothing to do.
                 end
             end
         end

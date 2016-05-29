@@ -11,9 +11,10 @@ class RoutesController < ApplicationController
     # Description: This method is called from the view package to show the web
     # page to the user.
     # Parameters: none.
-    # Return: @route.
+    # Return: @ROUTE.
     def index
         @ROUTE = Route.new
+        return @ROUTE
     end
 
     # Description: This method return the result of other method

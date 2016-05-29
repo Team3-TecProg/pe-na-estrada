@@ -16,19 +16,19 @@ class CommentsControllerTest < ActionController::TestCase
     end
 
     test "route" do
-        assert_recognizes({:controller => "highways", :action => "show", id:"40"},
-        {:path => "highways/40", :method => :get})
+        assert_recognizes( { :controller => "highways", :action => "show", id:"40" },
+        { :path => "highways/40", :method => :get } )
     end
 
     test "Not should comment nil" do
-        {:action=>"index", :COMMENT=>{:idBr=>comments(:two).idBr, :title=>comments(:two).title,
-         :text=>comments(:two).text}, :controller=>"highways/"}
-        assert_nil assigns(:COMMENT)
+        { :action=>"index", :COMMENT=>{ :idBr=>comments( :two ).idBr, :title=>comments( :two ).title,
+         :text=>comments( :two ).text }, :controller=>"highways/" }
+        assert_nil assigns( :COMMENT )
     end
 
     test "Should not save a comment" do
         #@COMMENT is invalid.
-        assert_not(@COMMENT.save)
+        assert_not( @COMMENT.save )
     end
 
 end
