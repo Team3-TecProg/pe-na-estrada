@@ -23,7 +23,7 @@ class RoutesController < ApplicationController
     # Parameters: none.
     # Return: none.
     def trace_route
-        @ROUTE = Route.new(origin_params)
+        @ROUTE = Route.new( origin_params )
         @ORIGIN_INFORMED_BY_USER = @ROUTE.origin
         @destination_informed_by_user = @ROUTE.destination
 
@@ -49,20 +49,20 @@ class RoutesController < ApplicationController
     #'send_accidents_data_to_js' giving three arrays in the parameters.
     # Parameters: latitude, longitude, highway_number.
     # Return: latitudes_counter.
-    def remove_unusable_coordinates (latitude, longitude, highway_number)
+    def remove_unusable_coordinates ( latitude, longitude, highway_number )
         # Arrays to store the usables coordinates and highways
-        latitude_usable = []
-        longitude_usable = []
-        highways = []
+        latitude_usable = [ ]
+        longitude_usable = [ ]
+        highways = [ ]
 
         latitudes_counter = 0 # Counter to get the latitudes from database
         index = 0 # Get the latitude, longitude e highway_number usables
         iterator_sum = 1
         while latitudes_counter < latitude.length
-            if latitude[latitudes_counter].blank? == false
-                latitude_usable[index] = latitude[latitudes_counter]
-                longitude_usable[index] = longitude[latitudes_counter]
-                highways[index] = highway_number[latitudes_counter]
+            if latitude[ latitudes_counter ].blank? == false
+                latitude_usable[ index ] = latitude[ latitudes_counter ]
+                longitude_usable[ index ] = longitude[ latitudes_counter ]
+                highways[ index ] = highway_number[ latitudes_counter ]
                 index = index + iterator_sum
             else
                 # Nothing to do
@@ -79,7 +79,7 @@ class RoutesController < ApplicationController
     # as parameters. After that, all the variables are changed to java script mode
     # Parameters: latitude, longitude, highway_number.
     # Return: gon.latitude, gon.longitude and gon.highway_number.
-    def send_accidents_data_to_js (latitude, longitude, highway_number)
+    def send_accidents_data_to_js ( latitude, longitude, highway_number )
         gon.latitude = latitude
         gon.longitude = longitude
         gon.highway_number = highway_number
@@ -92,7 +92,7 @@ class RoutesController < ApplicationController
     # Parameters: none.
     # Return: none.
     def origin_params
-        params.require(:ROUTE).permit(:origin, :destination)
+        params.require( :ROUTE ).permit( :origin, :destination )
     end
 
 end
