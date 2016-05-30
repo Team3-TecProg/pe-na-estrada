@@ -70,7 +70,8 @@ class Highway < ActiveRecord::Base
     def self.all_highways_by_accidents_rate_percentage
         highways_ordered_by_accidents_rate_percentage = Highway.
             order( accidentsRatePercent: :desc )
-        assert_object_is_not_null( highways_ordered_by_accidents_rate_percentage
+        assert_object_is_not_null(
+         highways_ordered_by_accidents_rate_percentage 
         )
 
         return highways_ordered_by_accidents_rate_percentage

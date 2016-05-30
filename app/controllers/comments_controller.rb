@@ -6,7 +6,6 @@
 #####################################################################
 
 class CommentsController < ApplicationController
-
     include Assertions
 
     # Description: This method calls the view class.
@@ -17,7 +16,7 @@ class CommentsController < ApplicationController
         assert_object_is_not_null ( @COMMENT )
     end
 
-    # Description: Generates an object of the Highway model and saves it in the 
+    # Description: Generates an object of the Highway model and saves it in the
     # instance variable @HIGHWAY.
     # Parameters: none.
     # Return: none.
@@ -31,8 +30,16 @@ class CommentsController < ApplicationController
         @COMMENT = Comment.new( comment_params )
         # Asserts if the new object @COMMENT is null.
         assert_object_is_not_null( @COMMENT )
+        # Call method to save the comment.
+        save_comment
+    end
 
-        # If can save the comment, is saved and after redirected to 
+    # Description: Save the object @COMMENT.
+    # instance variable @COMMENT and @HIGHWAY.
+    # Parameters: none.
+    # Return: none.
+    def save_comment
+        # If can save the comment, is saved and after redirected to
         # highway_path in view.
         if ( @COMMENT.save )
             @COMMENT.save
@@ -42,7 +49,7 @@ class CommentsController < ApplicationController
         else
             # Nothing to do
         end
-    end
+    end        
 
     # Description: Fetches the parameters required by a comment object.
     # Parameters: none.
