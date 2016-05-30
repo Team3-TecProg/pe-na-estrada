@@ -1,6 +1,6 @@
 #####################################################################
 # Class name: RoutesControllerTest
-# File name:key => "value",  routes_controller_test.rb
+# File name: routes_controller_test.rb
 # Description: Test class that contains all functional tests for
 # routes controller
 #####################################################################
