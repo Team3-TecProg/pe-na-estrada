@@ -50,16 +50,18 @@ class RoutesController < ApplicationController
     # Parameters: latitude, longitude, highway_number.
     # Return: latitudes_counter.
     def remove_unusable_coordinates ( latitude, longitude, highway_number )
-        # Arrays to store the usables coordinates and highways
+        # Arrays to store the usables coordinates and highways.
         latitude_usable = [ ]
         longitude_usable = [ ]
         highways = [ ]
 
-        latitudes_counter = 0 # Counter to get the latitudes from database
-        index = 0 # Get the latitude, longitude e highway_number usables
+        latitudes_counter = 0 # Counter to get the latitudes from database.
+        index = 0 # Get the latitude, longitude e highway_number usables.
         iterator_sum = 1
+        verify_latitude = false # Take the statatus of latitude.
         while latitudes_counter < latitude.length
-            if latitude[ latitudes_counter ].blank? == false
+            verify_latitude = latitudes_is_blank latitude,latitudes_counter
+            if ( verify_latitude )
                 latitude_usable[ index ] = latitude[ latitudes_counter ]
                 longitude_usable[ index ] = longitude[ latitudes_counter ]
                 highways[ index ] = highway_number[ latitudes_counter ]
@@ -73,6 +75,17 @@ class RoutesController < ApplicationController
         end
 
         send_accidents_data_to_js latitude_usable, longitude_usable, highways
+    end
+
+    def latitudes_is_blank ( latitude, counter)
+        verify_content = false
+        if ( latitude[ counter ].blank? == false )
+            verify_content = true
+        else
+            verify_content = false
+        end
+
+        return verify_content
     end
 
     # Description: This method have 'latitude', 'longitude' and 'highway_number'
