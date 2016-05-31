@@ -77,17 +77,6 @@ class RoutesController < ApplicationController
         send_accidents_data_to_js latitude_usable, longitude_usable, highways
     end
 
-    def latitudes_is_blank ( latitude, counter)
-        verify_content = false
-        if ( latitude[ counter ].blank? == false )
-            verify_content = true
-        else
-            verify_content = false
-        end
-
-        return verify_content
-    end
-
     # Description: This method have 'latitude', 'longitude' and 'highway_number'
     # as parameters. After that, all the variables are changed to java script mode
     # Parameters: latitude, longitude, highway_number.
@@ -98,6 +87,20 @@ class RoutesController < ApplicationController
         gon.highway_number = highway_number
 
         return gon
+    end
+
+    # Description: Verify if a latitude is blank.
+    # Parameters: latitude, counter.
+    # Return: verify_content
+    def latitudes_is_blank ( latitude, counter)
+        verify_content = false
+        if ( latitude[ counter ].blank? == false )
+            verify_content = true
+        else
+            verify_content = false
+        end
+
+        return verify_content
     end
 
     # Description: This method take the data from url to be used in this class.
