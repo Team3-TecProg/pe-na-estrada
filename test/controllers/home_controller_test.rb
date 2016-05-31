@@ -13,6 +13,7 @@ class HomeControllerTest < ActionController::TestCase
         Highway.create( :idBr => 11, :accidentsRate => 20 )
         Highway.create( :idBr => 12, :accidentsRate => 25 )
     end
+    
     test "Should show highways ordered by their accident rates" do
         get :index
         assert_response :success
