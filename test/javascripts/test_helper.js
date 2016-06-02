@@ -1,3 +1,9 @@
+#####################################################################
+# File name: test_helper.js
+# Description: Contains all tests google maps api.
+#####################################################################
+
+
 // Teaspoon includes some support files, but you can use anything from your own support path too.
 // require support/sinon
 // require support/your-support-file

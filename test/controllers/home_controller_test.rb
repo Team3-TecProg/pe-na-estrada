@@ -13,12 +13,12 @@ class HomeControllerTest < ActionController::TestCase
         Highway.create( :idBr => 11, :accidentsRate => 20 )
         Highway.create( :idBr => 12, :accidentsRate => 25 )
     end
-    
+
     test "Should show highways ordered by their accident rates" do
         get :index
         assert_response :success
-        assert_equal assigns(:HIGHWAY).first.accidentsRate, 25
-        assert_equal assigns(:HIGHWAY).second.accidentsRate, 20
-        assert_equal assigns(:HIGHWAY).third.accidentsRate, 15
+        assert_equal assigns( :HIGHWAY ).first.accidentsRate, 25
+        assert_equal assigns( :HIGHWAY ).second.accidentsRate, 20
+        assert_equal assigns( :HIGHWAY ).third.accidentsRate, 15
     end
 end
