@@ -8,6 +8,26 @@
 require 'test_helper'
 
 class RoutesControllerTest < ActionController::TestCase
+
+    test "content is not blank" do
+        latitudes = { }
+        counter = 15
+        latitudes[15] = "filled"
+        expected_result = true
+        boolean_result = @controller.latitudes_is_blank( latitudes, counter )
+
+        assert_equal expected_result, boolean_result
+    end
+
+    test "content is blank" do
+        latitudes = { }
+        counter = 15
+        expected_result = false
+        boolean_result = @controller.latitudes_is_blank( latitudes, counter )
+
+        assert_equal expected_result, boolean_result
+    end
+
     test "route to index" do
         assert_recognizes( { :controller => "routes", :action => "index" },
          { :path => "routes", :method => :get } )
@@ -40,4 +60,5 @@ class RoutesControllerTest < ActionController::TestCase
         assert_equal returned_gon_object.longitude, longitude
         assert_equal returned_gon_object.highway_number, highway_number
     end
+
 end

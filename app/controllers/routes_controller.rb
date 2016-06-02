@@ -14,6 +14,7 @@ class RoutesController < ApplicationController
     # Return: @ROUTE.
     def index
         @ROUTE = Route.new
+
         return @ROUTE
     end
 
@@ -56,9 +57,10 @@ class RoutesController < ApplicationController
         highways = [ ]
 
         latitudes_counter = 0 # Counter to get the latitudes from database.
-        index = 0 # Get the latitude, longitude e highway_number usables.
+        index = 0 # Get the latitude, longitude and highway_number usables.
         iterator_sum = 1
         verify_latitude = false # Take the statatus of latitude.
+
         while latitudes_counter < latitude.length
             verify_latitude = latitudes_is_blank latitude,latitudes_counter
             if ( verify_latitude )
@@ -71,10 +73,10 @@ class RoutesController < ApplicationController
             end
 
             latitudes_counter = latitudes_counter + iterator_sum
-            return latitudes_counter
         end
-
         send_accidents_data_to_js latitude_usable, longitude_usable, highways
+
+        return latitudes_counter
     end
 
     # Description: This method have 'latitude', 'longitude' and 'highway_number'
