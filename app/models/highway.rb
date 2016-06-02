@@ -9,6 +9,7 @@ class Highway < ActiveRecord::Base
     extend Assertions
 
     has_many :comments
+
     validates_presence_of :idBr, message: 'idBr cannot be null.'
     validates_length_of :idBr, within: 2..3,
         too_short: 'The idBr is too short. Must be in the range 2..3.',
@@ -38,7 +39,7 @@ class Highway < ActiveRecord::Base
     # Return : verify_exists_highway.
     def self.exists_highway ( highway_to_check )
         assert_object_is_not_null( highway_to_check )
-        # Boolean variable to show if the highway exists or not.
+        # Boolean variable to show if the highway exists or not
         verify_exists_highway = false
         if highway_to_check.present?
             verify_exists_highway = exists?( ['idBr LIKE ?',
@@ -49,6 +50,7 @@ class Highway < ActiveRecord::Base
             verify_exists_highway = false
         end
         assert_object_is_not_null( verify_exists_highway )
+
         return verify_exists_highway
     end
 
@@ -71,7 +73,7 @@ class Highway < ActiveRecord::Base
         highways_ordered_by_accidents_rate_percentage = Highway.
             order( accidentsRatePercent: :desc )
         assert_object_is_not_null(
-         highways_ordered_by_accidents_rate_percentage 
+         highways_ordered_by_accidents_rate_percentage
         )
 
         return highways_ordered_by_accidents_rate_percentage

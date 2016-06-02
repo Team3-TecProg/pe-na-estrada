@@ -42,6 +42,7 @@ class HighwaysController < ApplicationController
         else
             result = nil
         end
+
         return result
     end
 
@@ -60,6 +61,7 @@ class HighwaysController < ApplicationController
         else
             check_result = false
         end
+
         return check_result
     end
 
@@ -72,6 +74,7 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null ( highway_cleaned )
         search_result = Highway.search_for_highway ( highway_cleaned )
         assert_object_is_not_null( search_result )
+
         return search_result
     end
 
@@ -79,9 +82,10 @@ class HighwaysController < ApplicationController
     # Parameters: none.
     # Return: max_highway_number_length.
     def max_highway_number_length
-      # In Brazil, there are no highways with numbers longer than 3 digits.
-      max_highway_number_length = 3
-      return max_highway_number_length
+        # In Brazil, there are no highways with numbers longer than 3 digits.
+        max_highway_number_length = 3
+
+        return max_highway_number_length
     end
 
     # Description: Checks the length of the highway number informed.
@@ -99,6 +103,7 @@ class HighwaysController < ApplicationController
         else
             check_result = false
         end
+
         return check_result
     end
 
@@ -112,6 +117,7 @@ class HighwaysController < ApplicationController
         else
             check_result =  false
         end
+
         return check_result
     end
 
@@ -205,6 +211,7 @@ class HighwaysController < ApplicationController
     def create_position
         iterator_position_current = 0
         sum_iterator_position = 1
+
         @HIGHWAY.each do |highway|
             iterator_position_current += sum_iterator_position
             highway.rankingPosition = iterator_position_current
@@ -231,6 +238,7 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null ( accidents_number )
         assert_object_is_not_null ( total_accidents )
         zero_acidentes = 0
+
         if ( accidents_number == zero_acidentes )
             rate = 0.0
         else
@@ -250,6 +258,7 @@ class HighwaysController < ApplicationController
         highways_by_accidents_rate =
         Highway.all_highways_by_accidents_rate_percentage
         assert_object_is_not_null ( highways_by_accidents_rate )
+
         return highways_by_accidents_rate
     end
 

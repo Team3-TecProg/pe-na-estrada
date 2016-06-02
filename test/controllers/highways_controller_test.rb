@@ -543,109 +543,157 @@ class HighwaysControllerTest < ActionController::TestCase
 
   test "'search_for_highway' should return an empty relation with an\
    unregistered highway as argument" do
-    search_for_highway_result = @highways_controller.search_for_highway( "365" )
+      search_for_highway_result = @highways_controller.search_for_highway( "365" )
 
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert search_for_highway_result.empty?,
-    "This relation should be empty"
+      assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+      "This should be a Relation"
+      assert search_for_highway_result.empty?,
+      "This relation should be empty"
   end
 
   test "'search_for_highway' should return an empty relation with an invalid\
    highway as argument" do
 
-    search_for_highway_result =
-    @highways_controller.search_for_highway( "abcd" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert search_for_highway_result.empty?,
-    "This relation should be empty"
+      search_for_highway_result =
+      @highways_controller.search_for_highway( "abcd" )
+      assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+      "This should be a Relation"
+      assert search_for_highway_result.empty?,
+      "This relation should be empty"
   end
 
   test "'search_for_highway' should return an empty relation with an invalid\
    highway as argument even with 0's on left" do
 
-    search_for_highway_result =
-    @highways_controller.search_for_highway( "000000abcd" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert search_for_highway_result.empty?, "This relation should be empty"
+      search_for_highway_result =
+      @highways_controller.search_for_highway( "000000abcd" )
+      assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+      "This should be a Relation"
+      assert search_for_highway_result.empty?, "This relation should be empty"
   end
   # End of tests of 'search_for_highway' method.
 
   # Beginning of tests of check_length_and_if_exists.
-  test "'check_length_and_if_exists' Should return false with a null argument" do
-    assert_not @highways_controller.check_length_and_if_exists( nil ), "Method 'check_length_and_if_exists' should return false"
+  test "'check_length_and_if_exists' Should return false with a
+   null argument" do
+      assert_not @highways_controller.check_length_and_if_exists( nil ),
+       "Method 'check_length_and_if_exists' should return false"
   end
 
-  test "'check_length_and_if_exists' Should return false with an empty argument" do
-    assert_not @highways_controller.check_length_and_if_exists( "" ), "Method 'check_length_and_if_exists' should return false"
+  test "'check_length_and_if_exists' Should return false with an empty
+   argument" do
+      assert_not @highways_controller.check_length_and_if_exists( "" ),
+       "Method 'check_length_and_if_exists' should return false"
   end
 
-  test "'check_length_and_if_exists' Should return false with an unregistered highway as param" do
-    assert_not @highways_controller.check_length_and_if_exists( "111" ), "Method 'check_length_and_if_exists' should return false"
+  test "'check_length_and_if_exists' Should return false with an
+   unregistered highway as param" do
+      assert_not @highways_controller.check_length_and_if_exists( "111" ),
+       "Method 'check_length_and_if_exists' should return false"
   end
 
-  test "'check_length_and_if_exists' Should return false with letters as argument" do
-    assert_not @highways_controller.check_length_and_if_exists( "abc" ), "Method 'check_length_and_if_exists' should return false"
+  test "'check_length_and_if_exists' Should return false with letters as
+   argument" do
+      assert_not @highways_controller.check_length_and_if_exists( "abc" ),
+       "Method 'check_length_and_if_exists' should return false"
   end
 
-  test "'check_length_and_if_exists' should return false with a highway with 4 caracters length as argument" do
-    assert_not @highways_controller.check_length_and_if_exists( "1234" ), "'check_length_and_if_exists' should return false."
+  test "'check_length_and_if_exists' should return false with a highway
+   with 4 caracters length as argument" do
+      assert_not @highways_controller.check_length_and_if_exists( "1234" ),
+       "'check_length_and_if_exists' should return false."
   end
 
-  test "''check_length_and_if_exists' should return false with a highway with a valid length but unregistered as argument" do
-    assert_not @highways_controller.check_length_and_if_exists( "040" ), "'check_length_and_if_exists' should return false."
+  test "''check_length_and_if_exists' should return false with a highway
+   with a valid length but unregistered as argument" do
+      assert_not @highways_controller.check_length_and_if_exists( "040" ),
+       "'check_length_and_if_exists' should return false."
   end
 
-  test "''check_length_and_if_exists' should return false with a highway with an invalid length and unregistered as argument" do
-    assert_not @highways_controller.check_length_and_if_exists( "012340" ), "'check_length_and_if_exists' should return false."
+  test "''check_length_and_if_exists' should return false with a highway
+   with an invalid length and unregistered as argument" do
+      assert_not @highways_controller.check_length_and_if_exists( "012340" ),
+       "'check_length_and_if_exists' should return false."
   end
 
-  test "'check_length_and_if_exists' Should return false due to the invalid length" do
-    assert_not  @highways_controller.check_length_and_if_exists( "0000000000" ), "Method 'check_length_and_if_exists' should return false"
+  test "'check_length_and_if_exists' Should return false due to the invalid
+   length" do
+      assert_not  @highways_controller.check_length_and_if_exists( "0000000000" ),
+       "Method 'check_length_and_if_exists' should return false"
   end
 
-  test "'check_length_and_if_exists' Should return false due to the unregistered highway even with a valid length" do
-    assert_not @highways_controller.check_length_and_if_exists( "000" ), "Method 'check_length_and_if_exists' should return false"
+  test "'check_length_and_if_exists' Should return false due to the unregistered
+   highway even with a valid length" do
+      assert_not @highways_controller.check_length_and_if_exists( "000" ), "Method
+       'check_length_and_if_exists' should return false"
   end
 
-  test "'check_length_and_if_exists' Should return true due to the registered highway as argument" do
-    assert @highways_controller.check_length_and_if_exists( "121" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "987" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "128" ), "Method 'check_length_and_if_exists' should return true"
+  test "'check_length_and_if_exists' Should return true due to the registered
+   highway as argument" do
+      assert @highways_controller.check_length_and_if_exists( "121" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "987" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "128" ),
+       "Method 'check_length_and_if_exists' should return true"
   end
 
-  test "'check_length_and_if_exists' Should return true due to the registered highways as argument even with 0's on left" do
-    assert @highways_controller.check_length_and_if_exists( "0000000128" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000000987" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000000121" ), "Method 'check_length_and_if_exists' should return true"
+  test "'check_length_and_if_exists' Should return true due to the registered
+   highways as argument even with 0's on left" do
+      assert @highways_controller.check_length_and_if_exists( "0000000128" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000000987" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000000121" ),
+       "Method 'check_length_and_if_exists' should return true"
   end
 
-  test "'check_length_and_if_exists' Should return true due to parts of registered highways as argument" do
-    assert @highways_controller.check_length_and_if_exists( "1" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "2" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "9" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "8" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "7" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "12" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "21" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "98" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "87" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "28" ), "Method 'check_length_and_if_exists' should return true"
+  test "'check_length_and_if_exists' Should return true due to parts of
+   registered highways as argument" do
+      assert @highways_controller.check_length_and_if_exists( "1" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "2" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "9" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "8" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "7" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "12" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "21" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "98" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "87" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "28" ),
+       "Method 'check_length_and_if_exists' should return true"
   end
 
-  test "'check_length_and_if_exists' Should return true due to parts of registered highways as argument even with 0's on left" do
-    assert @highways_controller.check_length_and_if_exists( "000001" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "000002" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "000009" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "000008" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "000007" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000012" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000021" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000098" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000087" ), "Method 'check_length_and_if_exists' should return true"
-    assert @highways_controller.check_length_and_if_exists( "0000028" ), "Method 'check_length_and_if_exists' should return true"
+  test "'check_length_and_if_exists' Should return true due to parts of
+   registered highways as argument even with 0's on left" do
+      assert @highways_controller.check_length_and_if_exists( "000001" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "000002" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "000009" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "000008" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "000007" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000012" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000021" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000098" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000087" ),
+       "Method 'check_length_and_if_exists' should return true"
+      assert @highways_controller.check_length_and_if_exists( "0000028" ),
+       "Method 'check_length_and_if_exists' should return true"
   end
   # End of tests of 'check_length_and_if_exists' method.
 
@@ -755,7 +803,22 @@ class HighwaysControllerTest < ActionController::TestCase
   # End of the tests of the action 'show'.
 
   test "Not should comment nil" do
-    { :action => "show", :COMMENT =>  { :idBr => comments( :two ).idBr, :title => comments( :two ).title, :text => comments( :two ).text }, :controller => "highways/" }
-    assert_nil assigns( :COMMENT )
+      { :action => "show", :COMMENT =>  { :idBr => comments( :two ).idBr,
+       :title => comments( :two ).title, :text => comments( :two ).text },
+       :controller => "highways/" }
+
+      assert_nil assigns( :COMMENT )
   end
+
+  test "find the expected highway" do
+      highway = Highway.new
+      highway.id = 12
+      highway.idBr = 123
+      highway.save!
+
+      get(:show, {'id' => "12"})
+
+      assert_not_nil :HIGHWAY
+  end
+
 end
