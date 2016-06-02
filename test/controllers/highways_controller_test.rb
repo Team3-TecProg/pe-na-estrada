@@ -515,30 +515,30 @@ class HighwaysControllerTest < ActionController::TestCase
   test "'search_for_highway' should clean the 0's on left and return only two\
    records on relation due to second and third fixtures" do
 
-    search_for_highway_result =
-    @highways_controller.search_for_highway( "00000000008" )
+      search_for_highway_result =
+      @highways_controller.search_for_highway( "00000000008" )
 
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal 2, search_for_highway_result.count,
-    "This quantity should be equal to 2"
+      assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+      "This should be a Relation"
+      assert_not search_for_highway_result.empty?,
+      "This relation should not be empty"
+      assert_equal 2, search_for_highway_result.count,
+      "This quantity should be equal to 2"
 
-    cont = 0
-    search_for_highway_result.each do |highway|
-      assert_kind_of Highway, highway, "This should be an Highway object"
-      assert_not_nil highway, "This object should not be null"
-      cont = cont + 1
+      cont = 0
+      search_for_highway_result.each do |highway|
+          assert_kind_of Highway, highway, "This should be an Highway object"
+          assert_not_nil highway, "This object should not be null"
+          cont = cont + 1
 
-      if cont == 1
-        assert_equal highways( :three ).idBr, highway.idBr,
-         "This idBr should be equal to the third fixture idBr"
-      else
-        assert_equal highways( :two ).idBr, highway.idBr,
-         "This idBr should be equal to the two fixture idBr"
+          if cont == 1
+              assert_equal highways( :three ).idBr, highway.idBr,
+               "This idBr should be equal to the third fixture idBr"
+          else
+              assert_equal highways( :two ).idBr, highway.idBr,
+               "This idBr should be equal to the two fixture idBr"
+          end
       end
-    end
   end
 
   test "'search_for_highway' should return an empty relation with an\

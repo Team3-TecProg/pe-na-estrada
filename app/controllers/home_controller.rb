@@ -12,11 +12,13 @@ class HomeController < ApplicationController
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # Description: Shows the Highways objects to the user in a view.
+  # Description: Returns the highways objects accordign its
+  # accidents rate.
   # Parameters: none.
   # Return: @HIGHWAY.
   def index
   	  @HIGHWAY = Highway.all_highways_by_accidents_rate
+
       return @HIGHWAY
   end
 end

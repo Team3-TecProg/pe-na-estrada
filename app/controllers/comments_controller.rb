@@ -6,6 +6,7 @@
 #####################################################################
 
 class CommentsController < ApplicationController
+
     include Assertions
 
     # Description: This method calls the view class.
@@ -25,7 +26,7 @@ class CommentsController < ApplicationController
         @HIGHWAY = Highway.find( params[ :highway_id ] )
         # Assert if the new object  @HIGHWAY is null.
         assert_object_is_not_null( @HIGHWAY )
-        # @COMMENT is an instance variable thats contains the comment sent in 
+        # @COMMENT is an instance variable thats contains the comment sent in
         # the params from the view.
         @COMMENT = Comment.new( comment_params )
         # Asserts if the new object @COMMENT is null.
@@ -47,9 +48,9 @@ class CommentsController < ApplicationController
             @HIGHWAY.save
             redirect_to highway_path( @HIGHWAY )
         else
-            # Nothing to do
+            return false
         end
-    end        
+    end
 
     # Description: Fetches the parameters required by a comment object.
     # Parameters: none.
@@ -57,4 +58,5 @@ class CommentsController < ApplicationController
     def comment_params
         params.fetch( :comment, { } ).permit( :title, :text, :idBr )
     end
+
 end
