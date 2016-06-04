@@ -10,6 +10,10 @@ require 'test_helper'
 class HighwaysControllerTest < ActionController::TestCase
     QUANTITY_OF_FIXTURES = 3
 
+    # Description: This method is called to instance and create objects
+    # and any other thing needed to run the tests.
+    # Parameters: none.
+    # Return : @highways_controller.
     def setup
         @highways_controller = HighwaysController.new
     end

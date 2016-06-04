@@ -8,6 +8,11 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionController::TestCase
+
+    # Description: This method is called to instance and create objects
+    # and any other thing needed to run the tests.
+    # Parameters: none.
+    # Return : none.
     def setup
         Highway.create( :idBr => 10, :accidentsRate => 15 )
         Highway.create( :idBr => 11, :accidentsRate => 20 )

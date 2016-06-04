@@ -9,6 +9,10 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
 
+    # Description: This method is called to instance and create objects
+    # and any other thing needed to run the tests.
+    # Parameters: none.
+    # Return : none.
     def setup
         @COMMENT = Comment.new
         @COMMENTS = Comment.all
