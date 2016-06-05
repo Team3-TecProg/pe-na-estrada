@@ -28,7 +28,7 @@ class CommentTest < ActiveSupport::TestCase
 				newest_comment.text = "I am the newest comment"
 				newest_comment.save
 
-				ordered_comments = Comment.getComments
+				ordered_comments = Comment.get_comments_in_reverse_order
 
 				assert_equal ordered_comments.first.text,"I am the newest comment"
 				assert_equal ordered_comments.second.text,"I am the older comment"
@@ -95,7 +95,7 @@ class CommentTest < ActiveSupport::TestCase
 				@COMMENT.title = comments( :one ).title
 				@COMMENT.text = comments( :one ).text
 				@COMMENT.save!
-				@COMMENT_reverse = Comment.getComments
+				@COMMENT_reverse = Comment.get_comments_in_reverse_order
 				assert_equal comments( :one ).idBr, @COMMENT_reverse.first.idBr, "The comments are not in reverse order"
 		end
 
@@ -112,7 +112,7 @@ class CommentTest < ActiveSupport::TestCase
 				@COMMENT_2.save!
 
 				expected_text = "second comment"
-				@COMMENTS_REVERSE = Comment.getComments
+				@COMMENTS_REVERSE = Comment.get_comments_in_reverse_order
 				assert_equal @COMMENTS_REVERSE.first.text,expected_text
 		end
 
@@ -129,7 +129,7 @@ class CommentTest < ActiveSupport::TestCase
 				@COMMENT_2.save!
 
 				expected_text = "first comment"
-				@COMMENTS_REVERSE = Comment.getComments
+				@COMMENTS_REVERSE = Comment.get_comments_in_reverse_order
 				assert_not_equal @COMMENTS_REVERSE.first.text,expected_text
 		end
 end

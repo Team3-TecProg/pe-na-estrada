@@ -146,6 +146,7 @@ class HighwaysController < ApplicationController
     def count_accidents_by_highway
         @ACCIDENT = Accident.count_accidents
         assert_object_is_not_null ( @ACCIDENT )
+
         return @ACCIDENT
     end
 

@@ -16,23 +16,14 @@ class Accident < ActiveRecord::Base
 
     belongs_to :Highway
 
-    # Description: Counts the number of accidents in one highway.
-    # Parameters: none.
-    # Return : group().
-    def self.count_accidents
-        # Number of the chosen highways.
-        accidents_in_a_br = group( :highway_number ).count
-        assert_object_is_not_null( accidents_in_a_br )
-
-        return accidents_in_a_br
-    end
+    public
 
     # Description: The total of accidents thats happends in one highway.
     # Parameters: none.
     # Return : total_accidents.
     def self.total_accidents
         # Recives the number of total accidents in one especific highway.
- 	    total_accidents = Accident.count
+        total_accidents = Accident.count
         assert_object_is_not_null( total_accidents )
 
         return total_accidents
@@ -67,5 +58,16 @@ class Accident < ActiveRecord::Base
         assert_object_is_not_null( accidents_highway_number )
 
         return accidents_highway_number
+    end
+
+    # Description: Counts the number of accidents in one highway.
+    # Parameters: none.
+    # Return : group().
+    def self.count_accidents
+        # Number of the chosen highways.
+        accidents_in_a_br = group( :highway_number ).count
+        assert_object_is_not_null( accidents_in_a_br )
+
+        return accidents_in_a_br
     end
 end
