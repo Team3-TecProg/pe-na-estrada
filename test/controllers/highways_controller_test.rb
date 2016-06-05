@@ -765,15 +765,19 @@ class HighwaysControllerTest < ActionController::TestCase
      "This relation should be equal to the third fixture"
   end
 
-  test "'setup_highway' Should return an empty relation for an unregistered highway as param" do
+  test "'setup_highway' Should return an empty relation for an unregistered\
+   highway as param" do
     setup_highway_result = @highways_controller.setup_highway( "456" )
-    assert_kind_of ActiveRecord::Relation, setup_highway_result, "This should be an ActiveRecord::Relation object"
+    assert_kind_of ActiveRecord::Relation, setup_highway_result,
+     "This should be an ActiveRecord::Relation object"
     assert setup_highway_result.empty?, "This relation should be empty"
   end
 
-  test "'setup_highway' Should return an empty relation for an invalid highway as param" do
+  test "'setup_highway' Should return an empty relation for an invalid highway\
+   as param" do
     setup_highway_result = @highways_controller.setup_highway( "asdf" )
-    assert_kind_of ActiveRecord::Relation, setup_highway_result, "This should be an ActiveRecord::Relation object"
+    assert_kind_of ActiveRecord::Relation, setup_highway_result,
+     "This should be an ActiveRecord::Relation object"
     assert setup_highway_result.empty?, "This relation should be empty"
 
   end
@@ -781,28 +785,41 @@ class HighwaysControllerTest < ActionController::TestCase
 
   # Beginning of tests of the 'calculate_accidentesRatePercent' method.
   test "calculate_accidentsRate should return the rate with correct params" do
-    assert_equal 0.1, @highways_controller.calculate_accidents_rate( 2, 20 ), "This should return 0.1 as accidents rate"
+    assert_equal 0.1, @highways_controller.calculate_accidents_rate( 2, 20 ),
+     "This should return 0.1 as accidents rate"
   end
 
-  test "calculate_accidents_rate  should return zero the rate with params blank" do
-    assert_equal 0.0, @highways_controller.calculate_accidents_rate( 2, " " ), "This should return 0.0 as accidents rate"
+  test "calculate_accidents_rate  should return zero the rate with params\
+   blank" do
+    assert_equal 0.0, @highways_controller.calculate_accidents_rate( 2, " " ),
+     "This should return 0.0 as accidents rate"
   end
 
-  test "calculate_accidents_rate  should return zero the rate with correct params" do
-    assert_equal 0.0, @highways_controller.calculate_accidents_rate( 0, 20 ), "This should return 0.0 as accidents rate"
+  test "calculate_accidents_rate  should return zero the rate with correct\
+   params" do
+    assert_equal 0.0, @highways_controller.calculate_accidents_rate( 0, 20 ),
+     "This should return 0.0 as accidents rate"
   end
 
- test "calculate_accidents_rate Percent should return the rate with correct params" do
-    assert_equal 10, @highways_controller.calculate_accidents_rate_percentage( 2, 20 ), "This should return 10 as accidents rate"
+ test "calculate_accidents_rate Percent should return the rate with correct\
+  params" do
+    assert_equal 10,
+     @highways_controller.calculate_accidents_rate_percentage( 2, 20 ),
+      "This should return 10 as accidents rate"
   end
 
-  test "calculate_accidentsRatePercent should return zero the rate with accidents number zero" do
-    assert_equal 0.0, @highways_controller.calculate_accidents_rate_percentage( 0, 20 ), "This should return 0.0 as accidents rate"
+  test "calculate_accidentsRatePercent should return zero the rate with\
+   accidents number zero" do
+    assert_equal 0.0,
+     @highways_controller.calculate_accidents_rate_percentage( 0, 20 ),
+      "This should return 0.0 as accidents rate"
   end
 
-  test "calculate_accidents_rate_percentage should return zero the rate with params zero" do
-    assert_equal 0.0, @highways_controller.calculate_accidents_rate_percentage( 0, 0 ),
-        "This should return 0.0 as accidents rate"
+  test "calculate_accidents_rate_percentage should return zero the rate\
+   with params zero" do
+    assert_equal 0.0,
+     @highways_controller.calculate_accidents_rate_percentage( 0, 0 ),
+      "This should return 0.0 as accidents rate"
   end
   # End of the tests of the 'calculate_accidentesRatePercent' method.
 
