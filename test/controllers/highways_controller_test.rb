@@ -356,115 +356,112 @@ class HighwaysControllerTest < ActionController::TestCase
       assert_not @highways_controller.check_highway_exists( "60" ),
       "check_highway_exists should return false."
   end
-#End of tests of 'check_highway_exists' method
+  #End of tests of 'check_highway_exists' method
 
 
-#Beginning of tests of 'search_for_highway' method.
-  test "'search_for_highway' Should return all highways registered with a\
-   null argument" do
-    search_for_highway_result = @highways_controller.search_for_highway( nil )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count,
-    "This quantity should be equal to 2"
-  end
-
-  test "'search_for_highway' Should return all highways registered with an\
-   empty argument" do
-    search_for_highway_result = @highways_controller.search_for_highway( "" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count,
-    "This quantity should be equal to 2"
-  end
-
-  test "'search_for_highway' should return only one record on relation equal\
-   to the first fixture" do
-    search_for_highway_result = @highways_controller.search_for_highway( "121" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal 1, search_for_highway_result.count,
-    "This quantity should be equal to 1"
-    assert_kind_of Highway, search_for_highway_result.first,
-    "This should be an Highway object"
-    assert_not_nil search_for_highway_result.first,
-    "This object should not be null"
-    assert_equal "121", search_for_highway_result.first.idBr,
-    "This idBr should be equal to the first fixture idBr"
-    assert_equal 1500, search_for_highway_result.first.mileage,
-    "This mileage should be equal to the first fixture mileage"
-
-  end
-
-  test "'search_for_highway' should return only one record on relation equal to\
-   the second fixture" do
-    search_for_highway_result = @highways_controller.search_for_highway( "987" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal 1, search_for_highway_result.count,
-    "This quantity should be equal to 1"
-    assert_kind_of Highway, search_for_highway_result.first,
-    "This should be an Highway object"
-    assert_not_nil search_for_highway_result.first,
-    "This object should not be null"
-    assert_equal "987", search_for_highway_result.first.idBr,
-    "This idBr should be equal to the first fixture idBr"
-    assert_equal 2570, search_for_highway_result.first.mileage,
-    "This mileage should be equal to the first fixture mileage"
-
-  end
-
-  test "'search_for_highway' should return only one record on relation equal\
-   to the third fixture" do
-    search_for_highway_result = @highways_controller.search_for_highway( "128" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal 1, search_for_highway_result.count,
-    "This quantity should be equal to 1"
-    assert_kind_of Highway, search_for_highway_result.first,
-    "This should be an Highway object"
-    assert_not_nil search_for_highway_result.first,
-    "This object should not be null"
-    assert_equal "128", search_for_highway_result.first.idBr,
-    "This idBr should be equal to the first fixture idBr"
-    assert_equal 5678, search_for_highway_result.first.mileage,
-    "This mileage should be equal to the first fixture mileage"
-  end
-
-  test "'search_for_highway' should return only two records on relation\
-   because of first and third fixtures that contains '12'" do
-    search_for_highway_result = @highways_controller.search_for_highway( "12" )
-    assert_kind_of ActiveRecord::Relation, search_for_highway_result,
-    "This should be a Relation"
-    assert_not search_for_highway_result.empty?,
-    "This relation should not be empty"
-    assert_equal 2, search_for_highway_result.count,
-    "This quantity should be equal to 2"
-    cont = 0
-    search_for_highway_result.each do |highway|
-      assert_kind_of Highway, highway, "This should be an Highway object"
-      assert_not_nil highway, "This object should not be null"
-      cont = cont + 1
-      if cont == 1
-        assert_equal highways( :one ).idBr, highway.idBr,
-        "This idBr should be equal to the first fixture idBr"
-      else
-        assert_equal highways( :three ).idBr, highway.idBr,
-        "This idBr should be equal to the third fixture idBr"
-      end
-
+    #Beginning of tests of 'search_for_highway' method.
+    test "'search_for_highway' Should return all highways registered with a\
+     null argument" do
+        search_for_highway_result = @highways_controller.search_for_highway( nil )
+        assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+        "This should be a Relation"
+        assert_not search_for_highway_result.empty?,
+        "This relation should not be empty"
+        assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count,
+        "This quantity should be equal to 2"
     end
-  end
+
+    test "'search_for_highway' Should return all highways registered with an\
+     empty argument" do
+        search_for_highway_result = @highways_controller.search_for_highway( "" )
+        assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+        "This should be a Relation"
+        assert_not search_for_highway_result.empty?,
+        "This relation should not be empty"
+        assert_equal QUANTITY_OF_FIXTURES, search_for_highway_result.count,
+        "This quantity should be equal to 2"
+    end
+
+    test "'search_for_highway' should return only one record on relation equal\
+     to the first fixture" do
+        search_for_highway_result = @highways_controller.search_for_highway( "121" )
+        assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+        "This should be a Relation"
+        assert_not search_for_highway_result.empty?,
+        "This relation should not be empty"
+        assert_equal 1, search_for_highway_result.count,
+        "This quantity should be equal to 1"
+        assert_kind_of Highway, search_for_highway_result.first,
+        "This should be an Highway object"
+        assert_not_nil search_for_highway_result.first,
+        "This object should not be null"
+        assert_equal "121", search_for_highway_result.first.idBr,
+        "This idBr should be equal to the first fixture idBr"
+        assert_equal 1500, search_for_highway_result.first.mileage,
+        "This mileage should be equal to the first fixture mileage"
+    end
+
+    test "'search_for_highway' should return only one record on relation equal to\
+     the second fixture" do
+        search_for_highway_result = @highways_controller.search_for_highway( "987" )
+        assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+        "This should be a Relation"
+        assert_not search_for_highway_result.empty?,
+        "This relation should not be empty"
+        assert_equal 1, search_for_highway_result.count,
+        "This quantity should be equal to 1"
+        assert_kind_of Highway, search_for_highway_result.first,
+        "This should be an Highway object"
+        assert_not_nil search_for_highway_result.first,
+        "This object should not be null"
+        assert_equal "987", search_for_highway_result.first.idBr,
+        "This idBr should be equal to the first fixture idBr"
+        assert_equal 2570, search_for_highway_result.first.mileage,
+        "This mileage should be equal to the first fixture mileage"
+    end
+
+    test "'search_for_highway' should return only one record on relation equal\
+     to the third fixture" do
+        search_for_highway_result = @highways_controller.search_for_highway( "128" )
+        assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+        "This should be a Relation"
+        assert_not search_for_highway_result.empty?,
+        "This relation should not be empty"
+        assert_equal 1, search_for_highway_result.count,
+        "This quantity should be equal to 1"
+        assert_kind_of Highway, search_for_highway_result.first,
+        "This should be an Highway object"
+        assert_not_nil search_for_highway_result.first,
+        "This object should not be null"
+        assert_equal "128", search_for_highway_result.first.idBr,
+        "This idBr should be equal to the first fixture idBr"
+        assert_equal 5678, search_for_highway_result.first.mileage,
+        "This mileage should be equal to the first fixture mileage"
+    end
+
+    test "'search_for_highway' should return only two records on relation\
+     because of first and third fixtures that contains '12'" do
+        search_for_highway_result = @highways_controller.search_for_highway( "12" )
+        assert_kind_of ActiveRecord::Relation, search_for_highway_result,
+        "This should be a Relation"
+        assert_not search_for_highway_result.empty?,
+        "This relation should not be empty"
+        assert_equal 2, search_for_highway_result.count,
+        "This quantity should be equal to 2"
+        cont = 0
+        search_for_highway_result.each do |highway|
+            assert_kind_of Highway, highway, "This should be an Highway object"
+            assert_not_nil highway, "This object should not be null"
+            cont = cont + 1
+            if cont == 1
+                assert_equal highways( :one ).idBr, highway.idBr,
+                "This idBr should be equal to the first fixture idBr"
+            else
+                assert_equal highways( :three ).idBr, highway.idBr,
+                "This idBr should be equal to the third fixture idBr"
+            end
+        end
+    end
 
   test "'search_for_highway' should return only two records on relation because\
    of first and third fixtures that contains '1'" do

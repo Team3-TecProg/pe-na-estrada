@@ -18,6 +18,8 @@ class RoutesController < ApplicationController
         return @ROUTE
     end
 
+    public
+
     # Description: This method return the result of other method
     # 'get_accidents_data_to_sinalize' and render the index of this part of the
     # software.
@@ -33,6 +35,42 @@ class RoutesController < ApplicationController
         render :index
     end
 
+    # Description: Verify if a latitude is blank.
+    # Parameters: latitude, counter.
+    # Return: verify_content
+    def latitudes_is_blank ( latitude, counter)
+        verify_content = false
+        if ( latitude[ counter ].blank? == false )
+            verify_content = true
+        else
+            verify_content = false
+        end
+
+        return verify_content
+    end
+
+    # Description: This method have 'latitude', 'longitude' and 'highway_number'
+    # as parameters. After that, all the variables are changed to java script mode
+    # Parameters: latitude, longitude, highway_number.
+    # Return: gon.latitude, gon.longitude and gon.highway_number.
+    def send_accidents_data_to_js ( latitude, longitude, highway_number )
+        gon.latitude = latitude
+        gon.longitude = longitude
+        gon.highway_number = highway_number
+
+        return gon
+    end
+
+    private
+
+    # Description: This method take the data from url to be used in this class.
+    # The data are 'origin' and 'destination' of the ROUTE.
+    # Parameters: none.
+    # Return: none.
+    def origin_params
+        params.require( :ROUTE ).permit( :origin, :destination )
+    end
+
     # Description: This method returns the method 'remove_unusable_coordinates'
     # with latitude, longitude and 'highway_number' with parameters.
     # Parameters: none.
@@ -44,7 +82,6 @@ class RoutesController < ApplicationController
 
         remove_unusable_coordinates latitude, longitude, highway_number
     end
-
 
     # Description: This method  returns the call of the method
     #'send_accidents_data_to_js' giving three arrays in the parameters.
@@ -74,43 +111,9 @@ class RoutesController < ApplicationController
 
             latitudes_counter = latitudes_counter + iterator_sum
         end
+
         send_accidents_data_to_js latitude_usable, longitude_usable, highways
 
         return latitudes_counter
     end
-
-    # Description: This method have 'latitude', 'longitude' and 'highway_number'
-    # as parameters. After that, all the variables are changed to java script mode
-    # Parameters: latitude, longitude, highway_number.
-    # Return: gon.latitude, gon.longitude and gon.highway_number.
-    def send_accidents_data_to_js ( latitude, longitude, highway_number )
-        gon.latitude = latitude
-        gon.longitude = longitude
-        gon.highway_number = highway_number
-
-        return gon
-    end
-
-    # Description: Verify if a latitude is blank.
-    # Parameters: latitude, counter.
-    # Return: verify_content
-    def latitudes_is_blank ( latitude, counter)
-        verify_content = false
-        if ( latitude[ counter ].blank? == false )
-            verify_content = true
-        else
-            verify_content = false
-        end
-
-        return verify_content
-    end
-
-    # Description: This method take the data from url to be used in this class.
-    # The data are 'origin' and 'destination' of the ROUTE.
-    # Parameters: none.
-    # Return: none.
-    def origin_params
-        params.require( :ROUTE ).permit( :origin, :destination )
-    end
-
 end
