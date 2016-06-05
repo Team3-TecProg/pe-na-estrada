@@ -112,7 +112,8 @@ class RoutesController < ApplicationController
             latitudes_counter = latitudes_counter + iterator_sum
         end
 
-        send_accidents_data_to_js latitude_usable, longitude_usable, highways
+
+     send_accidents_data_to_js latitude_usable, longitude_usable, highways
 
         return latitudes_counter
     end

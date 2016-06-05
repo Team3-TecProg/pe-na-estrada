@@ -6,7 +6,6 @@
 #####################################################################
 
 class CommentsController < ApplicationController
-
     include Assertions
 
     # Description: This method calls the view class.
@@ -35,6 +34,8 @@ class CommentsController < ApplicationController
         save_comment
     end
 
+    private
+
     # Description: Save the object @COMMENT.
     # instance variable @COMMENT and @HIGHWAY.
     # Parameters: none.
@@ -58,5 +59,4 @@ class CommentsController < ApplicationController
     def comment_params
         params.fetch( :comment, { } ).permit( :title, :text, :idBr )
     end
-
 end

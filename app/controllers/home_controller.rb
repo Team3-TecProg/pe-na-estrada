@@ -6,19 +6,19 @@
 #####################################################################
 
 class HomeController < ApplicationController
-  include Assertions
+    include Assertions
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+    # Prevent CSRF attacks by raising an exception.
+    # For APIs, you may want to use :null_session instead.
+    protect_from_forgery with: :exception
 
-  # Description: Returns the highways objects accordign its
-  # accidents rate.
-  # Parameters: none.
-  # Return: @HIGHWAY.
-  def index
-  	  @HIGHWAY = Highway.all_highways_by_accidents_rate
+    # Description: Returns the highways objects accordign its
+    # accidents rate.
+    # Parameters: none.
+    # Return: @HIGHWAY.
+    def index
+    	  @HIGHWAY = Highway.all_highways_by_accidents_rate
 
-      return @HIGHWAY
-  end
+        return @HIGHWAY
+    end
 end

@@ -32,19 +32,7 @@ class HighwaysController < ApplicationController
         @COMMENTS = @HIGHWAY.comments
     end
 
-    # Description: Sets up the instance variable '@HIGHWAY' on index with the
-    # result from 'search_for_highway' method.
-    # Parameters: highway.
-    # Return: result.
-    def setup_highway ( highway )
-        if ( highway )
-            result = search_for_highway ( highway )
-        else
-            result = nil
-        end
-
-        return result
-    end
+    public
 
     # Description: Checks the length of a highway informed and if it exists on
     # the database.
@@ -65,6 +53,44 @@ class HighwaysController < ApplicationController
         return check_result
     end
 
+    # Description: Defines the maximum length permitted to a highway name.
+    # Parameters: none.
+    # Return: max_highway_number_length.
+    def max_highway_number_length
+        # In Brazil, there are no highways with numbers longer than 3 digits.
+        max_highway_number_length = 3
+
+        return max_highway_number_length
+    end
+
+    # Description: Checks if a highway exists on the database.
+    # Parameters: highway_to_check.
+    # Return: check_result.
+    def check_highway_exists ( highway_to_check )
+        assert_object_is_not_null ( highway_to_check )
+        if ( Highway.exists_highway ( highway_to_check ) )
+            check_result = true
+        else
+            check_result =  false
+        end
+
+        return check_result
+    end
+
+    # Description: Sets up the instance variable '@HIGHWAY' on index with the
+    # result from 'search_for_highway' method.
+    # Parameters: highway.
+    # Return: result.
+    def setup_highway ( highway )
+        if ( highway )
+            result = search_for_highway ( highway )
+        else
+            result = nil
+        end
+
+        return result
+    end
+
     # Description: Searches for a highway on the database.
     # Parameters: highway_to_search.
     # Return: search_result.
@@ -76,16 +102,6 @@ class HighwaysController < ApplicationController
         assert_object_is_not_null( search_result )
 
         return search_result
-    end
-
-    # Description: Defines the maximum length permitted to a highway name.
-    # Parameters: none.
-    # Return: max_highway_number_length.
-    def max_highway_number_length
-        # In Brazil, there are no highways with numbers longer than 3 digits.
-        max_highway_number_length = 3
-
-        return max_highway_number_length
     end
 
     # Description: Checks the length of the highway number informed.
@@ -102,20 +118,6 @@ class HighwaysController < ApplicationController
             end
         else
             check_result = false
-        end
-
-        return check_result
-    end
-
-    # Description: Checks if a highway exists on the database.
-    # Parameters: highway_to_check.
-    # Return: check_result.
-    def check_highway_exists ( highway_to_check )
-        assert_object_is_not_null ( highway_to_check )
-        if ( Highway.exists_highway ( highway_to_check ) )
-            check_result = true
-        else
-            check_result =  false
         end
 
         return check_result
@@ -139,28 +141,6 @@ class HighwaysController < ApplicationController
         return highway_number
     end
 
-    # Description: Saves the amount of Accident model objects in an @ACCIDENT
-    # variable.
-    # Parameters: none.
-    # Return: @ACCIDENT.
-    def count_accidents_by_highway
-        @ACCIDENT = Accident.count_accidents
-        assert_object_is_not_null ( @ACCIDENT )
-
-        return @ACCIDENT
-    end
-
-    # Description: Orders the highways by their accident rates in reverse order
-    # (higher accident rates first), saves them in the @HIGHWAY variable and
-    # calls the create_position method to rank them.
-    # Parameters: none.
-    # Return: none.
-    def order_accidents_by_accidents_rate
-        @HIGHWAY = Highway.all_highways_by_accidents_rate
-        assert_object_is_not_null ( @HIGHWAY )
-        create_position
-    end
-
     # Description: Calculates the percentage of accidents based on the accidents
     # number on a given highway and the total of accidents registered. Receives
     # the accidents_number and the total_accidents parameters.
@@ -176,6 +156,114 @@ class HighwaysController < ApplicationController
         end
 
         return rate
+    end
+
+    # Description: Saves the amount of Accident model objects in an @ACCIDENT
+    # variable.
+    # Parameters: none.
+    # Return: @ACCIDENT.
+    def count_accidents_by_highway
+        @ACCIDENT = Accident.count_accidents
+        assert_object_is_not_null ( @ACCIDENT )
+
+        return @ACCIDENT
+    end
+
+    # Description: Saves all the highways from the database in a variable,
+    # all the accidents from the database in another variable, and calls the
+    # find_highway_to_accident_percentage method.
+    # Parameters: none.
+    # Return: none.
+    def accidents_percentage_ranking
+        @ALL_HIGHWAYS = Highway.all
+        assert_object_is_not_null ( @ALL_HIGHWAYS )
+        # Count the accidents
+        @ACCIDENT_COUNT = Accident.total_accidents
+        assert_object_is_not_null ( @ACCIDENT_COUNT )
+        # Order the accidents
+        find_highway_to_accident_percentage
+    end
+
+    # Description: Calculates the percentage of accidents based on the accidents
+    # number on a given highway and the total of accidents registered.
+    # Parameters: accidents_number, total_accidents.
+    # Return: rate.
+    def calculate_accidents_rate_percentage ( accidents_number, total_accidents )
+        assert_object_is_not_null ( accidents_number )
+        assert_object_is_not_null ( total_accidents )
+        zero_acidentes = 0
+
+        if ( accidents_number == zero_acidentes )
+            rate = 0.0
+        else
+            total = total_accidents.to_s
+            percentage = 100
+            rate =  ( accidents_number / total.to_f ) * percentage
+        end
+
+        return rate
+    end
+
+    # Description: Saves all the highways on the database in a variable and
+    # calls the find_highway_to_accident method.
+    # Parameters: none.
+    # Return: none.
+    def accidents_ranking
+        @HIGHWAYS = Highway.all
+        assert_object_is_not_null ( @HIGHWAYS )
+        find_highway_to_accident
+    end
+
+    private
+
+    # Description: Saves the accidents percentage rate of a highway in its
+    # respective highway object, provided there was at least one accident there.
+    # Parameters: none.
+    # Return: none.
+    def find_highway_to_accident_percentage
+        order_accidents_by_accidents_rate_percentage
+        count_accidents_by_highway
+
+        @ACCIDENT.each do |br, count|
+            br_accident = br
+            @ALL_HIGHWAYS.each do |highway|
+                mileage_br = highway.mileage.to_s
+                if ( highway.idBr == br_accident )
+                    highway.accidents_rate_percentage =
+                    calculate_accidents_rate_percentage( count,@ACCIDENT_COUNT )
+                    highway.save
+                else
+                    # Nothing to do.
+                end
+            end
+        end
+    end
+
+    # Description: Saves all the highways in the database ordered by their
+    # accident rates in a variable.
+    # Parameters: none.
+    # Return: highways_by_accidents_rate
+    def order_accidents_by_accidents_rate_percentage
+        highways_by_accidents_rate =
+        Highway.all_highways_by_accidents_rate_percentage
+        assert_object_is_not_null ( highways_by_accidents_rate )
+
+        return highways_by_accidents_rate
+    end
+
+    # Description: Saves the position of a highway in a ranking, based on their
+    # accident rates.
+    # Parameters: none.
+    # Return: none.
+    def create_position
+        iterator_position_current = 0
+        sum_iterator_position = 1
+
+        @HIGHWAY.each do |highway|
+            iterator_position_current += sum_iterator_position
+            highway.rankingPosition = iterator_position_current
+            highway.save
+        end
     end
 
     # Description: Saves the accidents rate of a highway in its respective
@@ -205,101 +293,14 @@ class HighwaysController < ApplicationController
         end
     end
 
-    # Description: Saves the position of a highway in a ranking, based on their
-    # accident rates.
+    # Description: Orders the highways by their accident rates in reverse order
+    # (higher accident rates first), saves them in the @HIGHWAY variable and
+    # calls the create_position method to rank them.
     # Parameters: none.
     # Return: none.
-    def create_position
-        iterator_position_current = 0
-        sum_iterator_position = 1
-
-        @HIGHWAY.each do |highway|
-            iterator_position_current += sum_iterator_position
-            highway.rankingPosition = iterator_position_current
-            highway.save
-        end
+    def order_accidents_by_accidents_rate
+        @HIGHWAY = Highway.all_highways_by_accidents_rate
+        assert_object_is_not_null ( @HIGHWAY )
+        create_position
     end
-
-
-    # Description: Saves all the highways on the database in a variable and
-    # calls the find_highway_to_accident method.
-    # Parameters: none.
-    # Return: none.
-    def accidents_ranking
-        @HIGHWAYS = Highway.all
-        assert_object_is_not_null ( @HIGHWAYS )
-        find_highway_to_accident
-    end
-
-    # Description: Calculates the percentage of accidents based on the accidents
-    # number on a given highway and the total of accidents registered.
-    # Parameters: accidents_number, total_accidents.
-    # Return: rate.
-    def calculate_accidents_rate_percentage( accidents_number, total_accidents )
-        assert_object_is_not_null ( accidents_number )
-        assert_object_is_not_null ( total_accidents )
-        zero_acidentes = 0
-
-        if ( accidents_number == zero_acidentes )
-            rate = 0.0
-        else
-            total = total_accidents.to_s
-            percentage = 100
-            rate =  ( accidents_number / total.to_f ) * percentage
-        end
-
-        return rate
-    end
-
-    # Description: Saves all the highways in the database ordered by their
-    # accident rates in a variable.
-    # Parameters: none.
-    # Return: highways_by_accidents_rate
-    def order_accidents_by_accidents_rate_percentage
-        highways_by_accidents_rate =
-        Highway.all_highways_by_accidents_rate_percentage
-        assert_object_is_not_null ( highways_by_accidents_rate )
-
-        return highways_by_accidents_rate
-    end
-
-    # Description: Saves all the highways from the database in a variable,
-    # all the accidents from the database in another variable, and calls the
-    # find_highway_to_accident_percentage method.
-    # Parameters: none.
-    # Return: none.
-
-    def accidents_percentage_ranking
-        @ALL_HIGHWAYS = Highway.all
-        assert_object_is_not_null ( @ALL_HIGHWAYS )
-        # Count the accidents
-        @ACCIDENT_COUNT = Accident.total_accidents
-        assert_object_is_not_null ( @ACCIDENT_COUNT )
-        # Order the accidents
-        find_highway_to_accident_percentage
-    end
-
-    # Description: Saves the accidents percentage rate of a highway in its
-    # respective highway object, provided there was at least one accident there.
-    # Parameters: none.
-    # Return: none.
-    def find_highway_to_accident_percentage
-        order_accidents_by_accidents_rate_percentage
-        count_accidents_by_highway
-
-        @ACCIDENT.each do |br, count|
-            br_accident = br
-            @ALL_HIGHWAYS.each do |highway|
-                mileage_br = highway.mileage.to_s
-                if ( highway.idBr == br_accident )
-                    highway.accidents_rate_percentage =
-                    calculate_accidents_rate_percentage( count,@ACCIDENT_COUNT )
-                    highway.save
-                else
-                    # Nothing to do.
-                end
-            end
-        end
-    end
-
 end
