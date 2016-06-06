@@ -40,8 +40,20 @@ class HighwaysController < ApplicationController
     # Return: check_result.
     def check_length_and_if_exists ( highway_to_check )
         assert_object_is_not_null ( highway_to_check )
-        cleaned_highway_to_check = check_highway_number ( highway_to_check )
+
+        # Check return of check_highway_number () method.
+        verify_highway_number = check_highway_number ( highway_to_check )
+
+        if ( verify_highway_number.class == String &&
+             verify_highway_number.to_i >= 0 )
+            cleaned_highway_to_check = verify_highway_number
+        else
+            # Nothing to do.
+        end
+
         assert_object_is_not_null ( cleaned_highway_to_check )
+        
+        # Check return of check_highway_exists () method.
         valid_lenght =  check_highway_number_length ( cleaned_highway_to_check )
 
         if ( valid_lenght == true )
