@@ -78,37 +78,42 @@ class AccidentTest < ActiveSupport::TestCase
 		end
 
 		test "get accidents longitude at position 4 of the array" do
-				assert_equal Accident.get_accidents_longitude[4], accidents( :five ).longitude,
-				 "test if get accidents longitude at position 4 of the array"
+				assert_equal Accident.new.get_accidents_longitude[4], 
+				accidents( :five ).longitude,
+				"test if get accidents longitude at position 4 of the array"
 		end
 
 		test "get accidents longitude at position 1 of the array" do
-				assert_equal Accident.get_accidents_longitude[1], accidents( :four ).longitude,
-				 "test if get accidents longitude at position 1 of the array"
+				assert_equal Accident.new.get_accidents_longitude[1], 
+				accidents( :four ).longitude,
+				"test if get accidents longitude at position 1 of the array"
 		end
 
 	 	test "get accidents latitude at position 4 of the array" do
-				assert_equal Accident.get_accidents_latitude[4], accidents( :five ).latitude,
-				 "test if get accidents latidude at position 4 of the array"
+				assert_equal Accident.new.get_accidents_latitude[4], 
+				accidents( :five ).latitude,
+				"test if get accidents latitude at position 4 of the array"
 		end
 
 		test "get accidents latitude at position 1 of the array" do
-				assert_equal Accident.get_accidents_latitude[1], accidents( :four ).latitude,
-				 "test if get accidents latitude at position 1 of the array"
+				assert_equal Accident.new.get_accidents_latitude[1], 
+				accidents( :four ).latitude,
+				"test if get accidents latitude at position 1 of the array"
 		end
 
 		test "get correct total of accidents" do
-				assert_equal Accident.total_accidents,@total_accidents
+				assert_equal Accident.new.total_accidents,@total_accidents
 		end
 
-		test "get correct total of accidents after one more intantiates of accident" do
+		test "get correct total of accidents after one more instantiates of\
+		 accident" do
 				@accident.latitude = accidents( :one ).longitude
 				@accident.longitude = accidents( :one ).latitude
 				@accident.federative_unity = accidents( :one ).federative_unity
 				@accident.kilometer = accidents( :one ).kilometer
 				@accident.highway_number = accidents( :one ).highway_number
 				@accident.save!
-				assert_equal Accident.total_accidents,@total_accidents + 1
+				assert_equal Accident.new.total_accidents,@total_accidents + 1
 		end
 
 		test "get the latitudes for an accident" do
@@ -121,7 +126,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude  = longitude_test
 				@accident.save!
 				expected_latitude = 21.to_s
-				accident_latitude = Accident.get_accidents_latitude.last
+				accident_latitude = Accident.new.get_accidents_latitude.last
 				assert_equal expected_latitude,accident_latitude
 		end
 
@@ -135,7 +140,7 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.longitude  = longitude_test
 				@accident.save!
 				expected_latitude = 22.to_s
-				accident_latitude = Accident.get_accidents_longitude.last
+				accident_latitude = Accident.new.get_accidents_longitude.last
 				assert_equal expected_latitude,accident_latitude
 		end
 
@@ -145,8 +150,10 @@ class AccidentTest < ActiveSupport::TestCase
 				@accident.kilometer = accidents( :one ).kilometer
 				@accident.highway_number = br_number_test
 				@accident.save!
-				brs_number_of_accidents = Accident.where( highway_number: br_number_test ).count
-				hash = Accident.count_accidents
-				assert_equal Accident.count_accidents[br_number_test.to_s],brs_number_of_accidents
+				brs_number_of_accidents = 
+				Accident.where( highway_number: br_number_test ).count
+				hash = Accident.new.count_accidents
+				assert_equal Accident.new.count_accidents[br_number_test.to_s],
+										 brs_number_of_accidents
 		end
 end

@@ -46,7 +46,7 @@
           </thread>
           <tbody>
             <% @HIGHWAYS.each do |h| %>
-              <% if h.accidents_rate != 0.0 && h.accidents_rate != nil %>
+              <% if h.accidentsRate != 0.0 && h.accidentsRate != nil %>
                 <tr></tr>
                 <td><%= h.rankingPosition %>º </td>
                 <td><%= h.idBr %></td>

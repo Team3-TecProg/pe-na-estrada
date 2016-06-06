@@ -76,9 +76,9 @@ class RoutesController < ApplicationController
     # Parameters: none.
     # Return: none.
     def get_accidents_data_to_sinalize
-        latitude = Accident.get_accidents_latitude
-        longitude = Accident.get_accidents_longitude
-        highway_number = Accident.get_accidents_highway_number
+        latitude = Accident.new.get_accidents_latitude
+        longitude = Accident.new.get_accidents_longitude
+        highway_number = Accident.new.get_accidents_highway_number
 
         remove_unusable_coordinates latitude, longitude, highway_number
     end

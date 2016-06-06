@@ -163,7 +163,7 @@ class HighwaysController < ApplicationController
     # Parameters: none.
     # Return: @ACCIDENT.
     def count_accidents_by_highway
-        @ACCIDENT = Accident.count_accidents
+        @ACCIDENT = Accident.new.count_accidents
         assert_object_is_not_null ( @ACCIDENT )
 
         return @ACCIDENT
@@ -178,7 +178,7 @@ class HighwaysController < ApplicationController
         @ALL_HIGHWAYS = Highway.all
         assert_object_is_not_null ( @ALL_HIGHWAYS )
         # Count the accidents
-        @ACCIDENT_COUNT = Accident.total_accidents
+        @ACCIDENT_COUNT = Accident.new.total_accidents
         assert_object_is_not_null ( @ACCIDENT_COUNT )
         # Order the accidents
         find_highway_to_accident_percentage
