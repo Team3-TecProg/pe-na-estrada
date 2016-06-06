@@ -11,4 +11,4 @@ pt-br:
       month_complete: "%B"
       month_abv: "%b"
       header_format_date: "%B de %Y"
-      edition_format_date: "%B/%Y"  
+      edition_format_date: "%B/%Y"

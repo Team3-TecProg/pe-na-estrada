@@ -27,5 +27,4 @@ class Comment < ActiveRecord::Base
 
         return all_coments_in_reverse_order
   	end
-
 end

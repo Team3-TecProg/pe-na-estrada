@@ -19,17 +19,21 @@ class Highway < ActiveRecord::Base
     validates_numericality_of :mileage, greater_than_or_equal_to: 1,
         allow_nil: true, message: 'Mileage cannot be shorter than 1.'
 
+    public
+
     # Description: Searches for highways based on a query provided by the user.
     # If no query is provided, returns all highways.
     # Parameters: id_to_search.
     # Return: none.
     def self.search_for_highway ( id_to_search )
         assert_object_is_not_null( id_to_search )
+
         if ( id_to_search.blank? )
             id_to_search = ""
         else
             # Nothing to do
         end
+
         # Returns all highways registered if id_to_search is empty
         where( "idBr LIKE ?", "%#{id_to_search}%" ).order( :idBr )
     end
@@ -78,5 +82,4 @@ class Highway < ActiveRecord::Base
 
         return highways_ordered_by_accidents_rate_percentage
     end
-
 end
