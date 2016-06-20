@@ -1,9 +1,12 @@
 <% content_for :title do %>Home | Pé na estrada<% end %>
 <div class="jumbotron">
   <div class="container">
-    <h1>Seja Bem Vindo</h1>
+    <h1> <%= t('Seja Bem Vindo')%> </h1>
     <p class="lead">
-    <p> O Pé na estrada foi desenvolvido com o intuito de disponibilizar informações sobre os acidentes ocorridos nas rodovias federais de acordo  com os dados disponibilizados pela Polícia Rodoviária Federal (PRF).</p>
+    <p> <%= t('O Pé na estrada foi desenvolvido com o intuito de')%> 
+    <%= t('disponibilizar informaçõessobre os acidentes ocorridos nas')%>
+    <%= t('rodovias federais de acordo  com os dados disponibilizados pela')%>
+    <%= t('Polícia Rodoviária Federal.')%></p>
     </p>
   </div>
 </div>

@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  # Translation of index.
+  Seja Bem Vindo: "Welcome"
+  O Pé na estrada foi desenvolvido com o intuito de: "Tradução1"
+  disponibilizar informaçõessobre os acidentes ocorridos nas: "Tradução2"
+  rodovias federais de acordo  com os dados disponibilizados pela: "Tradução3"
+  Polícia Rodoviária Federal.: "Tradução4"
