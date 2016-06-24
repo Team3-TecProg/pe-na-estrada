@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128134657) do
+ActiveRecord::Schema.define(version: 20160529004234) do
 
   create_table "accidents", force: true do |t|
     t.string   "latitude"
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(version: 20141128134657) do
     t.string   "idBr"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "highway_id"
   end
+
+  add_index "comments", ["highway_id"], name: "index_comments_on_highway_id"
 
   create_table "highways", force: true do |t|
     t.string   "idBr"
