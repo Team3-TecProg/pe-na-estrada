@@ -2,105 +2,106 @@
 <% content_for :title do %>Rodovias<% end %>
 
 <div class="page-header">
-  <h2><i class="fa fa-search-plus"></i>  Rodovias<br>
-    <small>Pesquise aqui por uma rodovia federal</small>
-  </h2>
+    <h2><i class="fa fa-search-plus"></i> <%= t('Rodovias') %><br>
+        <small><%= t('Pesquise aqui por uma rodovia federal') %></small>
+    </h2>
 </div>
 
 <div class="row">
 
-  <div id="search_highway_form" class="col-lg-3">
-    <!-- Search bar for a highway -->
-    <%= form_tag highways_path, :method => "get" , id: "search-highway-form" do%>
+    <div id="search_highway_form" class="col-lg-3">
+      <!-- Search bar for a highway -->
+      <%= form_tag highways_path, :method => "get" , id: "search-highway-form" do%>
 
-        <br>
-        <span class="label label-success">Pesquisar Rodovia</span>
+          <br>
+          <span class="label label-success"><%= t('Pesquisar Rodovia') %></span>
 
-        <div class="input-group">
-          <div class="form-horizontal">
-              <%= text_field_tag :highway_search,
-                                            params[:highway_search],
-                                            placeholder: "Informe uma rodovia",
-                                            :pattern => '[0-9]+',
-                                            :input_html => {:size => 40, :maxlenght => 3} %>
-          </div>
-        </div>
-
-        <div id="search_btn" >
-          <i class="fa fa-search"></i>
-          <%= submit_tag "Pesquisar", :name => nil, :class => "btn btn-default"%>
-        </div>
-
-    <% end %>
-    <!-- End of search bar for a highway form -->
-  </div>
-
-  <% if @HIGHWAY.blank? == false %>
-    <div class="col-lg-6" align="center">
-      <div id="search_for_highway_result" class="panel panel-success" style="width: 500px;">
-
-        <div class="panel-heading">
-          <h1 class="panel-title" style="text-align: left">
-            <%= "Rodovias encontradas:"%>
-          </h1>
-         </div>
-
-        <table class="table table-hover" align="right">
-          <tr>
-            <td style="text-align: center;"><b><%= "BR"%></b></td>
-            <td></td>
-            <td style="text-align: center;"><b><%= "Entensão da rodovia"%></b></td>
-            <td></td>
-            <td style="text-align: center;"><b><%= "Posição no ranking de acidentes por quilômetro"%></b></td>
-            <td></td>
-            <td style="text-align: center;"><b><%= "Comentários"%></b></td>
-            <td></td>
-          </tr>
-
-          <% @HIGHWAY.each do |highway| %>
-            <tr>
-              <td style="text-align: center;">
-                <%= "#{highway.idBr}" %>
-              </td>
-
-              <td></td>
-
-              <td style="text-align: center;">
-                <% if highway.mileage.blank? == false %>
-                  <%= "#{highway.mileage} Km" %>
-                <% else %>
-                  <%= "Sem informações no momento" %>
-                <% end %>
-              </td>
-
-              <td></td>
-               <td style="text-align: center;">
-                <%= "#{highway.rankingPosition}º" %>
-              </td>
-              <td></td>
-               <td style="text-align: center;" onclick="location.href='<%=highway_path(highway)%>'" style="cursor:pointer;">
-                <i class="fa fa-comments-o"></i>
-              </td>
-              <td></td>
+          <div class="input-group">
+              <div class="form-horizontal">
+                  <%= text_field_tag :highway_search,
+                                                params[:highway_search],
+                                                placeholder: "Informe uma rodovia",
+                                                :pattern => '[0-9]+',
+                                                :input_html => {:size => 40, :maxlenght => 3} %>
               </div>
-            </tr>
+          </div>
 
-          <% end %>
+          <div id="search_btn" >
+              <i class="fa fa-search"></i>
+              <%= submit_tag "Pesquisar", :name => nil, :class => "btn btn-default"%>
+          </div>
 
-        </table>
-      </div>
+      <% end %>
+      <!-- End of search bar for a highway form -->
     </div>
 
-  <% else %>
+    <% if @HIGHWAY.blank? == false %>
+      <div class="col-lg-6" align="center">
+          <div id="search_for_highway_result" class="panel panel-success" style="width: 500px;">
 
-    <% if !@HIGHWAY_NUMBER_EXISTS  && @HIGHWAY_INFORMED_BY_USER != nil %>
-      <br><br>
-      <div id="error_message" class="alert alert-danger" role="alert" style="text-align: center;">
-        Nenhuma rodovia com esse nome ou parte dele. Cheque o número digitado (Digite apenas os dígitos da rodovia).
+            <div class="panel-heading">
+                <h1 class="panel-title" style="text-align: left">
+                    <%= "Rodovias encontradas:"%>
+                </h1>
+            </div>
+
+            <table class="table table-hover" align="right">
+                <tr>
+                    <td style="text-align: center;"><b><%= "BR"%></b></td>
+                    <td></td>
+                    <td style="text-align: center;"><b><%= "Entensão da rodovia"%></b></td>
+                    <td></td>
+                    <td style="text-align: center;"><b><%= "Posição no ranking de acidentes por quilômetro"%></b></td>
+                    <td></td>
+                    <td style="text-align: center;"><b><%= "Comentários"%></b></td>
+                    <td></td>
+                </tr>
+
+              <% @HIGHWAY.each do |highway| %>
+                  <tr>
+                      <td style="text-align: center;">
+                          <%= "#{highway.idBr}" %>
+                      </td>
+
+                      <td></td>
+
+                      <td style="text-align: center;">
+                          <% if highway.mileage.blank? == false %>
+                              <%= "#{highway.mileage} Km" %>
+                          <% else %>
+                              <%= "Sem informações no momento" %>
+                          <% end %>
+                      </td>
+
+                      <td></td>
+                         <td style="text-align: center;">
+                          <%= "#{highway.rankingPosition}º" %>
+                      </td>
+                      <td></td>
+                          <td style="text-align: center;" onclick="location.href='<%=highway_path(highway)%>'" style="cursor:pointer;">
+                            <i class="fa fa-comments-o"></i>
+                          </td>
+                      <td></td>
+
+                      </div>
+                  </tr>
+
+              <% end %>
+
+            </table>
+          </div>
       </div>
-    <% end %>
 
-  <% end %>
-  <br>
+    <% else %>
+
+        <% if !@HIGHWAY_NUMBER_EXISTS  && @HIGHWAY_INFORMED_BY_USER != nil %>
+            <br><br>
+            <div id="error_message" class="alert alert-danger" role="alert" style="text-align: center;">
+              Nenhuma rodovia com esse nome ou parte dele. Cheque o número digitado (Digite apenas os dígitos da rodovia).
+            </div>
+        <% end %>
+
+    <% end %>
+    <br>
 
 </div>
