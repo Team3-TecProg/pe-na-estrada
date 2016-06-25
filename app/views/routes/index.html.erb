@@ -14,13 +14,13 @@
           <div id="trace_route_form">
 
             <br>
-            <span class="label label-primary">Origem</span>
+            <span class="label label-primary"><%= t('Origem') %></span>
             <div class="row">
               <div class="col-lg-6">
                 <div class="input-group">
                   <div class="form-horizontal">
                     <%= o.input :origin, label: false,
-                                        placeholder:'Informe uma origem',
+                                        placeholder:t('Informe uma origem'),
                                         required: true,
                                         :pattern => '[a-zA-Z0-9 /\ãáàâéêíôóõúç~-,.:;ÃÁÀÂÉÊÍÔÓÕÚÇ]+',
                                         :input_html => {:size => 25} %>
@@ -30,13 +30,13 @@
             </div>
             <br>
 
-            <span class="label label-primary">Destino</span>
+            <span class="label label-primary"><%= t('Destino') %></span>
             <div class="row">
               <div class="col-lg-6">
                 <div class="input-group">
                   <div class="form-horizontal">
                     <%= o.input :destination, label: false,
-                                        placeholder:'Informe um destino',
+                                        placeholder:t('Informe um destino'),
                                         required: true,
                                         :pattern => '[a-zA-Z0-9 /\ãáàâéêíôóõúç~-,.:;ÃÁÀÂÉÊÍÔÓÕÚÇ]+',
                                         :input_html => {:size => 25}%>
@@ -48,7 +48,7 @@
             <br>
 
 
-            <%= o.button :submit, "Traçar Rota", :class => "btn btn-default btn-sm ", :id => "btn_trace_route" %>
+            <%= o.button :submit, t("Traçar Rota"), :class => "btn btn-default btn-sm ", :id => "btn_trace_route" %>
 
 
         </div>
@@ -64,8 +64,8 @@
 
   <div class="col-lg-8">
     <div class="page-header">
-      <h2><i class="fa fa-road"></i>  Trace sua rota aqui <br>
-        <small>Informe uma origem e um destino</small>
+      <h2><i class="fa fa-road"></i>  <%=t('Trace sua rota aqui')%> <br>
+        <small><%=t('Informe uma origem e um destino')%></small>
       </h2>
     </div>
   </div>
