@@ -19,6 +19,23 @@ en:
     Acompanhe a classificação de cada rodovia em relação aos acidentes: "Follow \
     the rate of each highway in relationship of accidents"
 
+    # Translation of highways/index
+
+    Informe uma rodovia: "Tell a highway"
+    Pesquisar: "Search"
+    Pesquise aqui por uma rodovia federal: "Search here by a federal highway"
+    Pesquisar Rodovia: "Search highway"
+    Rodovias encontradas: "Highways found"
+    Entensão da rodovia: "Highway extension"
+    Posição no ranking de acidentes por quilômetro: "In the ranking of accidents per kilometer"
+    Comentários: "Comments"
+    Nenhuma rodovia com esse nome ou parte dele. Cheque o número digitado (Digite apenas os dígitos da rodovia): "No highway with the name or part of it. Check the number entered (Enter only the digits of the highway)"
+    Sem informações no momento: "No information at this time"
+
+
+
+
+
     # Translations of links.
     Traçar Rota: "Make route"
     Ranking: "Ranking"

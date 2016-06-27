@@ -20,7 +20,7 @@
               <div class="form-horizontal">
                   <%= text_field_tag :highway_search,
                                                 params[:highway_search],
-                                                placeholder: "Informe uma rodovia",
+                                                placeholder: t('Informe uma rodovia'),
                                                 :pattern => '[0-9]+',
                                                 :input_html => {:size => 40, :maxlenght => 3} %>
               </div>
@@ -28,7 +28,7 @@
 
           <div id="search_btn" >
               <i class="fa fa-search"></i>
-              <%= submit_tag "Pesquisar", :name => nil, :class => "btn btn-default"%>
+              <%= submit_tag t('Pesquisar'), :name => nil, :class => "btn btn-default"%>
           </div>
 
       <% end %>
@@ -41,7 +41,7 @@
 
             <div class="panel-heading">
                 <h1 class="panel-title" style="text-align: left">
-                    <%= "Rodovias encontradas:"%>
+                    <%= t('Rodovias encontradas:')%>
                 </h1>
             </div>
 
@@ -49,11 +49,12 @@
                 <tr>
                     <td style="text-align: center;"><b><%= "BR"%></b></td>
                     <td></td>
-                    <td style="text-align: center;"><b><%= "Entensão da rodovia"%></b></td>
+                    <td style="text-align: center;"><b><%= t('Entensão da rodovia') %></b></td>
                     <td></td>
-                    <td style="text-align: center;"><b><%= "Posição no ranking de acidentes por quilômetro"%></b></td>
+                    <td style="text-align: center;"><b><%= t('Posição no ranking de acidentes por quilômetro')%></b></td>
                     <td></td>
-                    <td style="text-align: center;"><b><%= "Comentários"%></b></td>
+                    <td style="text-align: center;"><b>
+                    <%= t('Comentários')%></b></td>
                     <td></td>
                 </tr>
 
@@ -69,7 +70,7 @@
                           <% if highway.mileage.blank? == false %>
                               <%= "#{highway.mileage} Km" %>
                           <% else %>
-                              <%= "Sem informações no momento" %>
+                              <%= t('Sem informações no momento') %>
                           <% end %>
                       </td>
 
@@ -97,7 +98,7 @@
         <% if !@HIGHWAY_NUMBER_EXISTS  && @HIGHWAY_INFORMED_BY_USER != nil %>
             <br><br>
             <div id="error_message" class="alert alert-danger" role="alert" style="text-align: center;">
-              Nenhuma rodovia com esse nome ou parte dele. Cheque o número digitado (Digite apenas os dígitos da rodovia).
+                <%= ('Nenhuma rodovia com esse nome ou parte dele. Cheque o número digitado (Digite apenas os dígitos da rodovia).')%>
             </div>
         <% end %>
 
