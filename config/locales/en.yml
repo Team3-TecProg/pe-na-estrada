@@ -33,8 +33,18 @@ en:
     Sem informações no momento: "No information at this time"
 
 
+    # Translation of highways/show
 
-
+    Deixe aqui seu comentário sobre essa rodovia: "Please leave your comment on this highway"
+    Título: "Title"
+    Comentário: "Comment"
+    Comentar: "Comment"
+    Rodovia: "Highway"
+    Extensão da rodovia: "Highway distance"
+    Sem informações no momento: "No information at this time:"
+    Posição no ranking: "Ranking position"
+    Comentário realizado em: "Review held in"
+    Ainda não há nenhum comentário sobre essa rodovia.: "There is still no comment on this highway."
 
     # Translations of links.
     Traçar Rota: "Make route"
