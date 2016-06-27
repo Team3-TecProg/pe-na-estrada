@@ -19,8 +19,19 @@ en:
     Acompanhe a classificação de cada rodovia em relação aos acidentes: "Follow \
     the rate of each highway in relationship of accidents"
 
-    # Translation of highways/index
+    # Translation of highways/Accidents
+    Ranking das Rodovias Federais: "Ranking of the Federal Roads"
+    Você está visualizando o ranking na taxa de: "You are viewing the ranking in the rate of"
+    Acidentes/Km: "Accidents / Km"
+    Porcentagem em relação ao total: "You are viewing the ranking in the rate of"
+    Ranking Completo: "Full ranking"
+    Posição: "Position"
+    BR: "BR"
+    Acidentes/Km: "Accidents / Km"
+    Participação no total: "Participation in total"
+    Acidentes/Km: "Accidents/Km"
 
+    # Translation of highways/index
     Informe uma rodovia: "Tell a highway"
     Pesquisar: "Search"
     Pesquise aqui por uma rodovia federal: "Search here by a federal highway"
@@ -34,7 +45,6 @@ en:
 
 
     # Translation of highways/show
-
     Deixe aqui seu comentário sobre essa rodovia: "Please leave your comment on this highway"
     Título: "Title"
     Comentário: "Comment"
